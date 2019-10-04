@@ -88,6 +88,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="9ye-Ge-4Zj">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -95,11 +98,15 @@
                             <constraint firstItem="9x2-9h-SvU" firstAttribute="bottom" secondItem="pel-5t-YUh" secondAttribute="bottom" id="Jap-dX-xOT"/>
                             <constraint firstItem="9x2-9h-SvU" firstAttribute="trailing" secondItem="pel-5t-YUh" secondAttribute="trailing" id="Lgf-QD-pLf"/>
                             <constraint firstItem="pel-5t-YUh" firstAttribute="top" secondItem="9x2-9h-SvU" secondAttribute="top" id="RvB-4K-d7Z"/>
+                            <constraint firstItem="9ye-Ge-4Zj" firstAttribute="centerY" secondItem="DDr-7b-LMw" secondAttribute="centerY" id="UYU-pl-zV8"/>
+                            <constraint firstItem="9ye-Ge-4Zj" firstAttribute="centerX" secondItem="DDr-7b-LMw" secondAttribute="centerX" id="nCy-jI-eCY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9x2-9h-SvU"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Поиск" image="magnifyingglass" catalog="system" id="5lL-3g-8Z9"/>
                     <connections>
+                        <outlet property="searchBar" destination="OUH-Ec-1r3" id="okZ-Es-s65"/>
+                        <outlet property="tableViewActivityIndicator" destination="9ye-Ge-4Zj" id="X0l-Ws-0bh"/>
                         <outlet property="tracksTableView" destination="pel-5t-YUh" id="oG8-yM-3VF"/>
                     </connections>
                 </viewController>

@@ -1,5 +1,5 @@
 //
-//  FindTrackViewModel.swift
+//  TrackQuery.swift
 //  MusicApp
 //
 //  Created by Рыжков Артем on 04.10.2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct FindTrackViewModel {
-    var trackModel: Track
-    
+struct TrackQuery: Codable {
+    var resultCount: Int
+    var results: [Track]
 }

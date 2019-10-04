@@ -14,6 +14,9 @@ class TrackCell: UITableViewCell {
     @IBOutlet weak var trackAuthorLabel: UILabel!
     @IBOutlet weak var trackAlbumImage: UIImageView!
     
+    var isDownloadingAlbumImage = false
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
