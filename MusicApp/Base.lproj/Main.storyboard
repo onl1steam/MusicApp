@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lil-yK-4R2">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Плейлист-->
+        <scene sceneID="CaY-EO-IvI">
+            <objects>
+                <viewController id="aBU-Hj-YwD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BR4-lv-3Hv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="EY4-t7-Vka"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Плейлист" image="music.note.list" catalog="system" id="VXg-j0-n2z"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7uv-eX-O2y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="678" y="233"/>
+        </scene>
+        <!--Поиск-->
+        <scene sceneID="aqP-GW-y57">
+            <objects>
+                <viewController id="5NG-7I-y6Q" customClass="FindTrackViewController" customModule="MusicApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DDr-7b-LMw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pel-5t-YUh">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Введите название" id="OUH-Ec-1r3">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trackCell" rowHeight="110" id="5gu-qv-Szw" customClass="TrackCell" customModule="MusicApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="110"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5gu-qv-Szw" id="ttP-hj-0qI">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="music.note" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BB2-Kk-wpb">
+                                                    <rect key="frame" x="25" y="23" width="65" height="64.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="65" id="j76-YD-F83"/>
+                                                        <constraint firstAttribute="height" constant="65" id="mAA-v0-aBX"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TNU-Gd-Q12">
+                                                    <rect key="frame" x="105" y="29.5" width="279" height="51"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1j-k3-Ble">
+                                                            <rect key="frame" x="0.0" y="0.0" width="77.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Автор" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOB-iX-ZLJ">
+                                                            <rect key="frame" x="0.0" y="30.5" width="47.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BB2-Kk-wpb" firstAttribute="leading" secondItem="ttP-hj-0qI" secondAttribute="leadingMargin" constant="5" id="DPQ-IO-P5q"/>
+                                                <constraint firstItem="BB2-Kk-wpb" firstAttribute="centerY" secondItem="ttP-hj-0qI" secondAttribute="centerY" id="lMV-9J-fJa"/>
+                                                <constraint firstItem="TNU-Gd-Q12" firstAttribute="centerY" secondItem="ttP-hj-0qI" secondAttribute="centerY" id="lmE-DD-HWu"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="TNU-Gd-Q12" secondAttribute="trailing" constant="10" id="tku-fE-yxq"/>
+                                                <constraint firstItem="TNU-Gd-Q12" firstAttribute="leading" secondItem="BB2-Kk-wpb" secondAttribute="trailing" constant="15" id="uNx-sQ-eVn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="trackAlbumImage" destination="BB2-Kk-wpb" id="7ec-z0-9tw"/>
+                                            <outlet property="trackAuthorLabel" destination="DOB-iX-ZLJ" id="c1p-Ad-5Vl"/>
+                                            <outlet property="trackNameLabel" destination="c1j-k3-Ble" id="3R5-45-xVU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pel-5t-YUh" firstAttribute="leading" secondItem="9x2-9h-SvU" secondAttribute="leading" id="FKW-l0-qZR"/>
+                            <constraint firstItem="9x2-9h-SvU" firstAttribute="bottom" secondItem="pel-5t-YUh" secondAttribute="bottom" id="Jap-dX-xOT"/>
+                            <constraint firstItem="9x2-9h-SvU" firstAttribute="trailing" secondItem="pel-5t-YUh" secondAttribute="trailing" id="Lgf-QD-pLf"/>
+                            <constraint firstItem="pel-5t-YUh" firstAttribute="top" secondItem="9x2-9h-SvU" secondAttribute="top" id="RvB-4K-d7Z"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9x2-9h-SvU"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Поиск" image="magnifyingglass" catalog="system" id="5lL-3g-8Z9"/>
+                    <connections>
+                        <outlet property="tracksTableView" destination="pel-5t-YUh" id="oG8-yM-3VF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nle-cu-Zwz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="95.652173913043484" y="911.38392857142856"/>
+        </scene>
+        <!--Популярное-->
+        <scene sceneID="Ykz-zH-b9c">
+            <objects>
+                <viewController id="Fkm-sT-Xr6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GsF-4U-u1P">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dsE-uw-MVJ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Популярное" image="heart.fill" catalog="system" id="PPs-KS-eAP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dOy-Xg-Ozk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="678" y="-416"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="UFo-aR-6Se">
+            <objects>
+                <tabBarController id="Lil-yK-4R2" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UCL-kN-UUn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Fkm-sT-Xr6" kind="relationship" relationship="viewControllers" id="kyM-6K-mwf"/>
+                        <segue destination="aBU-Hj-YwD" kind="relationship" relationship="viewControllers" id="QRh-qq-RJo"/>
+                        <segue destination="5NG-7I-y6Q" kind="relationship" relationship="viewControllers" id="yIx-vs-pkj"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XcU-Uu-G1q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-242" y="-93"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="heart.fill" catalog="system" width="64" height="58"/>
+        <image name="magnifyingglass" catalog="system" width="64" height="60"/>
+        <image name="music.note" catalog="system" width="48" height="64"/>
+        <image name="music.note.list" catalog="system" width="64" height="58"/>
+    </resources>
+</document>
