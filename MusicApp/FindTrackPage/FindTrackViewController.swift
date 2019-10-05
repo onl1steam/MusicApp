@@ -65,8 +65,11 @@ extension FindTrackViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension FindTrackViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Updating views
         self.view.endEditing(true)
         self.tableViewActivityIndicator.isHidden = false
+        self.trackList = []
+        self.tracksTableView.reloadData()
         self.tableViewActivityIndicator.startAnimating()
         
         guard let searchTerm = searchBar.text else { return }
