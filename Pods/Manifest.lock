@@ -1,0 +1,28 @@
+PODS:
+  - Realm (3.19.0):
+    - Realm/Headers (= 3.19.0)
+  - Realm/Headers (3.19.0)
+  - RealmSwift (3.19.0):
+    - Realm (= 3.19.0)
+  - SDWebImage (5.2.2):
+    - SDWebImage/Core (= 5.2.2)
+  - SDWebImage/Core (5.2.2)
+
+DEPENDENCIES:
+  - RealmSwift
+  - SDWebImage
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Realm
+    - RealmSwift
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Realm: 995d585bcf699aaff226715886c849a29dd3d07f
+  RealmSwift: 35f284a537989f2187b413e5917091948cb87a3f
+  SDWebImage: 5fcdb02cc35e05fc35791ec514b191d27189f872
+
+PODFILE CHECKSUM: 3ef221ad44686df91ab6778cab58c7ba7c34565b
+
+COCOAPODS: 1.7.5

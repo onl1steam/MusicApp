@@ -21,9 +21,11 @@
 		92FCDC3A2347ECFB00F70F45 /* TrackPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC382347ECFB00F70F45 /* TrackPlayerViewController.swift */; };
 		92FCDC3B2347ECFB00F70F45 /* TrackPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FCDC392347ECFB00F70F45 /* TrackPlayerViewController.xib */; };
 		92FCDC3D2347F1E800F70F45 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC3C2347F1E800F70F45 /* GradientView.swift */; };
+		B1F3AA282D95BC1D95AC16EA /* Pods_MusicApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DB9339DEAD81370BBFCD5E /* Pods_MusicApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		68CD22C499946E4C4887774D /* Pods-MusicApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicApp.debug.xcconfig"; path = "Target Support Files/Pods-MusicApp/Pods-MusicApp.debug.xcconfig"; sourceTree = "<group>"; };
 		924D98E523427474008E70A2 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924D98E823427474008E70A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924D98EA23427474008E70A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +42,8 @@
 		92FCDC382347ECFB00F70F45 /* TrackPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackPlayerViewController.swift; sourceTree = "<group>"; };
 		92FCDC392347ECFB00F70F45 /* TrackPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackPlayerViewController.xib; sourceTree = "<group>"; };
 		92FCDC3C2347F1E800F70F45 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		B3DB9339DEAD81370BBFCD5E /* Pods_MusicApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE18FC221DCBFB9B8FB9101E /* Pods-MusicApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicApp.release.xcconfig"; path = "Target Support Files/Pods-MusicApp/Pods-MusicApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,17 +51,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1F3AA282D95BC1D95AC16EA /* Pods_MusicApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52CC8BADE7E4F5F9D7C95A10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3DB9339DEAD81370BBFCD5E /* Pods_MusicApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		924D98DC23427474008E70A2 = {
 			isa = PBXGroup;
 			children = (
 				924D98E723427474008E70A2 /* MusicApp */,
 				924D98E623427474008E70A2 /* Products */,
+				BEB7B9B404862C126F3E0D3B /* Pods */,
+				52CC8BADE7E4F5F9D7C95A10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +162,16 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BEB7B9B404862C126F3E0D3B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				68CD22C499946E4C4887774D /* Pods-MusicApp.debug.xcconfig */,
+				FE18FC221DCBFB9B8FB9101E /* Pods-MusicApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,9 +179,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 924D98F923427478008E70A2 /* Build configuration list for PBXNativeTarget "MusicApp" */;
 			buildPhases = (
+				F2C02BC31EBC95F11C9F818D /* [CP] Check Pods Manifest.lock */,
 				924D98E123427474008E70A2 /* Sources */,
 				924D98E223427474008E70A2 /* Frameworks */,
 				924D98E323427474008E70A2 /* Resources */,
+				E9470AB852031571536A0DA3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,6 +240,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E9470AB852031571536A0DA3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MusicApp/Pods-MusicApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MusicApp/Pods-MusicApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MusicApp/Pods-MusicApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2C02BC31EBC95F11C9F818D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MusicApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		924D98E123427474008E70A2 /* Sources */ = {
@@ -370,6 +439,7 @@
 		};
 		924D98FA23427478008E70A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68CD22C499946E4C4887774D /* Pods-MusicApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -389,6 +459,7 @@
 		};
 		924D98FB23427478008E70A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE18FC221DCBFB9B8FB9101E /* Pods-MusicApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
