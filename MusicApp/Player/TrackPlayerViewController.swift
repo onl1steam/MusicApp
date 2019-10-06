@@ -37,29 +37,14 @@ class TrackPlayerViewController: UIViewController {
         // Sliders
         trackSlider.thumbImage(for: .normal)
         
-        /* let vol = AVAudioSession.sharedInstance().outputVolume
-        AVAudioSession.sharedInstance()
-        volumeSlider.setValue(vol, animated: false) */
-        
-        
-        loadAlbumImage(from: track!.artworkUrl100)
+        loadAlbumImage(from: track?.artworkUrl100)
     }
     
     // Transfer to Model class
-    func loadAlbumImage(from url: String) {
-        guard let url = URL(string: url) else { return }
-        
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.albumImageView.image = image
-                    }
-                }
-            }
-        }
-        
-        
+    func loadAlbumImage(from url: String?) {
+        guard let urlString = url,
+            let url = URL(string: urlString) else { return }
+        albumImageView.sd_setImage(with: url, completed: nil)
     }
 
  

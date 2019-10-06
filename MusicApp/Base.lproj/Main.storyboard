@@ -26,14 +26,32 @@
         <!--Поиск-->
         <scene sceneID="aqP-GW-y57">
             <objects>
-                <viewController id="5NG-7I-y6Q" customClass="FindTrackViewController" customModule="MusicApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5NG-7I-y6Q" customClass="TrackSearchViewController" customModule="MusicApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DDr-7b-LMw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pel-5t-YUh">
-                                <rect key="frame" x="0.0" y="93" width="414" height="720"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIw-qc-sU3">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GD2-Ct-vfw">
+                                        <rect key="frame" x="0.0" y="364" width="414" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="GD2-Ct-vfw" secondAttribute="trailing" id="FOu-PF-yLs"/>
+                                    <constraint firstItem="GD2-Ct-vfw" firstAttribute="leading" secondItem="LIw-qc-sU3" secondAttribute="leading" id="Nfb-rr-Xww"/>
+                                    <constraint firstItem="GD2-Ct-vfw" firstAttribute="centerX" secondItem="LIw-qc-sU3" secondAttribute="centerX" id="Z5g-9L-YJ5"/>
+                                    <constraint firstItem="GD2-Ct-vfw" firstAttribute="centerY" secondItem="LIw-qc-sU3" secondAttribute="centerY" id="mk0-t0-E2q"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pel-5t-YUh">
+                                <rect key="frame" x="0.0" y="93" width="414" height="720"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trackCell" rowHeight="110" id="5gu-qv-Szw" customClass="TrackCell" customModule="MusicApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="110"/>
@@ -87,24 +105,40 @@
                                 <rect key="frame" x="197" y="438" width="20" height="20"/>
                             </activityIndicatorView>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Введите название" id="OUH-Ec-1r3">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="44" width="310" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6m-5v-bYQ">
+                                <rect key="frame" x="315" y="54" width="90" height="34"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <state key="normal" title="Отменить"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="5NG-7I-y6Q" eventType="touchUpInside" id="0jW-2N-OZY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pel-5t-YUh" firstAttribute="top" secondItem="OUH-Ec-1r3" secondAttribute="bottom" constant="5" id="2Bx-Kx-Imu"/>
+                            <constraint firstItem="LIw-qc-sU3" firstAttribute="trailing" secondItem="9x2-9h-SvU" secondAttribute="trailing" id="6IG-xk-hIR"/>
+                            <constraint firstItem="LIw-qc-sU3" firstAttribute="top" secondItem="9x2-9h-SvU" secondAttribute="top" id="6z3-vY-a3S"/>
+                            <constraint firstItem="LIw-qc-sU3" firstAttribute="leading" secondItem="9x2-9h-SvU" secondAttribute="leading" id="82Z-Sn-WSi"/>
                             <constraint firstItem="pel-5t-YUh" firstAttribute="leading" secondItem="9x2-9h-SvU" secondAttribute="leading" id="FKW-l0-qZR"/>
                             <constraint firstItem="9x2-9h-SvU" firstAttribute="bottom" secondItem="pel-5t-YUh" secondAttribute="bottom" id="Jap-dX-xOT"/>
                             <constraint firstItem="9x2-9h-SvU" firstAttribute="trailing" secondItem="pel-5t-YUh" secondAttribute="trailing" id="Lgf-QD-pLf"/>
+                            <constraint firstItem="9x2-9h-SvU" firstAttribute="trailing" secondItem="j6m-5v-bYQ" secondAttribute="trailing" constant="9" id="SSj-1B-xpL"/>
                             <constraint firstItem="9ye-Ge-4Zj" firstAttribute="centerY" secondItem="DDr-7b-LMw" secondAttribute="centerY" id="UYU-pl-zV8"/>
+                            <constraint firstItem="j6m-5v-bYQ" firstAttribute="top" secondItem="9x2-9h-SvU" secondAttribute="top" constant="10" id="coG-Fw-6NP"/>
+                            <constraint firstItem="j6m-5v-bYQ" firstAttribute="leading" secondItem="OUH-Ec-1r3" secondAttribute="trailing" constant="5" id="fov-xL-CNY"/>
+                            <constraint firstItem="LIw-qc-sU3" firstAttribute="bottom" secondItem="9x2-9h-SvU" secondAttribute="bottom" id="j3y-oH-1yY"/>
                             <constraint firstItem="9ye-Ge-4Zj" firstAttribute="centerX" secondItem="DDr-7b-LMw" secondAttribute="centerX" id="nCy-jI-eCY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9x2-9h-SvU"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Поиск" image="magnifyingglass" catalog="system" id="5lL-3g-8Z9"/>
                     <connections>
+                        <outlet property="informationLabel" destination="GD2-Ct-vfw" id="YHq-pK-J2j"/>
                         <outlet property="searchBar" destination="OUH-Ec-1r3" id="okZ-Es-s65"/>
                         <outlet property="tableViewActivityIndicator" destination="9ye-Ge-4Zj" id="X0l-Ws-0bh"/>
                         <outlet property="tracksTableView" destination="pel-5t-YUh" id="oG8-yM-3VF"/>
@@ -112,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nle-cu-Zwz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="886" y="436"/>
+            <point key="canvasLocation" x="885.50724637681162" y="435.9375"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="UFo-aR-6Se">
@@ -122,7 +156,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="aBU-Hj-YwD" kind="relationship" relationship="viewControllers" id="QRh-qq-RJo"/>
