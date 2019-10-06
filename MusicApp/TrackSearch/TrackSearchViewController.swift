@@ -11,18 +11,17 @@ import SDWebImage
 
 class TrackSearchViewController: UIViewController {
     
-    @IBOutlet weak var informationLabel: UILabel!
     @IBOutlet weak var tableViewActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tracksTableView: UITableView!
     let trackCellReuseIdentifier: String = "trackCell"
+    let searchController = UISearchController(searchResultsController: nil)
     
     var trackList: [Track] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        informationLabel.text = "Здесь пусто \n Введите название в поле поиска"
+        setupSearchBar()
         
         // Activity Indicator settings
         self.tableViewActivityIndicator.isHidden = true 
@@ -31,9 +30,18 @@ class TrackSearchViewController: UIViewController {
         tracksTableView.delegate = self
         tracksTableView.dataSource = self
         tracksTableView.tableFooterView = UIView()
+    }
+    
+    func setupSearchBar() {
+        navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
+        navigationController?.navigationBar.prefersLargeTitles = true
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.hidesSearchBarWhenScrolling = false
         
-        // SearchBar settings
-        searchBar.delegate = self
+        let cancelButtonAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.yellow]
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
+        
     }
     
     func requestForTracks(with searchTerm: String) {
@@ -55,12 +63,9 @@ class TrackSearchViewController: UIViewController {
         }
     }
     
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        informationLabel.isHidden = false
-        searchBar.text = ""
-        trackList = []
-        tracksTableView.reloadData()
-        self.view.endEditing(true)
+    // Change status bar
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .default
     }
     
 
@@ -86,7 +91,7 @@ extension TrackSearchViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 85
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -98,19 +103,16 @@ extension TrackSearchViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension TrackSearchViewController: UISearchBarDelegate {
-    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
         guard let searchTerm = searchBar.text else { return }
         requestForTracks(with: searchTerm)
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.searchTextField.text == "" {
-            informationLabel.isHidden = false
-        } else {
-            informationLabel.isHidden = true
-        }
-        requestForTracks(with: searchText)
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        trackList = []
+        tracksTableView.reloadData()
     }
 }

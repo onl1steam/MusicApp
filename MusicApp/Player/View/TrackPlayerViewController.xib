@@ -14,9 +14,9 @@
                 <outlet property="favoriteButton" destination="HUJ-OL-jfm" id="sFy-ye-4iz"/>
                 <outlet property="forewardButton" destination="Vlw-4y-ec8" id="jhU-u5-hmm"/>
                 <outlet property="playButton" destination="DZE-0y-0Pt" id="6CW-6n-a8C"/>
+                <outlet property="timeSlider" destination="m8i-q0-WI3" id="Cye-NM-Bqa"/>
                 <outlet property="trackAuthorLabel" destination="gum-lq-YMA" id="Ix1-oM-fgC"/>
                 <outlet property="trackNameLabel" destination="7qb-Sx-V4B" id="BMl-fl-MC1"/>
-                <outlet property="trackSlider" destination="m8i-q0-WI3" id="Cye-NM-Bqa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="volumeSlider" destination="1z3-Aw-3ZH" id="dd2-8m-NBC"/>
             </connections>
@@ -26,24 +26,30 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RDV-o6-Acv">
-                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RDV-o6-Acv">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" red="0.24705882352941178" green="0.24705882352941178" blue="0.24705882352941178" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Ec-sv-UHU">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Ec-sv-UHU" customClass="RoundedImageView" customModule="MusicApp" customModuleProvider="target">
                     <rect key="frame" x="82" y="139" width="250" height="250"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="250" id="GzK-Jj-HcQ"/>
                         <constraint firstAttribute="height" constant="250" id="VV2-2a-bUD"/>
                     </constraints>
                 </imageView>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="m8i-q0-WI3">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="m8i-q0-WI3">
                     <rect key="frame" x="55" y="521" width="304" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="jTp-3d-KTt"/>
                     </constraints>
+                    <color key="minimumTrackTintColor" white="0.67000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <action selector="timeSliderChanged:" destination="-1" eventType="valueChanged" id="jCa-Sk-VhV"/>
+                    </connections>
                 </slider>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="K79-Mz-bSS">
                     <rect key="frame" x="60" y="429" width="244" height="62"/>
@@ -51,48 +57,59 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qb-Sx-V4B">
                             <rect key="frame" x="0.0" y="0.0" width="93.5" height="24"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Автор" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gum-lq-YMA">
                             <rect key="frame" x="0.0" y="39" width="55.5" height="23"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                 </stackView>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="speaker.fill" catalog="system" maximumValueImage="speaker.3.fill" translatesAutoresizingMaskIntoConstraints="NO" id="1z3-Aw-3ZH">
-                    <rect key="frame" x="55" y="636" width="304" height="31"/>
+                    <rect key="frame" x="55" y="661" width="304" height="31"/>
+                    <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="Nl9-qh-g7Z"/>
                     </constraints>
+                    <color key="minimumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="thumbTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <action selector="volumeSliderChanged:" destination="-1" eventType="valueChanged" id="bUe-du-9to"/>
+                    </connections>
                 </slider>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="PJ6-Cn-76y">
-                    <rect key="frame" x="114" y="581" width="186" height="25"/>
+                    <rect key="frame" x="104.5" y="591" width="205" height="30"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrX-o9-Ypz">
-                            <rect key="frame" x="0.0" y="2" width="25.5" height="20.5"/>
+                            <rect key="frame" x="0.0" y="2" width="30" height="25.5"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="25" id="HXd-sD-0lS"/>
+                                <constraint firstAttribute="width" constant="30" id="Y1I-cP-uC0"/>
                             </constraints>
+                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" backgroundImage="backward.fill" catalog="system"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZE-0y-0Pt">
-                            <rect key="frame" x="85.5" y="1.5" width="15" height="21.5"/>
+                            <rect key="frame" x="90" y="1.5" width="25" height="26.5"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="25" id="Toq-zd-nPJ"/>
+                                <constraint firstAttribute="height" constant="30" id="6RZ-qY-YZ7"/>
+                                <constraint firstAttribute="width" constant="25" id="9sc-FN-Sec"/>
                             </constraints>
+                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" backgroundImage="play.fill" catalog="system"/>
                             <connections>
-                                <action selector="playButtonTapped:" destination="-1" eventType="touchUpInside" id="oJR-XR-yPU"/>
+                                <action selector="playButtonTapped:" destination="-1" eventType="touchUpInside" id="bLY-a8-CLG"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vlw-4y-ec8">
-                            <rect key="frame" x="160.5" y="2" width="25.5" height="20.5"/>
+                            <rect key="frame" x="175" y="2" width="30" height="25.5"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="25" id="Hxm-Gt-Sgn"/>
+                                <constraint firstAttribute="width" constant="30" id="cxC-Vl-S8t"/>
                             </constraints>
+                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" backgroundImage="forward.fill" catalog="system"/>
                         </button>
                     </subviews>
@@ -115,7 +132,7 @@
                         <constraint firstAttribute="width" constant="30" id="92p-JU-Zia"/>
                         <constraint firstAttribute="height" constant="30" id="trm-qd-gej"/>
                     </constraints>
-                    <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" backgroundImage="suit.heart" catalog="system"/>
                     <connections>
                         <action selector="addToFavoriteButton:" destination="-1" eventType="touchUpInside" id="oNn-jm-gcp"/>
@@ -124,16 +141,20 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="RDV-o6-Acv" secondAttribute="bottom" id="0bG-nB-oXb"/>
                 <constraint firstItem="K79-Mz-bSS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="1nh-1j-Cj5"/>
                 <constraint firstItem="A8o-uh-2sF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="35X-Le-C6I"/>
                 <constraint firstItem="4Ec-sv-UHU" firstAttribute="top" secondItem="A8o-uh-2sF" secondAttribute="bottom" constant="50" id="3i2-d1-Fj8"/>
-                <constraint firstItem="1z3-Aw-3ZH" firstAttribute="top" secondItem="PJ6-Cn-76y" secondAttribute="bottom" constant="30" id="6oG-SZ-gdJ"/>
+                <constraint firstItem="RDV-o6-Acv" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="4zX-26-J2d"/>
+                <constraint firstItem="1z3-Aw-3ZH" firstAttribute="top" secondItem="PJ6-Cn-76y" secondAttribute="bottom" constant="40" id="6oG-SZ-gdJ"/>
                 <constraint firstItem="m8i-q0-WI3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8nK-ec-rGz"/>
-                <constraint firstItem="PJ6-Cn-76y" firstAttribute="top" secondItem="m8i-q0-WI3" secondAttribute="bottom" constant="30" id="9Is-Nq-Gql"/>
+                <constraint firstItem="PJ6-Cn-76y" firstAttribute="top" secondItem="m8i-q0-WI3" secondAttribute="bottom" constant="40" id="9Is-Nq-Gql"/>
                 <constraint firstItem="PJ6-Cn-76y" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LaH-gm-rR5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HUJ-OL-jfm" secondAttribute="trailing" constant="60" id="QiF-gD-rn4"/>
                 <constraint firstItem="K79-Mz-bSS" firstAttribute="top" secondItem="4Ec-sv-UHU" secondAttribute="bottom" constant="40" id="USF-hU-a21"/>
+                <constraint firstItem="RDV-o6-Acv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UuJ-N7-CVh"/>
                 <constraint firstItem="HUJ-OL-jfm" firstAttribute="top" secondItem="4Ec-sv-UHU" secondAttribute="bottom" constant="60" id="VhV-jf-XTR"/>
+                <constraint firstItem="RDV-o6-Acv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aVZ-Dh-Nvb"/>
                 <constraint firstItem="HUJ-OL-jfm" firstAttribute="leading" secondItem="K79-Mz-bSS" secondAttribute="trailing" constant="20" id="jBv-wY-9Ln"/>
                 <constraint firstItem="4Ec-sv-UHU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ju3-7D-feZ"/>
                 <constraint firstItem="A8o-uh-2sF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="nMI-2Q-j7i"/>

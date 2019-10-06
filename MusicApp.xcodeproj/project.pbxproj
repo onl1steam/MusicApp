@@ -12,6 +12,7 @@
 		924D98F023427474008E70A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924D98EE23427474008E70A2 /* Main.storyboard */; };
 		924D98F223427478008E70A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 924D98F123427478008E70A2 /* Assets.xcassets */; };
 		924D98F523427478008E70A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924D98F323427478008E70A2 /* LaunchScreen.storyboard */; };
+		926C4127234A16760001DBE7 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926C4126234A16760001DBE7 /* RoundedImageView.swift */; };
 		92FCDC2723478CD700F70F45 /* TrackSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */; };
 		92FCDC2B23478CFC00F70F45 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2923478CFC00F70F45 /* TrackCell.swift */; };
 		92FCDC2E23479C5C00F70F45 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2D23479C5C00F70F45 /* Track.swift */; };
@@ -31,6 +32,7 @@
 		924D98F123427478008E70A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		924D98F423427478008E70A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		924D98F623427478008E70A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		926C4126234A16760001DBE7 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchViewController.swift; sourceTree = "<group>"; };
 		92FCDC2923478CFC00F70F45 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		92FCDC2D23479C5C00F70F45 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				924D98F623427478008E70A2 /* Info.plist */,
+				926C4125234A16500001DBE7 /* Views */,
 				92FCDC372347ECCE00F70F45 /* Player */,
 				92FCDC2523478C8100F70F45 /* TrackSearch */,
 				92FCDC412347F39100F70F45 /* Supporting Files */,
@@ -91,6 +94,14 @@
 				924D98F123427478008E70A2 /* Assets.xcassets */,
 			);
 			path = MusicApp;
+			sourceTree = "<group>";
+		};
+		926C4125234A16500001DBE7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				926C4126234A16760001DBE7 /* RoundedImageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		92FCDC2523478C8100F70F45 /* TrackSearch */ = {
@@ -289,6 +300,7 @@
 				92FCDC2E23479C5C00F70F45 /* Track.swift in Sources */,
 				92FCDC342347CE9000F70F45 /* TrackQuery.swift in Sources */,
 				92FCDC322347C90000F70F45 /* TrackService.swift in Sources */,
+				926C4127234A16760001DBE7 /* RoundedImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
