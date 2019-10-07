@@ -15,6 +15,7 @@ class TrackSearchViewController: UIViewController {
     @IBOutlet weak var tracksTableView: UITableView!
     let trackCellReuseIdentifier: String = "trackCell"
     let searchController = UISearchController(searchResultsController: nil)
+    var childViewController: MiniPlayerViewController?
     
     var trackList: [Track] = []
 
@@ -69,6 +70,14 @@ class TrackSearchViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .default
     }
     
+    // Set up child view
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == SearchControllerTransitions.toMiniPlayer) {
+            let childViewController = segue.destination as! MiniPlayerViewController
+            self.childViewController = childViewController
+        }
+    }
+    
 
 }
 
@@ -97,8 +106,7 @@ extension TrackSearchViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         MusicPlayerService.shared.loadTrack(track: trackList[indexPath.row])
-        let trackPlayerViewController: TrackPlayerViewController = TrackPlayerViewController()
-        self.present(trackPlayerViewController, animated: true, completion: nil)
+        self.childViewController?.updateInformation()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

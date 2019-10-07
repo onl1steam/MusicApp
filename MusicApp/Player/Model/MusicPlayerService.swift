@@ -21,6 +21,7 @@ class MusicPlayerService {
     static let shared = MusicPlayerService()
     
     func loadTrack(track: Track) {
+        isPlayed = false
         self.track = track
         guard let url = URL.init(string: track.previewUrl) else { return }
         let playerItem = AVPlayerItem.init(url: url)

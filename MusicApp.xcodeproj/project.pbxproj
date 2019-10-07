@@ -13,6 +13,9 @@
 		924D98F223427478008E70A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 924D98F123427478008E70A2 /* Assets.xcassets */; };
 		924D98F523427478008E70A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924D98F323427478008E70A2 /* LaunchScreen.storyboard */; };
 		926C4127234A16760001DBE7 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926C4126234A16760001DBE7 /* RoundedImageView.swift */; };
+		92817433234B9C7E00113DF4 /* TrackObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817432234B9C7E00113DF4 /* TrackObject.swift */; };
+		92817435234BDB6700113DF4 /* TrackSearchConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817434234BDB6700113DF4 /* TrackSearchConstants.swift */; };
+		92817438234BE20300113DF4 /* MiniPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817437234BE20300113DF4 /* MiniPlayerDelegate.swift */; };
 		92ED26C1234B2705007A0DD9 /* MusicPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED26C0234B2705007A0DD9 /* MusicPlayerService.swift */; };
 		92ED26C5234B33B6007A0DD9 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED26C4234B33B6007A0DD9 /* MiniPlayerViewController.swift */; };
 		92FCDC2723478CD700F70F45 /* TrackSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */; };
@@ -35,6 +38,9 @@
 		924D98F423427478008E70A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		924D98F623427478008E70A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		926C4126234A16760001DBE7 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
+		92817432234B9C7E00113DF4 /* TrackObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackObject.swift; sourceTree = "<group>"; };
+		92817434234BDB6700113DF4 /* TrackSearchConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchConstants.swift; sourceTree = "<group>"; };
+		92817437234BE20300113DF4 /* MiniPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerDelegate.swift; sourceTree = "<group>"; };
 		92ED26C0234B2705007A0DD9 /* MusicPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerService.swift; sourceTree = "<group>"; };
 		92ED26C4234B33B6007A0DD9 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				924D98F623427478008E70A2 /* Info.plist */,
+				92817431234B993A00113DF4 /* Models */,
 				926C4125234A16500001DBE7 /* Views */,
 				92ED26C2234B32EF007A0DD9 /* Mini Player */,
 				92FCDC372347ECCE00F70F45 /* Player */,
@@ -109,6 +116,38 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		92817431234B993A00113DF4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				92817432234B9C7E00113DF4 /* TrackObject.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		92817439234BE48800113DF4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9281743A234BE49500113DF4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				92FCDC382347ECFB00F70F45 /* TrackPlayerViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9281743B234BE49D00113DF4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				92ED26C4234B33B6007A0DD9 /* MiniPlayerViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		92ED26BF234B26EA007A0DD9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +159,8 @@
 		92ED26C2234B32EF007A0DD9 /* Mini Player */ = {
 			isa = PBXGroup;
 			children = (
-				92ED26C4234B33B6007A0DD9 /* MiniPlayerViewController.swift */,
+				9281743B234BE49D00113DF4 /* Controller */,
+				92817437234BE20300113DF4 /* MiniPlayerDelegate.swift */,
 			);
 			path = "Mini Player";
 			sourceTree = "<group>";
@@ -128,10 +168,9 @@
 		92FCDC2523478C8100F70F45 /* TrackSearch */ = {
 			isa = PBXGroup;
 			children = (
+				92817439234BE48800113DF4 /* Controller */,
 				92FCDC402347F35E00F70F45 /* Model */,
 				92FCDC3F2347F35300F70F45 /* View */,
-				92FCDC2823478CDD00F70F45 /* TrackCell */,
-				92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */,
 			);
 			path = TrackSearch;
 			sourceTree = "<group>";
@@ -147,9 +186,9 @@
 		92FCDC372347ECCE00F70F45 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				9281743A234BE49500113DF4 /* Controller */,
 				92ED26BF234B26EA007A0DD9 /* Model */,
 				92FCDC3E2347F34500F70F45 /* View */,
-				92FCDC382347ECFB00F70F45 /* TrackPlayerViewController.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -165,6 +204,7 @@
 		92FCDC3F2347F35300F70F45 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				92FCDC2823478CDD00F70F45 /* TrackCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -175,6 +215,7 @@
 				92FCDC332347CE9000F70F45 /* TrackQuery.swift */,
 				92FCDC2D23479C5C00F70F45 /* Track.swift */,
 				92FCDC312347C90000F70F45 /* TrackService.swift */,
+				92817434234BDB6700113DF4 /* TrackSearchConstants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -314,6 +355,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92817438234BE20300113DF4 /* MiniPlayerDelegate.swift in Sources */,
+				92817435234BDB6700113DF4 /* TrackSearchConstants.swift in Sources */,
 				92FCDC2B23478CFC00F70F45 /* TrackCell.swift in Sources */,
 				92ED26C5234B33B6007A0DD9 /* MiniPlayerViewController.swift in Sources */,
 				92FCDC3A2347ECFB00F70F45 /* TrackPlayerViewController.swift in Sources */,
@@ -322,6 +365,7 @@
 				924D98EB23427474008E70A2 /* SceneDelegate.swift in Sources */,
 				92FCDC2E23479C5C00F70F45 /* Track.swift in Sources */,
 				92FCDC342347CE9000F70F45 /* TrackQuery.swift in Sources */,
+				92817433234B9C7E00113DF4 /* TrackObject.swift in Sources */,
 				92FCDC322347C90000F70F45 /* TrackService.swift in Sources */,
 				92ED26C1234B2705007A0DD9 /* MusicPlayerService.swift in Sources */,
 				926C4127234A16760001DBE7 /* RoundedImageView.swift in Sources */,

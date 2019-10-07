@@ -12,6 +12,7 @@ import CoreMedia
 class TrackPlayerViewController: UIViewController {
 
     var isFavorite = false
+    var delegate: MiniPlayerDelegate?
     
     // Outlets
     @IBOutlet weak var trackAuthorLabel: UILabel!
@@ -27,6 +28,8 @@ class TrackPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUpButtonsUI()
+        
         // Track labels
         trackNameLabel.text = MusicPlayerService.shared.track?.trackName
         trackAuthorLabel.text = MusicPlayerService.shared.track?.artistName
@@ -39,6 +42,16 @@ class TrackPlayerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
+    func setUpButtonsUI() {
+        let isPlayed = MusicPlayerService.shared.isPlayed
+        
+        if isPlayed {
+            guard let image = UIImage(systemName: "pause.fill") else { return }
+            playButton.setBackgroundImage(image, for: .normal)
+            imageSizeAnimation()
+        }
+    }
+    
     @objc func volumeDidChange(notification: NSNotification) {
         let volume = notification.userInfo!["AVSystemController_AudioVolumeNotificationParameter"] as! Float
         volumeSlider.value = volume
@@ -49,7 +62,7 @@ class TrackPlayerViewController: UIViewController {
         MusicPlayerService.shared.seekMusic(to: .zero)
         MusicPlayerService.shared.isPlayed = false
         let isPlayed = false
-        animateButtonChange(playButton, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
+        fadeAnimationButtonChange(playButton, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
     }
     
     // Transfer to Model class
@@ -60,7 +73,7 @@ class TrackPlayerViewController: UIViewController {
     }
     
     // Animate System Buttons Change
-    func animateButtonChange(_ sender: UIButton, firstImageName: String, secondImageName: String, with flag: Bool) {
+    func fadeAnimationButtonChange(_ sender: UIButton, firstImageName: String, secondImageName: String, with flag: Bool) {
         
         var buttonImage: UIImage
         if flag {
@@ -80,17 +93,38 @@ class TrackPlayerViewController: UIViewController {
             }, completion:nil)
         })
     }
+    
+    // Animate ImageView size increase/decrease
+    func imageSizeAnimation() {
+        let isPlayed = MusicPlayerService.shared.isPlayed
+        
+        if isPlayed {
+            UIView.animate(withDuration: 0.5, animations: {() -> Void in
+                self.albumImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            }, completion: nil)
+        } else {
+            UIView.animate(withDuration: 0.5, animations: {() -> Void in
+                self.albumImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }, completion: nil)
+        }
+    }
 
-    // IBActions:
+    // IBActions
     @IBAction func addToFavoriteButton(_ sender: UIButton) {
+        // Settings
         isFavorite.toggle()
-        animateButtonChange(sender, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
+        // Animations
+        fadeAnimationButtonChange(sender, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
+        // Settings
         MusicPlayerService.shared.toggleMusic()
         let isPlayed = MusicPlayerService.shared.isPlayed
-        animateButtonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
+        // Animations
+        imageSizeAnimation()
+        fadeAnimationButtonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
+        delegate?.updateUI()
     }
     
     @IBAction func dismissButtonClicked(_ sender: Any) {
