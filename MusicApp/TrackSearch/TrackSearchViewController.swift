@@ -38,6 +38,7 @@ class TrackSearchViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.searchTextField.textColor = .white
         
         let cancelButtonAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.yellow]
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
@@ -95,8 +96,8 @@ extension TrackSearchViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        MusicPlayerService.shared.loadTrack(track: trackList[indexPath.row])
         let trackPlayerViewController: TrackPlayerViewController = TrackPlayerViewController()
-        trackPlayerViewController.track = trackList[indexPath.row]
         self.present(trackPlayerViewController, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }

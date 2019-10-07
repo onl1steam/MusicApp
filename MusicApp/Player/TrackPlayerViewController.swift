@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import AVKit
-import MediaPlayer
+import CoreMedia
 
 class TrackPlayerViewController: UIViewController {
-    
-    var player : AVPlayer?
+
+    var isFavorite = false
     
     // Outlets
     @IBOutlet weak var trackAuthorLabel: UILabel!
@@ -24,23 +23,16 @@ class TrackPlayerViewController: UIViewController {
     @IBOutlet weak var timeSlider: UISlider!
     @IBOutlet weak var volumeSlider: UISlider!
     @IBOutlet weak var favoriteButton: UIButton!
-    
-    var track: Track?
-    var isFavorite = false
-    var isPlayed = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        loadRadio(radioURL: (track?.previewUrl)!)
 
         // Track labels
-        trackNameLabel.text = track?.trackName
-        trackAuthorLabel.text = track?.artistName
+        trackNameLabel.text = MusicPlayerService.shared.track?.trackName
+        trackAuthorLabel.text = MusicPlayerService.shared.track?.artistName
         
         // Loading album image
-        loadAlbumImage(from: track?.artworkUrl100)
+        loadAlbumImage(from: MusicPlayerService.shared.track?.artworkUrl100)
         
         // Add Observers
         NotificationCenter.default.addObserver(self, selector: #selector(self.volumeDidChange(notification:)), name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"), object: nil)
@@ -53,16 +45,12 @@ class TrackPlayerViewController: UIViewController {
     }
     
     @objc func playerDidFinishPlaying() {
-        player?.pause()
-        player?.seek(to: .zero)
-        isPlayed = false
+        MusicPlayerService.shared.pauseMusic()
+        MusicPlayerService.shared.seekMusic(to: .zero)
+        MusicPlayerService.shared.isPlayed = false
+        let isPlayed = false
         animateButtonChange(playButton, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
     }
-    
-    func loadRadio(radioURL: String) {
-        guard let url = URL.init(string: radioURL) else { return }
-        let playerItem = AVPlayerItem.init(url: url)
-        player = AVPlayer.init(playerItem: playerItem)    }
     
     // Transfer to Model class
     func loadAlbumImage(from url: String?) {
@@ -89,24 +77,19 @@ class TrackPlayerViewController: UIViewController {
             sender.setBackgroundImage(buttonImage, for: .normal)
             UIView.animate(withDuration: 0.15, animations:{
             sender.alpha = 1.0
-            },completion:nil)
+            }, completion:nil)
         })
     }
 
     // IBActions:
     @IBAction func addToFavoriteButton(_ sender: UIButton) {
-        isFavorite = !isFavorite
+        isFavorite.toggle()
         animateButtonChange(sender, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
-        isPlayed = !isPlayed
-        if isPlayed {
-            player?.play()
-        } else {
-            player?.pause()
-        }
-        print(isPlayed)
+        MusicPlayerService.shared.toggleMusic()
+        let isPlayed = MusicPlayerService.shared.isPlayed
         animateButtonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
     }
     
@@ -117,26 +100,15 @@ class TrackPlayerViewController: UIViewController {
     @IBAction func timeSliderChanged(_ sender: UISlider) {
         let seconds = Double(sender.value)
         let time = CMTime(seconds: seconds, preferredTimescale: 1)
-        player?.seek(to: time)
+        MusicPlayerService.shared.seekMusic(to: time)
     }
     
     @IBAction func volumeSliderChanged(_ sender: UISlider) {
-        MPVolumeView.setVolume(sender.value)
+        MusicPlayerService.shared.changeVolume(to: sender.value)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
-}
-
-extension MPVolumeView {
-    static func setVolume(_ volume: Float) {
-        let volumeView = MPVolumeView()
-        let slider = volumeView.subviews.first(where: { $0 is UISlider }) as? UISlider
-
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01) {
-            slider?.value = volume
-        }
-    }
 }

@@ -14,7 +14,24 @@
                     <view key="view" contentMode="scaleToFill" id="BR4-lv-3Hv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vB8-Xj-kWF">
+                                <rect key="frame" x="0.0" y="753" width="414" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="cHV-MP-yGW"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="aZW-eJ-afO" kind="embed" id="kd2-cv-SzL"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vB8-Xj-kWF" firstAttribute="leading" secondItem="EY4-t7-Vka" secondAttribute="leading" id="6Rb-hw-qwB"/>
+                            <constraint firstItem="vB8-Xj-kWF" firstAttribute="bottom" secondItem="EY4-t7-Vka" secondAttribute="bottom" id="IAx-ew-cHK"/>
+                            <constraint firstItem="vB8-Xj-kWF" firstAttribute="centerX" secondItem="BR4-lv-3Hv" secondAttribute="centerX" id="aMn-Z4-8M7"/>
+                            <constraint firstItem="vB8-Xj-kWF" firstAttribute="trailing" secondItem="EY4-t7-Vka" secondAttribute="trailing" id="liy-nW-XSd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="EY4-t7-Vka"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Плейлист" image="music.note.list" catalog="system" id="VXg-j0-n2z"/>
@@ -54,13 +71,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TNU-Gd-Q12">
                                                     <rect key="frame" x="105" y="32.5" width="279" height="45.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1j-k3-Ble">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1j-k3-Ble">
                                                             <rect key="frame" x="0.0" y="0.0" width="75.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Автор" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOB-iX-ZLJ">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Автор" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOB-iX-ZLJ">
                                                             <rect key="frame" x="0.0" y="29.5" width="37.5" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -142,6 +159,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="barTintColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
@@ -155,10 +175,77 @@
             </objects>
             <point key="canvasLocation" x="885.50724637681162" y="435.9375"/>
         </scene>
+        <!--Mini Player View Controller-->
+        <scene sceneID="ggL-Qq-GDe">
+            <objects>
+                <viewController id="aZW-eJ-afO" customClass="MiniPlayerViewController" customModule="MusicApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EYS-bh-7ar">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nhl-TY-kcg" customClass="RoundedImageView" customModule="MusicApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="7.5" width="45" height="45"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="7tw-0F-FlL"/>
+                                    <constraint firstAttribute="height" constant="45" id="A39-v5-eE9"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eX0-mk-I9d">
+                                <rect key="frame" x="75" y="18" width="234" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Myg-Ap-htJ">
+                                <rect key="frame" x="329" y="19" width="20" height="21.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="BrO-IQ-qhH"/>
+                                    <constraint firstAttribute="width" constant="20" id="lUD-zj-PFy"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" backgroundImage="play.fill" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yab-c4-XRr">
+                                <rect key="frame" x="369" y="19.5" width="25" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="cXC-gV-uTh"/>
+                                    <constraint firstAttribute="width" constant="25" id="g2i-gb-JPL"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" backgroundImage="forward.fill" catalog="system"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="Myg-Ap-htJ" firstAttribute="centerY" secondItem="EYS-bh-7ar" secondAttribute="centerY" id="77m-2j-cMd"/>
+                            <constraint firstAttribute="trailing" secondItem="yab-c4-XRr" secondAttribute="trailing" constant="20" id="AIe-Fw-8g5"/>
+                            <constraint firstItem="eX0-mk-I9d" firstAttribute="centerY" secondItem="EYS-bh-7ar" secondAttribute="centerY" id="HYl-kb-L7P"/>
+                            <constraint firstItem="eX0-mk-I9d" firstAttribute="leading" secondItem="nhl-TY-kcg" secondAttribute="trailing" constant="10" id="Ve9-yg-N9c"/>
+                            <constraint firstItem="yab-c4-XRr" firstAttribute="leading" secondItem="Myg-Ap-htJ" secondAttribute="trailing" constant="20" id="Zq5-Zk-Rta"/>
+                            <constraint firstItem="nhl-TY-kcg" firstAttribute="centerY" secondItem="EYS-bh-7ar" secondAttribute="centerY" id="eZa-A6-w4D"/>
+                            <constraint firstItem="nhl-TY-kcg" firstAttribute="leading" secondItem="EYS-bh-7ar" secondAttribute="leading" constant="20" id="gzX-l4-9d7"/>
+                            <constraint firstItem="Myg-Ap-htJ" firstAttribute="leading" secondItem="eX0-mk-I9d" secondAttribute="trailing" constant="20" id="jIK-Bq-Grv"/>
+                            <constraint firstItem="yab-c4-XRr" firstAttribute="centerY" secondItem="EYS-bh-7ar" secondAttribute="centerY" id="uHy-Eg-oar"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="albumImageView" destination="nhl-TY-kcg" id="duE-a5-oZW"/>
+                        <outlet property="forwardButton" destination="yab-c4-XRr" id="xaT-pb-vFV"/>
+                        <outlet property="playButton" destination="Myg-Ap-htJ" id="h47-yw-dot"/>
+                        <outlet property="trackNameLabel" destination="eX0-mk-I9d" id="CZI-DY-JUI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ukS-Oa-0sZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2642.0289855072465" y="-462.05357142857139"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="forward.fill" catalog="system" width="64" height="38"/>
         <image name="magnifyingglass" catalog="system" width="64" height="60"/>
         <image name="music.note" catalog="system" width="48" height="64"/>
         <image name="music.note.list" catalog="system" width="64" height="58"/>
+        <image name="play.fill" catalog="system" width="58" height="64"/>
     </resources>
 </document>
