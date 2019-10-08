@@ -102,7 +102,6 @@
 				92FCDC372347ECCE00F70F45 /* Player */,
 				92FCDC2523478C8100F70F45 /* TrackSearch */,
 				92FCDC412347F39100F70F45 /* Supporting Files */,
-				924D98EE23427474008E70A2 /* Main.storyboard */,
 				924D98F123427478008E70A2 /* Assets.xcassets */,
 			);
 			path = MusicApp;
@@ -111,6 +110,7 @@
 		926C4125234A16500001DBE7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				924D98EE23427474008E70A2 /* Main.storyboard */,
 				926C4126234A16760001DBE7 /* RoundedImageView.swift */,
 			);
 			path = Views;

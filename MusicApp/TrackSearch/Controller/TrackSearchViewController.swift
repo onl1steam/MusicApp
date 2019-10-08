@@ -24,8 +24,11 @@ class TrackSearchViewController: UIViewController {
         
         setupSearchBar()
         
+        // Setting up status bar
+        
         // Activity Indicator settings
-        self.tableViewActivityIndicator.isHidden = true 
+        self.tableViewActivityIndicator.isHidden = true
+        tableViewActivityIndicator.color = .yellow
 
         // TableView settings
         tracksTableView.delegate = self
@@ -48,9 +51,9 @@ class TrackSearchViewController: UIViewController {
     
     func requestForTracks(with searchTerm: String) {
         // Updating views
-        self.tableViewActivityIndicator.isHidden = false
         self.trackList = []
         self.tracksTableView.reloadData()
+        self.tableViewActivityIndicator.isHidden = false
         self.tableViewActivityIndicator.startAnimating()
         
         TrackService.shared.findTracksRequest(searchTerm: searchTerm) { [weak self] (tracks) in
@@ -77,7 +80,6 @@ class TrackSearchViewController: UIViewController {
             self.childViewController = childViewController
         }
     }
-    
 
 }
 

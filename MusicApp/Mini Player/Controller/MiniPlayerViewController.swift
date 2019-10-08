@@ -19,7 +19,7 @@ class MiniPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addTopBorder(with: .darkGray, andWidth: 0.7 `)
+        addTopBorder(with: .darkGray, andWidth: 0.7)
         
         addGestureRecognizer()
         
@@ -60,25 +60,15 @@ class MiniPlayerViewController: UIViewController {
         updateUI()
     }
     
-    func fadeAnimationButtonChange(_ sender: UIButton, firstImageName: String, secondImageName: String, with flag: Bool) {
-        
-        var buttonImage: UIImage
+    func buttonChange(_ sender: UIButton, firstImageName: String, secondImageName: String, with flag: Bool) {
+
         if flag {
             guard let image = UIImage(systemName: firstImageName) else { return }
-            buttonImage = image
+             sender.setBackgroundImage(image, for: .normal)
         } else {
             guard let image = UIImage(systemName: secondImageName)  else { return }
-            buttonImage = image
+             sender.setBackgroundImage(image, for: .normal)
         }
-        
-        UIView.animate(withDuration: 0.15, animations: {
-            sender.alpha = 0.0
-        }, completion:{(finished) in
-            sender.setBackgroundImage(buttonImage, for: .normal)
-            UIView.animate(withDuration: 0.15, animations:{
-            sender.alpha = 1.0
-            }, completion:nil)
-        })
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
@@ -86,7 +76,7 @@ class MiniPlayerViewController: UIViewController {
         MusicPlayerService.shared.toggleMusic()
         let isPlayed = MusicPlayerService.shared.isPlayed
         // Animations
-        fadeAnimationButtonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
+        buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
     }
     
     @IBAction func forwardButtonTapped(_ sender: UIButton) {

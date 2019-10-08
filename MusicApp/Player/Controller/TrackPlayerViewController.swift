@@ -31,8 +31,8 @@ class TrackPlayerViewController: UIViewController {
         setUpButtonsUI()
         
         // Track labels
-        trackNameLabel.text = MusicPlayerService.shared.track?.trackName
-        trackAuthorLabel.text = MusicPlayerService.shared.track?.artistName
+        trackNameLabel.text = MusicPlayerService.shared.track?.trackName ?? "Название"
+        trackAuthorLabel.text = MusicPlayerService.shared.track?.artistName ?? "Исполнитель"
         
         // Loading album image
         loadAlbumImage(from: MusicPlayerService.shared.track?.artworkUrl100)
@@ -62,7 +62,7 @@ class TrackPlayerViewController: UIViewController {
         MusicPlayerService.shared.seekMusic(to: .zero)
         MusicPlayerService.shared.isPlayed = false
         let isPlayed = false
-        fadeAnimationButtonChange(playButton, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
+        buttonChange(playButton, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
     }
     
     // Transfer to Model class
@@ -73,25 +73,15 @@ class TrackPlayerViewController: UIViewController {
     }
     
     // Animate System Buttons Change
-    func fadeAnimationButtonChange(_ sender: UIButton, firstImageName: String, secondImageName: String, with flag: Bool) {
+    func buttonChange(_ sender: UIButton, firstImageName: String, secondImageName: String, with flag: Bool) {
         
-        var buttonImage: UIImage
         if flag {
             guard let image = UIImage(systemName: firstImageName) else { return }
-            buttonImage = image
+            sender.setBackgroundImage(image, for: .normal)
         } else {
             guard let image = UIImage(systemName: secondImageName)  else { return }
-            buttonImage = image
+            sender.setBackgroundImage(image, for: .normal)
         }
-        
-        UIView.animate(withDuration: 0.15, animations: {
-            sender.alpha = 0.0
-        }, completion:{(finished) in
-            sender.setBackgroundImage(buttonImage, for: .normal)
-            UIView.animate(withDuration: 0.15, animations:{
-            sender.alpha = 1.0
-            }, completion:nil)
-        })
     }
     
     // Animate ImageView size increase/decrease
@@ -99,12 +89,18 @@ class TrackPlayerViewController: UIViewController {
         let isPlayed = MusicPlayerService.shared.isPlayed
         
         if isPlayed {
-            UIView.animate(withDuration: 0.5, animations: {() -> Void in
-                self.albumImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            UIView.animate(withDuration: 0.4, delay: 0,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 10,
+                           options: [.curveEaseOut], animations: {
+                            self.albumImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             }, completion: nil)
         } else {
-            UIView.animate(withDuration: 0.5, animations: {() -> Void in
-                self.albumImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            UIView.animate(withDuration: 0.4, delay: 0,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 10,
+                           options: [.curveEaseOut], animations: {
+                            self.albumImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
             }, completion: nil)
         }
     }
@@ -114,7 +110,7 @@ class TrackPlayerViewController: UIViewController {
         // Settings
         isFavorite.toggle()
         // Animations
-        fadeAnimationButtonChange(sender, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
+        buttonChange(sender, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
@@ -123,7 +119,7 @@ class TrackPlayerViewController: UIViewController {
         let isPlayed = MusicPlayerService.shared.isPlayed
         // Animations
         imageSizeAnimation()
-        fadeAnimationButtonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
+        buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
         delegate?.updateUI()
     }
     
