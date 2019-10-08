@@ -14,14 +14,14 @@ class MusicPlayerService {
     
     var track: Track?
     private var player : AVPlayer?
-    var isPlayed = false
+    var isPlaying = false
     
     private init() {}
     
     static let shared = MusicPlayerService()
     
     func loadTrack(track: Track) {
-        isPlayed = false
+        isPlaying = false
         self.track = track
         guard let url = URL.init(string: track.previewUrl) else { return }
         let playerItem = AVPlayerItem.init(url: url)
@@ -29,8 +29,8 @@ class MusicPlayerService {
     }
     
     func toggleMusic() {
-        isPlayed.toggle()
-        if isPlayed {
+        isPlaying.toggle()
+        if isPlaying {
             player?.play()
         } else {
             player?.pause()

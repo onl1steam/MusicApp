@@ -16,6 +16,10 @@
 		92817433234B9C7E00113DF4 /* TrackObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817432234B9C7E00113DF4 /* TrackObject.swift */; };
 		92817435234BDB6700113DF4 /* TrackSearchConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817434234BDB6700113DF4 /* TrackSearchConstants.swift */; };
 		92817438234BE20300113DF4 /* MiniPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817437234BE20300113DF4 /* MiniPlayerDelegate.swift */; };
+		92A03DAC234D027C005BC7FD /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DAB234D027C005BC7FD /* PlaylistViewController.swift */; };
+		92A03DAE234D038C005BC7FD /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92A03DAD234D038C005BC7FD /* TrackCell.xib */; };
+		92A03DB0234D060E005BC7FD /* PlaylistConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */; };
+		92A03DB3234D09C6005BC7FD /* RealmDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DB2234D09C6005BC7FD /* RealmDBManager.swift */; };
 		92ED26C1234B2705007A0DD9 /* MusicPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED26C0234B2705007A0DD9 /* MusicPlayerService.swift */; };
 		92ED26C5234B33B6007A0DD9 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED26C4234B33B6007A0DD9 /* MiniPlayerViewController.swift */; };
 		92FCDC2723478CD700F70F45 /* TrackSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */; };
@@ -41,6 +45,10 @@
 		92817432234B9C7E00113DF4 /* TrackObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackObject.swift; sourceTree = "<group>"; };
 		92817434234BDB6700113DF4 /* TrackSearchConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchConstants.swift; sourceTree = "<group>"; };
 		92817437234BE20300113DF4 /* MiniPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerDelegate.swift; sourceTree = "<group>"; };
+		92A03DAB234D027C005BC7FD /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		92A03DAD234D038C005BC7FD /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
+		92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistConstants.swift; sourceTree = "<group>"; };
+		92A03DB2234D09C6005BC7FD /* RealmDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDBManager.swift; sourceTree = "<group>"; };
 		92ED26C0234B2705007A0DD9 /* MusicPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerService.swift; sourceTree = "<group>"; };
 		92ED26C4234B33B6007A0DD9 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchViewController.swift; sourceTree = "<group>"; };
@@ -96,8 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				924D98F623427478008E70A2 /* Info.plist */,
-				92817431234B993A00113DF4 /* Models */,
-				926C4125234A16500001DBE7 /* Views */,
+				926C4125234A16500001DBE7 /* Main Views */,
+				92A03DA7234D01DF005BC7FD /* Playlist */,
 				92ED26C2234B32EF007A0DD9 /* Mini Player */,
 				92FCDC372347ECCE00F70F45 /* Player */,
 				92FCDC2523478C8100F70F45 /* TrackSearch */,
@@ -107,21 +115,13 @@
 			path = MusicApp;
 			sourceTree = "<group>";
 		};
-		926C4125234A16500001DBE7 /* Views */ = {
+		926C4125234A16500001DBE7 /* Main Views */ = {
 			isa = PBXGroup;
 			children = (
 				924D98EE23427474008E70A2 /* Main.storyboard */,
 				926C4126234A16760001DBE7 /* RoundedImageView.swift */,
 			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		92817431234B993A00113DF4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				92817432234B9C7E00113DF4 /* TrackObject.swift */,
-			);
-			path = Models;
+			path = "Main Views";
 			sourceTree = "<group>";
 		};
 		92817439234BE48800113DF4 /* Controller */ = {
@@ -148,6 +148,41 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		92A03DA7234D01DF005BC7FD /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				92A03DA9234D0206005BC7FD /* Model */,
+				92A03DAA234D020C005BC7FD /* View */,
+				92A03DA8234D01F4005BC7FD /* Controller */,
+			);
+			path = Playlist;
+			sourceTree = "<group>";
+		};
+		92A03DA8234D01F4005BC7FD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				92A03DAB234D027C005BC7FD /* PlaylistViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		92A03DA9234D0206005BC7FD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				92817432234B9C7E00113DF4 /* TrackObject.swift */,
+				92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */,
+				92A03DB2234D09C6005BC7FD /* RealmDBManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		92A03DAA234D020C005BC7FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		92ED26BF234B26EA007A0DD9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,9 +203,9 @@
 		92FCDC2523478C8100F70F45 /* TrackSearch */ = {
 			isa = PBXGroup;
 			children = (
-				92817439234BE48800113DF4 /* Controller */,
 				92FCDC402347F35E00F70F45 /* Model */,
 				92FCDC3F2347F35300F70F45 /* View */,
+				92817439234BE48800113DF4 /* Controller */,
 			);
 			path = TrackSearch;
 			sourceTree = "<group>";
@@ -179,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				92FCDC2923478CFC00F70F45 /* TrackCell.swift */,
+				92A03DAD234D038C005BC7FD /* TrackCell.xib */,
 			);
 			path = TrackCell;
 			sourceTree = "<group>";
@@ -186,9 +222,9 @@
 		92FCDC372347ECCE00F70F45 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				9281743A234BE49500113DF4 /* Controller */,
 				92ED26BF234B26EA007A0DD9 /* Model */,
 				92FCDC3E2347F34500F70F45 /* View */,
+				9281743A234BE49500113DF4 /* Controller */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -300,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				924D98F523427478008E70A2 /* LaunchScreen.storyboard in Resources */,
+				92A03DAE234D038C005BC7FD /* TrackCell.xib in Resources */,
 				924D98F223427478008E70A2 /* Assets.xcassets in Resources */,
 				924D98F023427474008E70A2 /* Main.storyboard in Resources */,
 				92FCDC3B2347ECFB00F70F45 /* TrackPlayerViewController.xib in Resources */,
@@ -356,9 +393,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				92817438234BE20300113DF4 /* MiniPlayerDelegate.swift in Sources */,
+				92A03DB0234D060E005BC7FD /* PlaylistConstants.swift in Sources */,
 				92817435234BDB6700113DF4 /* TrackSearchConstants.swift in Sources */,
 				92FCDC2B23478CFC00F70F45 /* TrackCell.swift in Sources */,
 				92ED26C5234B33B6007A0DD9 /* MiniPlayerViewController.swift in Sources */,
+				92A03DB3234D09C6005BC7FD /* RealmDBManager.swift in Sources */,
 				92FCDC3A2347ECFB00F70F45 /* TrackPlayerViewController.swift in Sources */,
 				92FCDC2723478CD700F70F45 /* TrackSearchViewController.swift in Sources */,
 				924D98E923427474008E70A2 /* AppDelegate.swift in Sources */,
@@ -366,6 +405,7 @@
 				92FCDC2E23479C5C00F70F45 /* Track.swift in Sources */,
 				92FCDC342347CE9000F70F45 /* TrackQuery.swift in Sources */,
 				92817433234B9C7E00113DF4 /* TrackObject.swift in Sources */,
+				92A03DAC234D027C005BC7FD /* PlaylistViewController.swift in Sources */,
 				92FCDC322347C90000F70F45 /* TrackService.swift in Sources */,
 				92ED26C1234B2705007A0DD9 /* MusicPlayerService.swift in Sources */,
 				926C4127234A16760001DBE7 /* RoundedImageView.swift in Sources */,

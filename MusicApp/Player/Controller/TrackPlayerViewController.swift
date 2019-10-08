@@ -43,9 +43,9 @@ class TrackPlayerViewController: UIViewController {
     }
     
     func setUpButtonsUI() {
-        let isPlayed = MusicPlayerService.shared.isPlayed
+        let isPlaying = MusicPlayerService.shared.isPlaying
         
-        if isPlayed {
+        if isPlaying {
             guard let image = UIImage(systemName: "pause.fill") else { return }
             playButton.setBackgroundImage(image, for: .normal)
             imageSizeAnimation()
@@ -60,9 +60,9 @@ class TrackPlayerViewController: UIViewController {
     @objc func playerDidFinishPlaying() {
         MusicPlayerService.shared.pauseMusic()
         MusicPlayerService.shared.seekMusic(to: .zero)
-        MusicPlayerService.shared.isPlayed = false
-        let isPlayed = false
-        buttonChange(playButton, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
+        MusicPlayerService.shared.isPlaying = false
+        let isPlaying = false
+        buttonChange(playButton, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
     }
     
     // Transfer to Model class
@@ -86,9 +86,9 @@ class TrackPlayerViewController: UIViewController {
     
     // Animate ImageView size increase/decrease
     func imageSizeAnimation() {
-        let isPlayed = MusicPlayerService.shared.isPlayed
+        let isPlaying = MusicPlayerService.shared.isPlaying
         
-        if isPlayed {
+        if isPlaying {
             UIView.animate(withDuration: 0.4, delay: 0,
                            usingSpringWithDamping: 0.5,
                            initialSpringVelocity: 10,
@@ -116,10 +116,10 @@ class TrackPlayerViewController: UIViewController {
     @IBAction func playButtonTapped(_ sender: UIButton) {
         // Settings
         MusicPlayerService.shared.toggleMusic()
-        let isPlayed = MusicPlayerService.shared.isPlayed
+        let isPlaying = MusicPlayerService.shared.isPlaying
         // Animations
         imageSizeAnimation()
-        buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
+        buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
         delegate?.updateUI()
     }
     

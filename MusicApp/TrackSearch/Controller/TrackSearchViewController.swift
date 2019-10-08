@@ -22,6 +22,9 @@ class TrackSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Register tableview cell
+        tracksTableView.register(UINib(nibName: "TrackCell", bundle: nil), forCellReuseIdentifier: "trackCell")
+        
         setupSearchBar()
         
         // Setting up status bar

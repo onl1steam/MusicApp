@@ -24,6 +24,10 @@ class TrackObject: Object {
     @objc dynamic var artworkLocalUrl60 = ""
     @objc dynamic var artworkLocalUrl100 = ""
     
+    override static func primaryKey() -> String? {
+        return "previewUrl"
+    }
+    
     
 }
 

@@ -74,9 +74,9 @@ class MiniPlayerViewController: UIViewController {
     @IBAction func playButtonTapped(_ sender: UIButton) {
         // Settings
         MusicPlayerService.shared.toggleMusic()
-        let isPlayed = MusicPlayerService.shared.isPlayed
+        let isPlaying = MusicPlayerService.shared.isPlaying
         // Animations
-        buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlayed)
+        buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
     }
     
     @IBAction func forwardButtonTapped(_ sender: UIButton) {
@@ -88,9 +88,9 @@ class MiniPlayerViewController: UIViewController {
 extension MiniPlayerViewController: MiniPlayerDelegate {
     
     func updateUI() {
-        let isPlayed = MusicPlayerService.shared.isPlayed
+        let isPlaying = MusicPlayerService.shared.isPlaying
         
-        if isPlayed {
+        if isPlaying {
             guard let image = UIImage(systemName: "pause.fill") else { return }
             playButton.setBackgroundImage(image, for: .normal)
         } else {
