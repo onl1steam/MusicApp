@@ -16,19 +16,20 @@ class MiniPlayerViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     
+    var border = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addTopBorder(with: .darkGray, andWidth: 0.7)
+        addTopBorder(with: 0.7)
         
         addGestureRecognizer()
         
         updateInformation()
     }
     
-    func addTopBorder(with color: UIColor?, andWidth borderWidth: CGFloat) {
-        let border = UIView()
-        border.backgroundColor = color
+    
+    func addTopBorder(with borderWidth: CGFloat) {
         border.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
         border.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: borderWidth)
         self.view.addSubview(border)

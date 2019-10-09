@@ -82,6 +82,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		921FC1FD234E5B3400E63E4B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		924D98DC23427474008E70A2 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +201,7 @@
 		92ED26C2234B32EF007A0DD9 /* Mini Player */ = {
 			isa = PBXGroup;
 			children = (
+				921FC1FD234E5B3400E63E4B /* View */,
 				9281743B234BE49D00113DF4 /* Controller */,
 				92817437234BE20300113DF4 /* MiniPlayerDelegate.swift */,
 			);

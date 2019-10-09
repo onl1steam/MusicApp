@@ -16,7 +16,6 @@ class TrackCell: UITableViewCell {
     
     var isDownloadingAlbumImage = false
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

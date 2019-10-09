@@ -31,7 +31,7 @@ class TrackSearchViewController: UIViewController {
         
         // Activity Indicator settings
         self.tableViewActivityIndicator.isHidden = true
-        tableViewActivityIndicator.color = .yellow
+        tableViewActivityIndicator.color = .systemRed
 
         // TableView settings
         tracksTableView.delegate = self
@@ -45,9 +45,9 @@ class TrackSearchViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.searchBar.searchTextField.textColor = .white
+        searchController.searchBar.searchTextField.textColor = .label
         
-        let cancelButtonAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.yellow]
+        let cancelButtonAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.systemPink]
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
         
     }
@@ -69,11 +69,6 @@ class TrackSearchViewController: UIViewController {
             self?.tableViewActivityIndicator.stopAnimating()
             self?.tableViewActivityIndicator.isHidden = true
         }
-    }
-    
-    // Change status bar
-    override func viewDidAppear(_ animated: Bool) {
-        navigationController?.navigationBar.barStyle = .default
     }
     
     // Set up child view

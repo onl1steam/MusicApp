@@ -31,8 +31,8 @@ class TrackPlayerViewController: UIViewController {
         setUpButtonsUI()
         
         // Track labels
-        trackNameLabel.text = MusicPlayerService.shared.track?.trackName ?? "Название"
-        trackAuthorLabel.text = MusicPlayerService.shared.track?.artistName ?? "Исполнитель"
+        trackNameLabel.text = MusicPlayerService.shared.track?.trackName ?? "Не исполняется"
+        trackAuthorLabel.text = MusicPlayerService.shared.track?.artistName ?? ""
         
         // Loading album image
         loadAlbumImage(from: MusicPlayerService.shared.track?.artworkUrl100)
