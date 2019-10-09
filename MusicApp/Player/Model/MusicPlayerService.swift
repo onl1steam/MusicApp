@@ -43,10 +43,12 @@ class MusicPlayerService {
     
     func playMusic() {
         player?.play()
+        isPlaying = true
     }
     
     func pauseMusic() {
         player?.pause()
+        isPlaying = false
     }
     
     func seekMusic(to time: CMTime) {

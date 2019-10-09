@@ -21,19 +21,18 @@ class MiniPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addTopBorder(with: 0.7)
+        self.view.backgroundColor = .clear
+        let blur = UIBlurEffect(style: .extraLight)
+        let blurView = UIVisualEffectView(effect: blur)
+        blurView.frame = self.view.frame
+        self.view.insertSubview(blurView, at: 0)
         
         addGestureRecognizer()
-        
         updateInformation()
     }
     
-    
-    func addTopBorder(with borderWidth: CGFloat) {
-        border.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
-        border.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: borderWidth)
-        self.view.addSubview(border)
-    }
+
+
     
     func addGestureRecognizer() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
