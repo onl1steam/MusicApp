@@ -91,7 +91,7 @@ extension TrackSearchViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tracksTableView.dequeueReusableCell(withIdentifier: trackCellReuseIdentifier, for: indexPath) as! TrackCell
         // Configuring Cells
         cell.trackNameLabel?.text = trackList[indexPath.row].trackName
-        cell.trackAuthorLabel?.text = trackList[indexPath.row].artistName
+        cell.trackArtistLabel?.text = trackList[indexPath.row].artistName
         // Loading Album image with SDWebImage
         if let url = URL(string: trackList[indexPath.row].artworkUrl60) {
         cell.trackAlbumImage.sd_setImage(with: url, completed: nil)

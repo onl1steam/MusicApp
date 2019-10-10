@@ -19,7 +19,11 @@ class PlaylistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if let tracks = RealmDBManager.shared.getTracksFromDB() {
+            trackList = tracks
+        }
+        
         // Register tableview cell
         tracksTableView.register(UINib(nibName: "TrackCell", bundle: nil), forCellReuseIdentifier: "trackCell")
         
@@ -27,6 +31,7 @@ class PlaylistViewController: UIViewController {
         tracksTableView.delegate = self
         tracksTableView.dataSource = self
         tracksTableView.tableFooterView = UIView()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,7 +54,7 @@ extension PlaylistViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tracksTableView.dequeueReusableCell(withIdentifier: trackCellReuseIdentifier, for: indexPath) as! TrackCell
         // Configuring Cells
         cell.trackNameLabel?.text = trackList[indexPath.row].trackName
-        cell.trackAuthorLabel?.text = trackList[indexPath.row].artistName
+        cell.trackArtistLabel?.text = trackList[indexPath.row].artistName
         // Loading Album image with SDWebImage
         if let url = URL(string: trackList[indexPath.row].artworkUrl60) {
         cell.trackAlbumImage.sd_setImage(with: url, completed: nil)
@@ -63,6 +68,9 @@ extension PlaylistViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        MusicPlayerService.shared.loadTrack(track: trackList[indexPath.row])
+        MusicPlayerService.shared.playMusic()
+        self.childViewController?.updateInformation()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

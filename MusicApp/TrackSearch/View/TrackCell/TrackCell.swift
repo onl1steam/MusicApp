@@ -11,7 +11,7 @@ import UIKit
 class TrackCell: UITableViewCell {
     
     @IBOutlet weak var trackNameLabel: UILabel!
-    @IBOutlet weak var trackAuthorLabel: UILabel!
+    @IBOutlet weak var trackArtistLabel: UILabel!
     @IBOutlet weak var trackAlbumImage: UIImageView!
     
     var isDownloadingAlbumImage = false

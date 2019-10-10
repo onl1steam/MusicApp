@@ -21,12 +21,6 @@ class MiniPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .clear
-        let blur = UIBlurEffect(style: .extraLight)
-        let blurView = UIVisualEffectView(effect: blur)
-        blurView.frame = self.view.frame
-        self.view.insertSubview(blurView, at: 0)
-        
         addGestureRecognizer()
         updateInformation()
     }

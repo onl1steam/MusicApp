@@ -16,7 +16,7 @@
                 <outlet property="forewardButton" destination="Vlw-4y-ec8" id="jhU-u5-hmm"/>
                 <outlet property="playButton" destination="DZE-0y-0Pt" id="6CW-6n-a8C"/>
                 <outlet property="timeSlider" destination="m8i-q0-WI3" id="Cye-NM-Bqa"/>
-                <outlet property="trackAuthorLabel" destination="gum-lq-YMA" id="Ix1-oM-fgC"/>
+                <outlet property="trackArtistLabel" destination="gum-lq-YMA" id="Ix1-oM-fgC"/>
                 <outlet property="trackNameLabel" destination="7qb-Sx-V4B" id="BMl-fl-MC1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="volumeSlider" destination="1z3-Aw-3ZH" id="dd2-8m-NBC"/>

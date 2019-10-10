@@ -10,33 +10,66 @@ import Foundation
 import RealmSwift
 
 class RealmDBManager {
-    private var database: Realm
+    
+    private var realm: Realm
+    
     static let shared = RealmDBManager()
     private init() {
-       database = try! Realm()
+       realm = try! Realm()
     }
     
-    func getDataFromDB() -> Results<TrackObject> {
-      let results: Results<TrackObject> = database.objects(TrackObject.self)
-      return results
+    func saveTrackToBD(track: Track) {
+        if !isObjectExist(previewUrl: track.previewUrl) {
+            try? realm.write {
+                let trackObject = convertToObject(track: track)
+                realm.add(trackObject)
+            }
+        }
+    }
+    
+    func removeFromDB(track: Track) {
+        try? realm.write {
+            try? realm.delete(Realm().objects(TrackObject.self).filter("previewUrl=%@", track.previewUrl))
+        }
+    }
+    
+    func getTracksFromDB() -> [Track]? {
+        var trackList: [Track]? = []
+        let results: Results<TrackObject> = realm.objects(TrackObject.self)
+        for result in results {
+            let track = convertToTrack(trackObject: result)
+            trackList?.append(track)
+        }
+        return trackList
      }
     
-     func addData(object: TrackObject)   {
-          try! database.write {
-             database.add(object, update: true)
-             print("Added new object")
-          }
-     }
+    func isObjectExist (previewUrl: String) -> Bool {
+            return realm.object(ofType: TrackObject.self, forPrimaryKey: previewUrl) != nil
+    }
     
-      func deleteAllFromDatabase()  {
-           try! database.write {
-               database.deleteAll()
-           }
-      }
+    // Convertion of Track model to BD model
+    private func convertToTrack(trackObject: TrackObject) -> Track {
+        
+        let track = Track( artistName: trackObject.artistName,
+                           collectionName: trackObject.collectionName,
+                           trackName: trackObject.trackName,
+                           previewUrl: trackObject.previewUrl,
+                           artworkUrl60: trackObject.artworkUrl60,
+                           artworkUrl100: trackObject.artworkUrl100)
+        
+        return track
+    }
     
-      func deleteFromDb(object: TrackObject)   {
-          try! database.write {
-             database.delete(object)
-          }
-      }
+    private func convertToObject(track: Track) -> TrackObject {
+        let trackObject = TrackObject()
+        // Convertion to DB model
+        trackObject.trackName = track.trackName
+        trackObject.artistName = track.artistName
+        trackObject.collectionName = track.collectionName
+        trackObject.previewUrl = track.previewUrl
+        trackObject.artworkUrl60 = track.artworkUrl60
+        trackObject.artworkUrl100 = track.artworkUrl100
+        return trackObject
+    }
+
 }

@@ -15,7 +15,7 @@ class TrackPlayerViewController: UIViewController {
     var delegate: MiniPlayerDelegate?
     
     // Outlets
-    @IBOutlet weak var trackAuthorLabel: UILabel!
+    @IBOutlet weak var trackArtistLabel: UILabel!
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var albumImageView: UIImageView!
     @IBOutlet weak var backwardButton: UIButton!
@@ -32,7 +32,7 @@ class TrackPlayerViewController: UIViewController {
         
         // Track labels
         trackNameLabel.text = MusicPlayerService.shared.track?.trackName ?? "Не исполняется"
-        trackAuthorLabel.text = MusicPlayerService.shared.track?.artistName ?? ""
+        trackArtistLabel.text = MusicPlayerService.shared.track?.artistName ?? ""
         
         // Loading album image
         loadAlbumImage(from: MusicPlayerService.shared.track?.artworkUrl100)
@@ -50,6 +50,10 @@ class TrackPlayerViewController: UIViewController {
             playButton.setBackgroundImage(image, for: .normal)
             imageSizeAnimation()
         }
+        
+        guard let track = MusicPlayerService.shared.track else { return }
+        isFavorite = RealmDBManager.shared.isObjectExist(previewUrl: track.previewUrl)
+        buttonChange(favoriteButton, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
     }
     
     @objc func volumeDidChange(notification: NSNotification) {
@@ -111,6 +115,14 @@ class TrackPlayerViewController: UIViewController {
         isFavorite.toggle()
         // Animations
         buttonChange(sender, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
+        
+        if isFavorite {
+            guard let track = MusicPlayerService.shared.track else { return }
+            RealmDBManager.shared.saveTrackToBD(track: track)
+        } else {
+            guard let track = MusicPlayerService.shared.track else { return }
+            RealmDBManager.shared.removeFromDB(track: track)
+        }
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
