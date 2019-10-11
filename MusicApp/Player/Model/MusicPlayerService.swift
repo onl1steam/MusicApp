@@ -16,9 +16,17 @@ class MusicPlayerService {
     private var player : AVPlayer?
     var isPlaying = false
     
-    private init() {}
+    private init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+    }
     
     static let shared = MusicPlayerService()
+    
+    @objc func playerDidFinishPlaying() {
+        MusicPlayerService.shared.pauseMusic()
+        MusicPlayerService.shared.seekMusic(to: .zero)
+        MusicPlayerService.shared.isPlaying = false
+    }
     
     func loadTrack(track: Track) {
         isPlaying = false
@@ -53,6 +61,10 @@ class MusicPlayerService {
     
     func seekMusic(to time: CMTime) {
         player?.seek(to: time)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
 }

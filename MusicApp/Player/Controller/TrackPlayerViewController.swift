@@ -62,9 +62,6 @@ class TrackPlayerViewController: UIViewController {
     }
     
     @objc func playerDidFinishPlaying() {
-        MusicPlayerService.shared.pauseMusic()
-        MusicPlayerService.shared.seekMusic(to: .zero)
-        MusicPlayerService.shared.isPlaying = false
         let isPlaying = false
         buttonChange(playButton, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
     }
