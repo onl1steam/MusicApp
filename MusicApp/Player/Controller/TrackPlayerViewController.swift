@@ -14,7 +14,7 @@ class TrackPlayerViewController: UIViewController {
     var isFavorite = false
     var delegate: MiniPlayerDelegate?
     
-    // Outlets
+    // MARK: Outlets
     @IBOutlet weak var trackArtistLabel: UILabel!
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var albumImageView: RoundedImageView!
@@ -48,7 +48,7 @@ class TrackPlayerViewController: UIViewController {
         }
         
         guard let track = MusicPlayerService.shared.currentTrack else { return }
-        isFavorite = RealmDBManager.shared.isObjectExist(previewUrl: track.previewUrl)
+        isFavorite = RealmDBManager.shared.isObjectExistsAndDownloaded(previewUrl: track.previewUrl).isExists
         buttonChange(favoriteButton, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
     }
     
@@ -62,7 +62,7 @@ class TrackPlayerViewController: UIViewController {
         buttonChange(playButton, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
     }
     
-    // Transfer to Model class
+    // MARK: Transfer to Model class
     func loadTrackInformation() {
         trackNameLabel.text = MusicPlayerService.shared.currentTrack?.trackName ?? "Не исполняется"
         trackArtistLabel.text = MusicPlayerService.shared.currentTrack?.artistName ?? ""
@@ -72,7 +72,7 @@ class TrackPlayerViewController: UIViewController {
         albumImageView.sd_setImage(with: url, completed: nil)
     }
     
-    // Animate System Buttons Change
+    // MARK: Animate System Buttons Change
     func buttonChange(_ sender: UIButton, firstImageName: String, secondImageName: String, with flag: Bool) {
         
         if flag {
@@ -84,7 +84,7 @@ class TrackPlayerViewController: UIViewController {
         }
     }
     
-    // Animate ImageView size increase/decrease
+    // MARK: Animate ImageView size increase/decrease
     func imageSizeAnimation() {
         let isPlaying = MusicPlayerService.shared.isPlaying
         
@@ -105,7 +105,7 @@ class TrackPlayerViewController: UIViewController {
         }
     }
 
-    // IBActions
+    // MARK: IBActions
     @IBAction func addToFavoriteButton(_ sender: UIButton) {
         if MusicPlayerService.shared.tracks != nil {
             // Settings

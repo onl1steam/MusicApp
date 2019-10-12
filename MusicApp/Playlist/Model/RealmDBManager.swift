@@ -20,7 +20,7 @@ class RealmDBManager {
     }
     
     func saveTrackToBD(track: Track) {
-        if !isObjectExist(previewUrl: track.previewUrl) {
+        if !isObjectExistsAndDownloaded(previewUrl: track.previewUrl).isExists {
             try? realm.write {
                 let trackObject = convertToObject(track: track)
                 realm.add(trackObject)
@@ -49,8 +49,12 @@ class RealmDBManager {
         }
      }
     
-    func isObjectExist (previewUrl: String) -> Bool {
-            return realm.object(ofType: TrackObject.self, forPrimaryKey: previewUrl) != nil
+    func isObjectExistsAndDownloaded (previewUrl: String) -> (isExists: Bool, isDownloaded: Bool) {
+        guard let object = realm.object(ofType: TrackObject.self, forPrimaryKey: previewUrl)
+            else { return (false, false) }
+        let isExists = true
+        let isDownloaded = (object.previewLocalUrl != "")
+        return (isExists, isDownloaded)
     }
     
     // Convertion of Track model to BD model

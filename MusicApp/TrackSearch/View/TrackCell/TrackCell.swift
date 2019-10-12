@@ -13,8 +13,8 @@ class TrackCell: UITableViewCell {
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var trackArtistLabel: UILabel!
     @IBOutlet weak var trackAlbumImage: UIImageView!
-    
-    var isDownloadingAlbumImage = false
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var downloadButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

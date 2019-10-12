@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -16,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="music.note" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="G7l-vq-kZT" customClass="RoundedImageView" customModule="MusicApp" customModuleProvider="target">
-                        <rect key="frame" x="20" y="10.5" width="65" height="64.5"/>
+                        <rect key="frame" x="25" y="10.5" width="65" height="64.5"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="65" id="ETf-GA-jis"/>
@@ -24,15 +25,16 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pAf-lj-Acb">
-                        <rect key="frame" x="100" y="20" width="289" height="45.5"/>
+                        <rect key="frame" x="105" y="20" width="251" height="45.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hn-tz-k5V">
-                                <rect key="frame" x="0.0" y="0.0" width="289" height="19.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="251" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Автор" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnb-ew-b9s">
-                                <rect key="frame" x="0.0" y="29.5" width="289" height="16"/>
+                                <rect key="frame" x="0.0" y="29.5" width="251" height="16"/>
+                                <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -46,18 +48,30 @@
                             <constraint firstAttribute="trailing" secondItem="hnb-ew-b9s" secondAttribute="trailing" id="qIZ-FI-5xC"/>
                         </constraints>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVe-d6-iDg">
+                        <rect key="frame" x="376" y="31" width="23" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="23" id="3DD-yL-rpz"/>
+                            <constraint firstAttribute="height" constant="23" id="aPS-GG-M0C"/>
+                        </constraints>
+                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" backgroundImage="icloud.and.arrow.down" catalog="system"/>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" name="tableViewCell"/>
                 <constraints>
                     <constraint firstItem="pAf-lj-Acb" firstAttribute="leading" secondItem="G7l-vq-kZT" secondAttribute="trailing" constant="15" id="2E5-2e-HGo"/>
+                    <constraint firstAttribute="trailing" secondItem="xVe-d6-iDg" secondAttribute="trailing" constant="15" id="7z3-RX-RZQ"/>
                     <constraint firstItem="pAf-lj-Acb" firstAttribute="centerY" secondItem="0jl-zY-Och" secondAttribute="centerY" id="OZu-p3-WM4"/>
                     <constraint firstItem="G7l-vq-kZT" firstAttribute="centerY" secondItem="0jl-zY-Och" secondAttribute="centerY" id="XQW-aA-qmA"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="pAf-lj-Acb" secondAttribute="trailing" constant="10" id="pze-vc-Fs8"/>
+                    <constraint firstItem="xVe-d6-iDg" firstAttribute="leading" secondItem="pAf-lj-Acb" secondAttribute="trailing" constant="20" id="hwg-Y7-01C"/>
                     <constraint firstItem="G7l-vq-kZT" firstAttribute="leading" secondItem="0jl-zY-Och" secondAttribute="leadingMargin" constant="5" id="zYS-9p-ytt"/>
+                    <constraint firstItem="xVe-d6-iDg" firstAttribute="centerY" secondItem="0jl-zY-Och" secondAttribute="centerY" id="zhM-jv-HE9"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <connections>
+                <outlet property="addButton" destination="xVe-d6-iDg" id="rYs-NU-Zzr"/>
                 <outlet property="trackAlbumImage" destination="G7l-vq-kZT" id="eNy-hT-IK7"/>
                 <outlet property="trackArtistLabel" destination="hnb-ew-b9s" id="TMD-W7-9Zd"/>
                 <outlet property="trackNameLabel" destination="0hn-tz-k5V" id="TyR-lo-zbA"/>
@@ -66,6 +80,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icloud.and.arrow.down" catalog="system" width="64" height="56"/>
         <image name="music.note" catalog="system" width="48" height="64"/>
         <namedColor name="tableViewCell">
             <color red="0.17299999296665192" green="0.17299999296665192" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
