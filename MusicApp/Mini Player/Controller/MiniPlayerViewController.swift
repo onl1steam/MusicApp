@@ -16,8 +16,6 @@ class MiniPlayerViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     
-    var border = UIView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,14 +41,6 @@ class MiniPlayerViewController: UIViewController {
         albumImageView.sd_setImage(with: url, completed: nil)
     }
     
-    func updateInformation() {
-        guard let track = MusicPlayerService.shared.track else { return }
-        
-        loadAlbumImage(from: track.artworkUrl60)
-        trackNameLabel.text = track.trackName
-        updateUI()
-    }
-    
     func buttonChange(_ sender: UIButton, firstImageName: String, secondImageName: String, with flag: Bool) {
 
         if flag {
@@ -63,14 +53,20 @@ class MiniPlayerViewController: UIViewController {
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
-        // Settings
-        MusicPlayerService.shared.toggleMusic()
-        let isPlaying = MusicPlayerService.shared.isPlaying
-        // Animations
-        buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
+        if MusicPlayerService.shared.tracks != nil {
+            // Settings
+            MusicPlayerService.shared.toggleMusic()
+            let isPlaying = MusicPlayerService.shared.isPlaying
+            // Animations
+            buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
+        }
     }
     
     @IBAction func forwardButtonTapped(_ sender: UIButton) {
+        if MusicPlayerService.shared.tracks != nil {
+            MusicPlayerService.shared.setNext()
+            updateInformation()
+        }
     }
     
 }
@@ -88,6 +84,13 @@ extension MiniPlayerViewController: MiniPlayerDelegate {
             guard let image = UIImage(systemName: "play.fill") else { return }
             playButton.setBackgroundImage(image, for: .normal)
         }
+    }
+    
+    func updateInformation() {
+        guard let track = MusicPlayerService.shared.currentTrack else { return }
+        
+        loadAlbumImage(from: track.artworkUrl60)
+        trackNameLabel.text = track.trackName
     }
     
 }

@@ -12,9 +12,13 @@ import MediaPlayer
 
 class MusicPlayerService {
     
-    var track: Track?
+    var tracks: [Track]?
     private var player : AVPlayer?
     var isPlaying = false
+    var currentIndex = 0
+    var currentTrack: Track? {
+        return tracks?[currentIndex]
+    }
     
     private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
@@ -28,12 +32,46 @@ class MusicPlayerService {
         MusicPlayerService.shared.isPlaying = false
     }
     
-    func loadTrack(track: Track) {
+    func loadTracks(tracks: [Track], currentIndex: Int) {
         isPlaying = false
-        self.track = track
-        guard let url = URL.init(string: track.previewUrl) else { return }
+        self.currentIndex = currentIndex
+        self.tracks = tracks
+        guard let url = URL.init(string: tracks[currentIndex].previewUrl) else { return }
         let playerItem = AVPlayerItem.init(url: url)
         player = AVPlayer.init(playerItem: playerItem)
+    }
+    
+    private func skipTrack() {
+        guard let trackUrl = tracks?[currentIndex].previewUrl,
+            let url = URL.init(string: trackUrl) else { return }
+        let playerItem = AVPlayerItem.init(url: url)
+        player = AVPlayer.init(playerItem: playerItem)
+        if isPlaying {
+            player?.play()
+        }
+    }
+    
+    func setNext() {
+        if let count = tracks?.count,
+            currentIndex < count - 1 {
+            currentIndex += 1
+            skipTrack()
+        }
+    }
+    
+    func setPrevious() {
+        if let time = player?.currentTime().seconds,
+            time > 5 {
+            seekMusic(to: .zero)
+            return
+        }
+        
+        if let count = tracks?.count,
+            count > 0,
+            currentIndex > 0 {
+            currentIndex -= 1
+            skipTrack()
+        }
     }
     
     func toggleMusic() {

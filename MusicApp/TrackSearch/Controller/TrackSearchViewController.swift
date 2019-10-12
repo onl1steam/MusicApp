@@ -105,9 +105,10 @@ extension TrackSearchViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MusicPlayerService.shared.loadTrack(track: trackList[indexPath.row])
+        MusicPlayerService.shared.loadTracks(tracks: trackList, currentIndex: indexPath.row)
         MusicPlayerService.shared.playMusic()
         self.childViewController?.updateInformation()
+        self.childViewController?.updateUI()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

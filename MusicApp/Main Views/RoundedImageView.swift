@@ -35,6 +35,5 @@ class RoundedImageView: UIImageView {
         self.layer.cornerRadius = RoundedImageViewConstants.imageCornerRadius
         self.clipsToBounds = true
         
-        // Implementing shadows
     }
 }

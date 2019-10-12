@@ -17,7 +17,7 @@ class TrackPlayerViewController: UIViewController {
     // Outlets
     @IBOutlet weak var trackArtistLabel: UILabel!
     @IBOutlet weak var trackNameLabel: UILabel!
-    @IBOutlet weak var albumImageView: UIImageView!
+    @IBOutlet weak var albumImageView: RoundedImageView!
     @IBOutlet weak var backwardButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var forewardButton: UIButton!
@@ -30,12 +30,8 @@ class TrackPlayerViewController: UIViewController {
 
         setUpButtonsUI()
         
-        // Track labels
-        trackNameLabel.text = MusicPlayerService.shared.track?.trackName ?? "Не исполняется"
-        trackArtistLabel.text = MusicPlayerService.shared.track?.artistName ?? ""
-        
-        // Loading album image
-        loadAlbumImage(from: MusicPlayerService.shared.track?.artworkUrl100)
+        // Loading Track information
+        loadTrackInformation()
         
         // Add Observers
         NotificationCenter.default.addObserver(self, selector: #selector(self.volumeDidChange(notification:)), name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"), object: nil)
@@ -51,7 +47,7 @@ class TrackPlayerViewController: UIViewController {
             imageSizeAnimation()
         }
         
-        guard let track = MusicPlayerService.shared.track else { return }
+        guard let track = MusicPlayerService.shared.currentTrack else { return }
         isFavorite = RealmDBManager.shared.isObjectExist(previewUrl: track.previewUrl)
         buttonChange(favoriteButton, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
     }
@@ -67,8 +63,11 @@ class TrackPlayerViewController: UIViewController {
     }
     
     // Transfer to Model class
-    func loadAlbumImage(from url: String?) {
-        guard let urlString = url,
+    func loadTrackInformation() {
+        trackNameLabel.text = MusicPlayerService.shared.currentTrack?.trackName ?? "Не исполняется"
+        trackArtistLabel.text = MusicPlayerService.shared.currentTrack?.artistName ?? ""
+        
+        guard let urlString = MusicPlayerService.shared.currentTrack?.artworkUrl100,
             let url = URL(string: urlString) else { return }
         albumImageView.sd_setImage(with: url, completed: nil)
     }
@@ -108,29 +107,52 @@ class TrackPlayerViewController: UIViewController {
 
     // IBActions
     @IBAction func addToFavoriteButton(_ sender: UIButton) {
-        // Settings
-        isFavorite.toggle()
-        // Animations
-        buttonChange(sender, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
-        
-        if isFavorite {
-            guard let track = MusicPlayerService.shared.track else { return }
-            RealmDBManager.shared.saveTrackToBD(track: track)
-        } else {
-            guard let track = MusicPlayerService.shared.track else { return }
-            RealmDBManager.shared.removeFromDB(track: track)
+        if MusicPlayerService.shared.tracks != nil {
+            // Settings
+            isFavorite.toggle()
+            // Animations
+            buttonChange(sender, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
+            
+            if isFavorite {
+                guard let track = MusicPlayerService.shared.currentTrack else { return }
+                RealmDBManager.shared.saveTrackToBD(track: track)
+            } else {
+                guard let track = MusicPlayerService.shared.currentTrack else { return }
+                RealmDBManager.shared.removeFromDB(track: track)
+            }
         }
     }
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
-        // Settings
-        MusicPlayerService.shared.toggleMusic()
-        let isPlaying = MusicPlayerService.shared.isPlaying
-        // Animations
-        imageSizeAnimation()
-        buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
-        delegate?.updateUI()
+        if MusicPlayerService.shared.tracks != nil {
+            // Settings
+            MusicPlayerService.shared.toggleMusic()
+            let isPlaying = MusicPlayerService.shared.isPlaying
+            // Animations
+            imageSizeAnimation()
+            buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
+            delegate?.updateUI()
+        }
     }
+    
+    @IBAction func backwardButtonTapped(_ sender: UIButton) {
+        if MusicPlayerService.shared.tracks != nil {
+            MusicPlayerService.shared.setPrevious()
+            loadTrackInformation()
+            delegate?.updateInformation()
+            setUpButtonsUI()
+        }
+    }
+    
+    @IBAction func forwardButtonTapped(_ sender: UIButton) {
+        if MusicPlayerService.shared.tracks != nil {
+            MusicPlayerService.shared.setNext()
+            loadTrackInformation()
+            delegate?.updateInformation()
+            setUpButtonsUI()
+        }
+    }
+    
     
     @IBAction func dismissButtonClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)

@@ -12,6 +12,7 @@ import RealmSwift
 class RealmDBManager {
     
     private var realm: Realm
+    private let backgroundThread = DispatchQueue(label: "backgroundRealm", qos: .background)
     
     static let shared = RealmDBManager()
     private init() {
@@ -33,14 +34,19 @@ class RealmDBManager {
         }
     }
     
-    func getTracksFromDB() -> [Track]? {
-        var trackList: [Track]? = []
-        let results: Results<TrackObject> = realm.objects(TrackObject.self)
-        for result in results {
-            let track = convertToTrack(trackObject: result)
-            trackList?.append(track)
+    func getTracksFromDB(completion: @escaping ([Track]?) -> Void) {
+        backgroundThread.async { [weak self] in
+            let realm = try! Realm()
+            var trackList: [Track]? = []
+            let results: Results<TrackObject> = realm.objects(TrackObject.self)
+            for result in results {
+                guard let track = self?.convertToTrack(trackObject: result) else { continue }
+                trackList?.insert(track, at: 0)
+            }
+            DispatchQueue.main.async {
+                completion(trackList)
+            }
         }
-        return trackList
      }
     
     func isObjectExist (previewUrl: String) -> Bool {

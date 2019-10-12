@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrackPlayerViewController" customModule="MusicApp" customModuleProvider="target">
             <connections>
-                <outlet property="albumImageView" destination="4Ec-sv-UHU" id="dSR-hB-H7V"/>
+                <outlet property="albumImageView" destination="ejI-X8-nPl" id="HWR-QY-2NX"/>
                 <outlet property="backwardButton" destination="nrX-o9-Ypz" id="WBX-2N-eA4"/>
                 <outlet property="favoriteButton" destination="HUJ-OL-jfm" id="sFy-ye-4iz"/>
                 <outlet property="forewardButton" destination="Vlw-4y-ec8" id="jhU-u5-hmm"/>
@@ -27,14 +27,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Ec-sv-UHU" customClass="RoundedImageView" customModule="MusicApp" customModuleProvider="target">
-                    <rect key="frame" x="82" y="129" width="250" height="250"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="250" id="GzK-Jj-HcQ"/>
-                        <constraint firstAttribute="height" constant="250" id="VV2-2a-bUD"/>
-                    </constraints>
-                </imageView>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="m8i-q0-WI3">
                     <rect key="frame" x="55" y="526" width="304" height="31"/>
                     <constraints>
@@ -61,7 +53,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Автор" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gum-lq-YMA">
                                     <rect key="frame" x="0.0" y="34" width="55.5" height="23"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -72,7 +64,7 @@
                                 <constraint firstAttribute="width" constant="30" id="92p-JU-Zia"/>
                                 <constraint firstAttribute="height" constant="30" id="trm-qd-gej"/>
                             </constraints>
-                            <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" backgroundImage="suit.heart" catalog="system"/>
                             <connections>
                                 <action selector="addToFavoriteButton:" destination="-1" eventType="touchUpInside" id="oNn-jm-gcp"/>
@@ -103,6 +95,9 @@
                             </constraints>
                             <color key="tintColor" name="buttonColor"/>
                             <state key="normal" backgroundImage="backward.fill" catalog="system"/>
+                            <connections>
+                                <action selector="backwardButtonTapped:" destination="-1" eventType="touchUpInside" id="q8b-rq-5gW"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZE-0y-0Pt">
                             <rect key="frame" x="95" y="1.5" width="30" height="31.5"/>
@@ -123,6 +118,9 @@
                             </constraints>
                             <color key="tintColor" name="buttonColor"/>
                             <state key="normal" backgroundImage="forward.fill" catalog="system"/>
+                            <connections>
+                                <action selector="forwardButtonTapped:" destination="-1" eventType="touchUpInside" id="71a-dP-8aC"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>
@@ -138,23 +136,31 @@
                         <action selector="dismissButtonClicked:" destination="-1" eventType="touchUpInside" id="UWe-4C-Ue1"/>
                     </connections>
                 </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ejI-X8-nPl" customClass="RoundedImageView" customModule="MusicApp" customModuleProvider="target">
+                    <rect key="frame" x="82" y="129" width="250" height="250"/>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="250" id="9mT-cB-jZd"/>
+                        <constraint firstAttribute="width" constant="250" id="d9N-UM-nnx"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="A8o-uh-2sF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="35X-Le-C6I"/>
-                <constraint firstItem="4Ec-sv-UHU" firstAttribute="top" secondItem="A8o-uh-2sF" secondAttribute="bottom" constant="40" id="3i2-d1-Fj8"/>
                 <constraint firstItem="1z3-Aw-3ZH" firstAttribute="top" secondItem="PJ6-Cn-76y" secondAttribute="bottom" constant="40" id="6oG-SZ-gdJ"/>
                 <constraint firstItem="m8i-q0-WI3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8nK-ec-rGz"/>
                 <constraint firstItem="PJ6-Cn-76y" firstAttribute="top" secondItem="m8i-q0-WI3" secondAttribute="bottom" constant="40" id="9Is-Nq-Gql"/>
                 <constraint firstItem="PJ6-Cn-76y" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LaH-gm-rR5"/>
+                <constraint firstItem="ejI-X8-nPl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NWi-pX-ggJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bSn-Xq-9qo" secondAttribute="trailing" constant="60" id="TxL-4u-5YA"/>
                 <constraint firstItem="bSn-Xq-9qo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YJs-j6-i1W"/>
-                <constraint firstItem="bSn-Xq-9qo" firstAttribute="top" secondItem="4Ec-sv-UHU" secondAttribute="bottom" constant="50" id="fp0-Gt-CKc"/>
-                <constraint firstItem="4Ec-sv-UHU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ju3-7D-feZ"/>
+                <constraint firstItem="bSn-Xq-9qo" firstAttribute="top" secondItem="ejI-X8-nPl" secondAttribute="bottom" constant="50" id="kAt-z2-UTc"/>
                 <constraint firstItem="A8o-uh-2sF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="nMI-2Q-j7i"/>
                 <constraint firstItem="m8i-q0-WI3" firstAttribute="top" secondItem="bSn-Xq-9qo" secondAttribute="bottom" constant="40" id="nvc-b6-ovU"/>
                 <constraint firstItem="bSn-Xq-9qo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="pZv-fj-Vcs"/>
                 <constraint firstItem="1z3-Aw-3ZH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="v6u-B0-KmC"/>
+                <constraint firstItem="ejI-X8-nPl" firstAttribute="top" secondItem="A8o-uh-2sF" secondAttribute="bottom" constant="40" id="vFf-z7-ju9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="89.732142857142847"/>

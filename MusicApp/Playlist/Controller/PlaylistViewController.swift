@@ -14,15 +14,19 @@ class PlaylistViewController: UIViewController {
     let trackCellReuseIdentifier: String = "trackCell"
     let searchController = UISearchController(searchResultsController: nil)
     var childViewController: MiniPlayerViewController?
+    var refreshControl = UIRefreshControl()
     
     var trackList: [Track] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let tracks = RealmDBManager.shared.getTracksFromDB() {
-            trackList = tracks
-        }
+
+        // Adding refresh control
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(fetchTracks), for: UIControl.Event.valueChanged)
+        refreshControl.attributedTitle = NSAttributedString()
+        refreshControl.tintColor = .systemPink
+        tracksTableView.addSubview(refreshControl)
         
         // Register tableview cell
         tracksTableView.register(UINib(nibName: "TrackCell", bundle: nil), forCellReuseIdentifier: "trackCell")
@@ -32,6 +36,21 @@ class PlaylistViewController: UIViewController {
         tracksTableView.dataSource = self
         tracksTableView.tableFooterView = UIView()
         
+        // Fetch Tracks from DB
+        fetchTracks()
+    }
+    
+    @objc func fetchTracks() {
+        refreshControl.beginRefreshing()
+        RealmDBManager.shared.getTracksFromDB { [weak self] (tracks) in
+            guard let fetchedTracks = tracks else { return }
+            self?.trackList = fetchedTracks
+            if let isRefreshing = self?.refreshControl.isRefreshing,
+                isRefreshing {
+                self?.refreshControl.endRefreshing()
+            }
+            self?.tracksTableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -68,9 +87,10 @@ extension PlaylistViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MusicPlayerService.shared.loadTrack(track: trackList[indexPath.row])
+        MusicPlayerService.shared.loadTracks(tracks: trackList, currentIndex: indexPath.row)
         MusicPlayerService.shared.playMusic()
         self.childViewController?.updateInformation()
+        self.childViewController?.updateUI()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

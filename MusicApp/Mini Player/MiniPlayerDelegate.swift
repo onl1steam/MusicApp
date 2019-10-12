@@ -10,4 +10,5 @@ import Foundation
 
 protocol MiniPlayerDelegate {
     func updateUI()
+    func updateInformation()
 }
