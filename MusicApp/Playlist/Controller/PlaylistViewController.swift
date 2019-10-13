@@ -10,6 +10,7 @@ import UIKit
 
 class PlaylistViewController: UIViewController {
 
+    // MARK: Outlets, variables
     @IBOutlet weak var tracksTableView: UITableView!
     let trackCellReuseIdentifier: String = "trackCell"
     let searchController = UISearchController(searchResultsController: nil)
@@ -40,9 +41,11 @@ class PlaylistViewController: UIViewController {
         fetchTracks()
     }
     
+    
+    // MARK: Fetch tracks from Database
     @objc func fetchTracks() {
         refreshControl.beginRefreshing()
-        RealmDBManager.shared.getTracksFromDB { [weak self] (tracks) in
+        RealmDBManager.shared.fetchTracksFromDB { [weak self] (tracks) in
             guard let fetchedTracks = tracks else { return }
             self?.trackList = fetchedTracks
             if let isRefreshing = self?.refreshControl.isRefreshing,
@@ -53,6 +56,7 @@ class PlaylistViewController: UIViewController {
         }
     }
     
+    // MARK: Give information in segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == PlaylistControllerTransitions.toMiniPlayer) {
             let childViewController = segue.destination as! MiniPlayerViewController
@@ -63,12 +67,14 @@ class PlaylistViewController: UIViewController {
 
 }
 
+
+// MARK: UITableView extensions
 extension PlaylistViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return trackList.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tracksTableView.dequeueReusableCell(withIdentifier: trackCellReuseIdentifier, for: indexPath) as! TrackCell
         // Configuring Cells
@@ -88,9 +94,10 @@ extension PlaylistViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         MusicPlayerService.shared.loadTracks(tracks: trackList, currentIndex: indexPath.row)
-        MusicPlayerService.shared.playMusic()
         self.childViewController?.updateInformation()
         self.childViewController?.updateUI()
+        MusicPlayerService.shared.initializePlayer()
+        MusicPlayerService.shared.playMusic()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -19,6 +19,7 @@ class RealmDBManager {
        realm = try! Realm()
     }
     
+    // MARK: Save track to Database
     func saveTrackToBD(track: Track) {
         if !isObjectExistsAndDownloaded(previewUrl: track.previewUrl).isExists {
             try? realm.write {
@@ -28,36 +29,35 @@ class RealmDBManager {
         }
     }
     
+    // MARK: Remove track from Database
     func removeFromDB(track: Track) {
         try? realm.write {
             try? realm.delete(Realm().objects(TrackObject.self).filter("previewUrl=%@", track.previewUrl))
         }
     }
     
-    func getTracksFromDB(completion: @escaping ([Track]?) -> Void) {
-        backgroundThread.async { [weak self] in
-            let realm = try! Realm()
-            var trackList: [Track]? = []
-            let results: Results<TrackObject> = realm.objects(TrackObject.self)
-            for result in results {
-                guard let track = self?.convertToTrack(trackObject: result) else { continue }
-                trackList?.insert(track, at: 0)
-            }
-            DispatchQueue.main.async {
-                completion(trackList)
-            }
+    // MARK: Fetch track list from Database
+    func fetchTracksFromDB(completion: @escaping ([Track]?) -> Void) {
+        let realm = try! Realm()
+        var trackList: [Track]? = []
+        let results: Results<TrackObject> = realm.objects(TrackObject.self)
+        for result in results {
+            let track = self.convertToTrack(trackObject: result)
+            trackList?.insert(track, at: 0)
         }
+        completion(trackList)
      }
     
+    // MARK: Check if the object with previewUrl exists
     func isObjectExistsAndDownloaded (previewUrl: String) -> (isExists: Bool, isDownloaded: Bool) {
-        guard let object = realm.object(ofType: TrackObject.self, forPrimaryKey: previewUrl)
+        guard let track = realm.object(ofType: TrackObject.self, forPrimaryKey: previewUrl)
             else { return (false, false) }
         let isExists = true
-        let isDownloaded = (object.previewLocalUrl != "")
+        let isDownloaded = (track.isDownloaded)
         return (isExists, isDownloaded)
     }
     
-    // Convertion of Track model to BD model
+    // MARK: Convertion from Track to TrackObject
     private func convertToTrack(trackObject: TrackObject) -> Track {
         
         let track = Track( artistName: trackObject.artistName,
@@ -80,6 +80,18 @@ class RealmDBManager {
         trackObject.artworkUrl60 = track.artworkUrl60
         trackObject.artworkUrl100 = track.artworkUrl100
         return trackObject
+    }
+    
+    // MARK: Save Local track url
+    func saveTrackLocalUrl(track: Track, url: String) {
+        let tracks = realm.objects(TrackObject.self).filter("previewUrl = %@", track.previewUrl)
+        
+        let realm = try! Realm()
+        if let track = tracks.first {
+            try! realm.write {
+                track.isDownloaded = true
+            }
+        }
     }
 
 }

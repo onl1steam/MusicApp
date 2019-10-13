@@ -11,7 +11,6 @@ import CoreMedia
 
 class TrackPlayerViewController: UIViewController {
 
-    var isFavorite = false
     var delegate: MiniPlayerDelegate?
     
     // MARK: Outlets
@@ -23,7 +22,6 @@ class TrackPlayerViewController: UIViewController {
     @IBOutlet weak var forewardButton: UIButton!
     @IBOutlet weak var timeSlider: UISlider!
     @IBOutlet weak var volumeSlider: UISlider!
-    @IBOutlet weak var favoriteButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +36,7 @@ class TrackPlayerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
+    // MARK: Setting buttons appearance
     func setUpButtonsUI() {
         let isPlaying = MusicPlayerService.shared.isPlaying
         
@@ -46,23 +45,21 @@ class TrackPlayerViewController: UIViewController {
             playButton.setBackgroundImage(image, for: .normal)
             imageSizeAnimation()
         }
-        
-        guard let track = MusicPlayerService.shared.currentTrack else { return }
-        isFavorite = RealmDBManager.shared.isObjectExistsAndDownloaded(previewUrl: track.previewUrl).isExists
-        buttonChange(favoriteButton, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
     }
     
+    // MARK: Observing system volume changing
     @objc func volumeDidChange(notification: NSNotification) {
         let volume = notification.userInfo!["AVSystemController_AudioVolumeNotificationParameter"] as! Float
         volumeSlider.value = volume
     }
     
+    // MARK: Observing ending of track
     @objc func playerDidFinishPlaying() {
         let isPlaying = false
         buttonChange(playButton, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
     }
     
-    // MARK: Transfer to Model class
+    // MARK: Loading track information
     func loadTrackInformation() {
         trackNameLabel.text = MusicPlayerService.shared.currentTrack?.trackName ?? "Не исполняется"
         trackArtistLabel.text = MusicPlayerService.shared.currentTrack?.artistName ?? ""
@@ -72,7 +69,7 @@ class TrackPlayerViewController: UIViewController {
         albumImageView.sd_setImage(with: url, completed: nil)
     }
     
-    // MARK: Animate System Buttons Change
+    // MARK: System Buttons Change
     func buttonChange(_ sender: UIButton, firstImageName: String, secondImageName: String, with flag: Bool) {
         
         if flag {
@@ -84,7 +81,7 @@ class TrackPlayerViewController: UIViewController {
         }
     }
     
-    // MARK: Animate ImageView size increase/decrease
+    // MARK: Animate ImageView resizing when play tapped
     func imageSizeAnimation() {
         let isPlaying = MusicPlayerService.shared.isPlaying
         
@@ -106,23 +103,6 @@ class TrackPlayerViewController: UIViewController {
     }
 
     // MARK: IBActions
-    @IBAction func addToFavoriteButton(_ sender: UIButton) {
-        if MusicPlayerService.shared.tracks != nil {
-            // Settings
-            isFavorite.toggle()
-            // Animations
-            buttonChange(sender, firstImageName: "suit.heart.fill", secondImageName: "suit.heart", with: isFavorite)
-            
-            if isFavorite {
-                guard let track = MusicPlayerService.shared.currentTrack else { return }
-                RealmDBManager.shared.saveTrackToBD(track: track)
-            } else {
-                guard let track = MusicPlayerService.shared.currentTrack else { return }
-                RealmDBManager.shared.removeFromDB(track: track)
-            }
-        }
-    }
-    
     @IBAction func playButtonTapped(_ sender: UIButton) {
         if MusicPlayerService.shared.tracks != nil {
             // Settings
@@ -153,12 +133,11 @@ class TrackPlayerViewController: UIViewController {
         }
     }
     
-    
     @IBAction func dismissButtonClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func timeSliderChanged(_ sender: UISlider) {
+    @IBAction func timeSliderValueChanged(_ sender: UISlider) {
         let seconds = Double(sender.value)
         let time = CMTime(seconds: seconds, preferredTimescale: 1)
         MusicPlayerService.shared.seekMusic(to: time)

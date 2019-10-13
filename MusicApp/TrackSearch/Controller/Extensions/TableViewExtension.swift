@@ -24,7 +24,8 @@ extension TrackSearchViewController: UITableViewDelegate, UITableViewDataSource 
             cell.trackAlbumImage.sd_setImage(with: url, completed: nil)
         }
         // Configuring cell button
-        configureCellButtonImage(for: cell.addButton, index: indexPath.row)
+        let localInfo = RealmDBManager.shared.isObjectExistsAndDownloaded(previewUrl: trackList[indexPath.row].previewUrl)
+        configureCellButtonImage(for: cell.addButton, index: indexPath.row, localInfo: localInfo)
         cell.addButton.tag = indexPath.row
         cell.addButton.addTarget(self, action: #selector(addButtonTapped(sender:)), for: .touchUpInside)
         return cell
@@ -34,10 +35,8 @@ extension TrackSearchViewController: UITableViewDelegate, UITableViewDataSource 
         return 85
     }
     
-    func configureCellButtonImage(for button: UIButton, index: Int) {
-        
-        let localInfo = RealmDBManager.shared.isObjectExistsAndDownloaded(
-            previewUrl: trackList[index].previewUrl)
+    // MARK: Configuring button image in table view cell
+    func configureCellButtonImage(for button: UIButton, index: Int, localInfo: (isExists: Bool, isDownloaded: Bool)) {
         
         if localInfo.isExists {
             if localInfo.isDownloaded {
@@ -52,6 +51,7 @@ extension TrackSearchViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
     
+    // MARK: Gesture recognizer to cell button
     @objc func addButtonTapped(sender: UIButton) {
         let index = sender.tag
         let localInfo = RealmDBManager.shared.isObjectExistsAndDownloaded(
@@ -59,22 +59,21 @@ extension TrackSearchViewController: UITableViewDelegate, UITableViewDataSource 
         
         if localInfo.isExists {
             if !localInfo.isDownloaded {
-                // TODO: download track and image to File System
+                TrackService.shared.downloadTrackToMemomy(track: trackList[index])
+                configureCellButtonImage(for: sender, index: index, localInfo: (true, true))
             }
         } else {
             RealmDBManager.shared.saveTrackToBD(track: trackList[index])
-            configureCellButtonImage(for: sender, index: index)
-        }
-        
-        
-        
+            configureCellButtonImage(for: sender, index: index, localInfo: (true, false))
+        } 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         MusicPlayerService.shared.loadTracks(tracks: trackList, currentIndex: indexPath.row)
-        MusicPlayerService.shared.playMusic()
         self.childViewController?.updateInformation()
         self.childViewController?.updateUI()
+        MusicPlayerService.shared.initializePlayer()
+        MusicPlayerService.shared.playMusic()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

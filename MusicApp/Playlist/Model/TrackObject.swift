@@ -20,9 +20,7 @@ class TrackObject: Object {
     @objc dynamic var artworkUrl100 = ""
     
     // Local storage
-    @objc dynamic var previewLocalUrl = ""
-    @objc dynamic var artworkLocalUrl60 = ""
-    @objc dynamic var artworkLocalUrl100 = ""
+    @objc dynamic var isDownloaded = false
     
     override static func primaryKey() -> String? {
         return "previewUrl"

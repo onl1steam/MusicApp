@@ -11,6 +11,7 @@ import SDWebImage
 
 class MiniPlayerViewController: UIViewController {
 
+    // MARK: IBOutlets
     @IBOutlet weak var albumImageView: RoundedImageView!
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
@@ -23,24 +24,28 @@ class MiniPlayerViewController: UIViewController {
         updateInformation()
     }
     
+    // MARK: Adding gesture recognizer
     func addGestureRecognizer() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         view.addGestureRecognizer(tap)
         view.isUserInteractionEnabled = true
     }
     
+    // MARK: Handle tap gesture on mini player
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         let trackPlayerViewController: TrackPlayerViewController = TrackPlayerViewController()
         trackPlayerViewController.delegate = self
         self.present(trackPlayerViewController, animated: true, completion: nil)
     }
     
+    // MARK: Load album image from url
     func loadAlbumImage(from url: String?) {
         guard let string = url,
             let url = URL(string: string) else { return }
         albumImageView.sd_setImage(with: url, completed: nil)
     }
     
+    // MARK: Change button when tapped
     func buttonChange(_ sender: UIButton, firstImageName: String, secondImageName: String, with flag: Bool) {
 
         if flag {
@@ -52,6 +57,7 @@ class MiniPlayerViewController: UIViewController {
         }
     }
     
+    // MARK: IBActions
     @IBAction func playButtonTapped(_ sender: UIButton) {
         if MusicPlayerService.shared.tracks != nil {
             // Settings
@@ -71,7 +77,7 @@ class MiniPlayerViewController: UIViewController {
     
 }
 
-// Delegate extension
+// MARK: Delegate extension
 extension MiniPlayerViewController: MiniPlayerDelegate {
     
     func updateUI() {
@@ -88,9 +94,8 @@ extension MiniPlayerViewController: MiniPlayerDelegate {
     
     func updateInformation() {
         guard let track = MusicPlayerService.shared.currentTrack else { return }
-        
-        loadAlbumImage(from: track.artworkUrl60)
         trackNameLabel.text = track.trackName
+        loadAlbumImage(from: track.artworkUrl60)
     }
     
 }

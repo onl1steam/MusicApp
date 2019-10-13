@@ -11,6 +11,7 @@ import SDWebImage
 
 class TrackSearchViewController: UIViewController {
     
+    // MARK: IBOutlets, properties
     @IBOutlet weak var tableViewActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tracksTableView: UITableView!
     let trackCellReuseIdentifier: String = "trackCell"
@@ -27,8 +28,6 @@ class TrackSearchViewController: UIViewController {
         
         setupSearchBar()
         
-        // Setting up status bar
-        
         // Activity Indicator settings
         self.tableViewActivityIndicator.isHidden = true
         tableViewActivityIndicator.color = .systemRed
@@ -39,19 +38,23 @@ class TrackSearchViewController: UIViewController {
         tracksTableView.tableFooterView = UIView()
     }
     
+    // MARK: Setting up search bar
     func setupSearchBar() {
+        
         navigationItem.searchController = searchController
-        searchController.searchBar.delegate = self
-        navigationController?.navigationBar.prefersLargeTitles = true
-        searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.hidesSearchBarWhenScrolling = false
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.searchTextField.textColor = .label
         
         let cancelButtonAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.systemPink]
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
-        
     }
     
+    // MARK: Requesting for tracks
     func requestForTracks(with searchTerm: String) {
         // Updating views
         self.trackList = []
@@ -71,7 +74,7 @@ class TrackSearchViewController: UIViewController {
         }
     }
     
-    // Set up child view
+    // MARK: Set up child view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SearchControllerTransitions.toMiniPlayer) {
             let childViewController = segue.destination as! MiniPlayerViewController
