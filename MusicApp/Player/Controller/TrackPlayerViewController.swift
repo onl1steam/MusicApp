@@ -11,7 +11,7 @@ import CoreMedia
 
 class TrackPlayerViewController: UIViewController {
 
-    var delegate: MiniPlayerDelegate?
+    weak var delegate: MiniPlayerDelegate?
     
     // MARK: Outlets
     @IBOutlet weak var trackArtistLabel: UILabel!

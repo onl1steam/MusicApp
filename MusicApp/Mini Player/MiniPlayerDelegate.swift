@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol MiniPlayerDelegate {
+protocol MiniPlayerDelegate: class {
     func updateUI()
     func updateInformation()
 }

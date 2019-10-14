@@ -4,4 +4,6 @@ target 'MusicApp' do
   use_frameworks!
 pod 'SDWebImage'
 pod 'RealmSwift'
+pod 'RxSwift'
+pod 'RxCocoa'
 end
