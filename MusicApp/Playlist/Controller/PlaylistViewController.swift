@@ -66,38 +66,3 @@ class PlaylistViewController: UIViewController {
 
 
 }
-
-
-// MARK: UITableView extensions
-extension PlaylistViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return trackList.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tracksTableView.dequeueReusableCell(withIdentifier: trackCellReuseIdentifier, for: indexPath) as! TrackCell
-        // Configuring Cells
-        cell.trackNameLabel?.text = trackList[indexPath.row].trackName
-        cell.trackArtistLabel?.text = trackList[indexPath.row].artistName
-        // Loading Album image with SDWebImage
-        if let url = URL(string: trackList[indexPath.row].artworkUrl60) {
-        cell.trackAlbumImage.sd_setImage(with: url, completed: nil)
-        }
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MusicPlayerService.shared.loadTracks(tracks: trackList, currentIndex: indexPath.row)
-        self.childViewController?.updateInformation()
-        self.childViewController?.updateUI()
-        MusicPlayerService.shared.initializePlayer()
-        MusicPlayerService.shared.playMusic()
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}

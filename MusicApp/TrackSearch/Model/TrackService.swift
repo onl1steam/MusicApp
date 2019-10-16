@@ -6,23 +6,19 @@
 //  Copyright © 2019 Рыжков Артем. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class TrackService {
     
     static let shared = TrackService()
     private init() { }
     typealias QueryResult = ([Track]?) -> Void
-    
-    var trackList: [Track]?
+
     let defaultSession = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
     
     // MARK: Download track list from url
     func findTracksRequest(searchTerm: String, comletion: @escaping QueryResult) {
-        
-        trackList = []
-        
         dataTask?.cancel()
         
         if var urlComponents = URLComponents(string: "https://itunes.apple.com/search") {
@@ -46,10 +42,8 @@ class TrackService {
                     do {
                         let queryResult = try JSONDecoder().decode(TrackQuery.self, from: data)
                         let tracks = queryResult.results
-                        self?.updateTrackList(with: tracks)
-                        
                         DispatchQueue.main.async {
-                             comletion(self?.trackList)
+                             comletion(tracks)
                         }
                     } catch let error {
                         print(error.localizedDescription)
@@ -90,9 +84,5 @@ class TrackService {
             }
         }
     }
-    
-    
-    func updateTrackList(with tracks: [Track]) {
-        trackList = tracks
-    }
+
 }

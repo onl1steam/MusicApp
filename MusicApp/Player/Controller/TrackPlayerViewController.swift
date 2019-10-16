@@ -43,7 +43,7 @@ class TrackPlayerViewController: UIViewController {
         if isPlaying {
             guard let image = UIImage(systemName: "pause.fill") else { return }
             playButton.setBackgroundImage(image, for: .normal)
-            imageSizeAnimation()
+            albumImageView.imageSizeAnimation(flag: isPlaying)
         }
     }
     
@@ -80,27 +80,6 @@ class TrackPlayerViewController: UIViewController {
             sender.setBackgroundImage(image, for: .normal)
         }
     }
-    
-    // MARK: Animate ImageView resizing when play tapped
-    func imageSizeAnimation() {
-        let isPlaying = MusicPlayerService.shared.isPlaying
-        
-        if isPlaying {
-            UIView.animate(withDuration: 0.4, delay: 0,
-                           usingSpringWithDamping: 0.5,
-                           initialSpringVelocity: 10,
-                           options: [.curveEaseOut], animations: {
-                            self.albumImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-            }, completion: nil)
-        } else {
-            UIView.animate(withDuration: 0.4, delay: 0,
-                           usingSpringWithDamping: 0.5,
-                           initialSpringVelocity: 10,
-                           options: [.curveEaseOut], animations: {
-                            self.albumImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
-            }, completion: nil)
-        }
-    }
 
     // MARK: IBActions
     @IBAction func playButtonTapped(_ sender: UIButton) {
@@ -109,7 +88,7 @@ class TrackPlayerViewController: UIViewController {
             MusicPlayerService.shared.toggleMusic()
             let isPlaying = MusicPlayerService.shared.isPlaying
             // Animations
-            imageSizeAnimation()
+            albumImageView.imageSizeAnimation(flag: isPlaying)
             buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
             delegate?.updateUI()
         }
