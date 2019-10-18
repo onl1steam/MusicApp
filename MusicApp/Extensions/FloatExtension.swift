@@ -17,4 +17,18 @@ extension Float {
         return time
     }
     
+    func convertToTimeString() -> String {
+        let minutes = (self / 60).rounded()
+        let seconds = (self - minutes * 60).rounded()
+        
+        let minutesInt = Int(minutes)
+        let secondsInt = Int(seconds)
+        
+        var secondsString = "\(secondsInt)"
+        if seconds < 10 {
+            secondsString = "0\(secondsInt)"
+        }
+        return "\(minutesInt):\(secondsString)"
+    }
+    
 }

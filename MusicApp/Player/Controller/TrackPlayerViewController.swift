@@ -117,9 +117,7 @@ class TrackPlayerViewController: UIViewController {
     }
     
     @IBAction func timeSliderValueChanged(_ sender: UISlider) {
-        let seconds = Double(sender.value)
-        let time = CMTime(seconds: seconds, preferredTimescale: 1)
-        MusicPlayerService.shared.seekMusic(to: time)
+        MusicPlayerService.shared.seekMusic(to: sender.value.convertToCMTime())
     }
     
     @IBAction func volumeSliderChanged(_ sender: UISlider) {

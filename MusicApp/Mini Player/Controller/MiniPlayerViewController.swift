@@ -33,9 +33,9 @@ class MiniPlayerViewController: UIViewController {
     
     // MARK: Handle tap gesture on mini player
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        let trackPlayerViewController: TrackPlayerViewController = TrackPlayerViewController()
-        trackPlayerViewController.delegate = self
-        self.present(trackPlayerViewController, animated: true, completion: nil)
+        let playerViewController: PlayerViewController = PlayerViewController()
+        playerViewController.delegate = self
+        self.present(playerViewController, animated: true, completion: nil)
     }
     
     // MARK: Load album image from url

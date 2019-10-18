@@ -14,12 +14,22 @@ class MusicPlayerService {
     
     // MARK: Properties
     static let shared = MusicPlayerService()
+    
     var tracks: [Track]?
     private var player : AVPlayer?
+    
     var isPlaying = false
     var currentIndex = 0
     var currentTrack: Track? {
         return tracks?[currentIndex]
+    }
+    var currentTime: Float {
+        guard let time = player?.currentTime().seconds else { return 0 }
+        return Float(time)
+    }
+    var trackDuration: Float {
+        guard let time = player?.currentItem?.duration.seconds else { return 0 }
+        return Float(time)
     }
     
     // MARK: Adding observer to ending of track

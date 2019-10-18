@@ -8,17 +8,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrackPlayerViewController" customModule="MusicApp" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayerViewController" customModule="MusicApp" customModuleProvider="target">
             <connections>
-                <outlet property="albumImageView" destination="ejI-X8-nPl" id="HWR-QY-2NX"/>
-                <outlet property="backwardButton" destination="nrX-o9-Ypz" id="WBX-2N-eA4"/>
-                <outlet property="forewardButton" destination="Vlw-4y-ec8" id="jhU-u5-hmm"/>
-                <outlet property="playButton" destination="DZE-0y-0Pt" id="6CW-6n-a8C"/>
-                <outlet property="timeSlider" destination="m8i-q0-WI3" id="Cye-NM-Bqa"/>
-                <outlet property="trackArtistLabel" destination="gum-lq-YMA" id="Ix1-oM-fgC"/>
-                <outlet property="trackNameLabel" destination="7qb-Sx-V4B" id="BMl-fl-MC1"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="volumeSlider" destination="1z3-Aw-3ZH" id="dd2-8m-NBC"/>
+                <outlet property="albumImageView" destination="ejI-X8-nPl" id="PNt-KX-WAc"/>
+                <outlet property="backwardButton" destination="nrX-o9-Ypz" id="xSO-xf-Eyw"/>
+                <outlet property="currentTimeLabel" destination="JxK-LX-tm0" id="LxJ-zq-u1R"/>
+                <outlet property="forwardButton" destination="Vlw-4y-ec8" id="vQH-Wb-fpY"/>
+                <outlet property="playButton" destination="DZE-0y-0Pt" id="SJd-2s-nnz"/>
+                <outlet property="remainingTimeLabel" destination="VvO-xw-hgq" id="kPT-cQ-6hI"/>
+                <outlet property="timeSlider" destination="m8i-q0-WI3" id="YwZ-TJ-uqw"/>
+                <outlet property="trackArtistLabel" destination="gum-lq-YMA" id="Fwo-e6-Fme"/>
+                <outlet property="trackNameLabel" destination="7qb-Sx-V4B" id="GKt-eR-sFd"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="QE6-Jn-TSU"/>
+                <outlet property="volumeSlider" destination="1z3-Aw-3ZH" id="t1x-Ij-2DK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -27,7 +29,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="K79-Mz-bSS">
-                    <rect key="frame" x="60" y="419" width="294" height="57"/>
+                    <rect key="frame" x="60" y="429" width="294" height="57"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qb-Sx-V4B">
                             <rect key="frame" x="0.0" y="0.0" width="93.5" height="24"/>
@@ -43,7 +45,7 @@
                     </subviews>
                 </stackView>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="m8i-q0-WI3">
-                    <rect key="frame" x="55" y="526" width="304" height="31"/>
+                    <rect key="frame" x="55" y="516" width="304" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="jTp-3d-KTt"/>
                     </constraints>
@@ -51,7 +53,7 @@
                     <color key="maximumTrackTintColor" white="0.66666666666666663" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
-                        <action selector="timeSliderValueChanged:" destination="-1" eventType="touchUpInside" id="MBb-Tx-mAp"/>
+                        <action selector="timeSliderValueChanged:" destination="-1" eventType="touchUpInside" id="9FX-ou-1rR"/>
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="speaker.fill" catalog="system" maximumValueImage="speaker.3.fill" translatesAutoresizingMaskIntoConstraints="NO" id="1z3-Aw-3ZH">
@@ -64,7 +66,7 @@
                     <color key="maximumTrackTintColor" white="0.66666666666666663" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
-                        <action selector="volumeSliderChanged:" destination="-1" eventType="valueChanged" id="bUe-du-9to"/>
+                        <action selector="volumeSliderChanged:" destination="-1" eventType="valueChanged" id="x4w-UD-heB"/>
                     </connections>
                 </slider>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="PJ6-Cn-76y">
@@ -78,7 +80,7 @@
                             <color key="tintColor" name="buttonColor"/>
                             <state key="normal" backgroundImage="backward.fill" catalog="system"/>
                             <connections>
-                                <action selector="backwardButtonTapped:" destination="-1" eventType="touchUpInside" id="q8b-rq-5gW"/>
+                                <action selector="backwardButtonTapped:" destination="-1" eventType="touchUpInside" id="vjp-sl-PgU"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZE-0y-0Pt">
@@ -90,7 +92,7 @@
                             <color key="tintColor" name="buttonColor"/>
                             <state key="normal" backgroundImage="play.fill" catalog="system"/>
                             <connections>
-                                <action selector="playButtonTapped:" destination="-1" eventType="touchUpInside" id="bLY-a8-CLG"/>
+                                <action selector="playButtonTapped:" destination="-1" eventType="touchUpInside" id="x2h-H3-0nP"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vlw-4y-ec8">
@@ -101,7 +103,7 @@
                             <color key="tintColor" name="buttonColor"/>
                             <state key="normal" backgroundImage="forward.fill" catalog="system"/>
                             <connections>
-                                <action selector="forwardButtonTapped:" destination="-1" eventType="touchUpInside" id="71a-dP-8aC"/>
+                                <action selector="forwardButtonTapped:" destination="-1" eventType="touchUpInside" id="i43-KV-CIY"/>
                             </connections>
                         </button>
                     </subviews>
@@ -115,7 +117,7 @@
                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" backgroundImage="chevron.down" catalog="system"/>
                     <connections>
-                        <action selector="dismissButtonClicked:" destination="-1" eventType="touchUpInside" id="UWe-4C-Ue1"/>
+                        <action selector="dismissButtonClicked:" destination="-1" eventType="touchUpInside" id="G4S-Gw-kEi"/>
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ejI-X8-nPl" customClass="RoundedImageView" customModule="MusicApp" customModuleProvider="target">
@@ -126,20 +128,42 @@
                         <constraint firstAttribute="width" constant="250" id="d9N-UM-nnx"/>
                     </constraints>
                 </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mrC-Q5-Yfn">
+                    <rect key="frame" x="57" y="547" width="300" height="16"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxK-LX-tm0">
+                            <rect key="frame" x="0.0" y="0.0" width="36.5" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvO-xw-hgq">
+                            <rect key="frame" x="263.5" y="0.0" width="36.5" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="o5W-x9-krn"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="A8o-uh-2sF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="35X-Le-C6I"/>
-                <constraint firstItem="K79-Mz-bSS" firstAttribute="top" secondItem="ejI-X8-nPl" secondAttribute="bottom" constant="40" id="4fT-EU-kp9"/>
+                <constraint firstItem="K79-Mz-bSS" firstAttribute="top" secondItem="ejI-X8-nPl" secondAttribute="bottom" constant="50" id="4fT-EU-kp9"/>
+                <constraint firstItem="mrC-Q5-Yfn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5hR-Hm-cm0"/>
                 <constraint firstItem="1z3-Aw-3ZH" firstAttribute="top" secondItem="PJ6-Cn-76y" secondAttribute="bottom" constant="40" id="6oG-SZ-gdJ"/>
                 <constraint firstItem="m8i-q0-WI3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8nK-ec-rGz"/>
-                <constraint firstItem="PJ6-Cn-76y" firstAttribute="top" secondItem="m8i-q0-WI3" secondAttribute="bottom" constant="40" id="9Is-Nq-Gql"/>
-                <constraint firstItem="m8i-q0-WI3" firstAttribute="top" secondItem="K79-Mz-bSS" secondAttribute="bottom" constant="50" id="9Xp-4J-FBJ"/>
+                <constraint firstItem="PJ6-Cn-76y" firstAttribute="top" secondItem="m8i-q0-WI3" secondAttribute="bottom" constant="50" id="9Is-Nq-Gql"/>
+                <constraint firstItem="m8i-q0-WI3" firstAttribute="top" secondItem="K79-Mz-bSS" secondAttribute="bottom" constant="30" id="9Xp-4J-FBJ"/>
                 <constraint firstItem="PJ6-Cn-76y" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LaH-gm-rR5"/>
                 <constraint firstItem="ejI-X8-nPl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NWi-pX-ggJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="K79-Mz-bSS" secondAttribute="trailing" constant="60" id="bqM-gl-70L"/>
                 <constraint firstItem="K79-Mz-bSS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="eO3-Eg-xop"/>
                 <constraint firstItem="A8o-uh-2sF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="nMI-2Q-j7i"/>
+                <constraint firstItem="mrC-Q5-Yfn" firstAttribute="top" secondItem="m8i-q0-WI3" secondAttribute="bottom" constant="1" id="rBw-WQ-deX"/>
                 <constraint firstItem="1z3-Aw-3ZH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="v6u-B0-KmC"/>
                 <constraint firstItem="ejI-X8-nPl" firstAttribute="top" secondItem="A8o-uh-2sF" secondAttribute="bottom" constant="40" id="vFf-z7-ju9"/>
             </constraints>

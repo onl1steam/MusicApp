@@ -13,29 +13,29 @@ class PlaylistViewController: UIViewController {
     // MARK: Outlets, variables
     @IBOutlet weak var tracksTableView: UITableView!
     let trackCellReuseIdentifier: String = "trackCell"
-    let searchController = UISearchController(searchResultsController: nil)
     var childViewController: MiniPlayerViewController?
-    var refreshControl = UIRefreshControl()
-    
+    var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(fetchTracks), for: UIControl.Event.valueChanged)
+        refresh.tintColor = .systemPink
+        return refresh
+    }()
+        
     var trackList: [Track] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Adding refresh control
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(fetchTracks), for: UIControl.Event.valueChanged)
-        refreshControl.attributedTitle = NSAttributedString()
-        refreshControl.tintColor = .systemPink
-        tracksTableView.addSubview(refreshControl)
-        
-        // Register tableview cell
-        tracksTableView.register(UINib(nibName: "TrackCell", bundle: nil), forCellReuseIdentifier: "trackCell")
         
         // TableView settings
         tracksTableView.delegate = self
         tracksTableView.dataSource = self
         tracksTableView.tableFooterView = UIView()
+        
+        // Register tableview cell
+        tracksTableView.register(UINib(nibName: "TrackCell", bundle: nil), forCellReuseIdentifier: "trackCell")
+
+        // Adding refresh control
+        tracksTableView.refreshControl = refreshControl
         
         // Fetch Tracks from DB
         fetchTracks()
