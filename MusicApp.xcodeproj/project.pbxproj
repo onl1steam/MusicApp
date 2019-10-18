@@ -36,7 +36,6 @@
 		92FCDC2E23479C5C00F70F45 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2D23479C5C00F70F45 /* Track.swift */; };
 		92FCDC322347C90000F70F45 /* TrackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC312347C90000F70F45 /* TrackService.swift */; };
 		92FCDC342347CE9000F70F45 /* TrackQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC332347CE9000F70F45 /* TrackQuery.swift */; };
-		92FCDC3A2347ECFB00F70F45 /* TrackPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC382347ECFB00F70F45 /* TrackPlayerViewController.swift */; };
 		92FCDC3B2347ECFB00F70F45 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FCDC392347ECFB00F70F45 /* PlayerViewController.xib */; };
 		B1F3AA282D95BC1D95AC16EA /* Pods_MusicApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DB9339DEAD81370BBFCD5E /* Pods_MusicApp.framework */; };
 /* End PBXBuildFile section */
@@ -74,7 +73,6 @@
 		92FCDC2D23479C5C00F70F45 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		92FCDC312347C90000F70F45 /* TrackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackService.swift; sourceTree = "<group>"; };
 		92FCDC332347CE9000F70F45 /* TrackQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackQuery.swift; sourceTree = "<group>"; };
-		92FCDC382347ECFB00F70F45 /* TrackPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackPlayerViewController.swift; sourceTree = "<group>"; };
 		92FCDC392347ECFB00F70F45 /* PlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
 		B3DB9339DEAD81370BBFCD5E /* Pods_MusicApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE18FC221DCBFB9B8FB9101E /* Pods-MusicApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicApp.release.xcconfig"; path = "Target Support Files/Pods-MusicApp/Pods-MusicApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -154,14 +152,6 @@
 			children = (
 				92AA85D9235285B7004F5F5D /* Extensions */,
 				92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		9281743A234BE49500113DF4 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				92FCDC382347ECFB00F70F45 /* TrackPlayerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -289,7 +279,6 @@
 				92ED26BF234B26EA007A0DD9 /* Model */,
 				92FCDC3E2347F34500F70F45 /* View */,
 				92A583262359E6AA00A8A645 /* ViewModel */,
-				9281743A234BE49500113DF4 /* Controller */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -470,7 +459,6 @@
 				92A03DB3234D09C6005BC7FD /* RealmDBManager.swift in Sources */,
 				92A583282359E6C700A8A645 /* PlayerViewModel.swift in Sources */,
 				92A583232359E4BE00A8A645 /* PlayerViewController.swift in Sources */,
-				92FCDC3A2347ECFB00F70F45 /* TrackPlayerViewController.swift in Sources */,
 				92FCDC2723478CD700F70F45 /* TrackSearchViewController.swift in Sources */,
 				924D98E923427474008E70A2 /* AppDelegate.swift in Sources */,
 				92A5832A2359E73000A8A645 /* MPVolumeViewExtension.swift in Sources */,
