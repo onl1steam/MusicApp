@@ -38,14 +38,18 @@ class RealmDBManager {
     
     // MARK: Fetch track list from Database
     func fetchTracksFromDB(completion: @escaping ([Track]?) -> Void) {
-        let realm = try! Realm()
-        var trackList: [Track]? = []
-        let results: Results<TrackObject> = realm.objects(TrackObject.self)
-        for result in results {
-            let track = self.convertToTrack(trackObject: result)
-            trackList?.insert(track, at: 0)
+        backgroundThread.async {
+            let realm = try! Realm()
+            var trackList: [Track]? = []
+            let results: Results<TrackObject> = realm.objects(TrackObject.self)
+            for result in results {
+                let track = self.convertToTrack(trackObject: result)
+                trackList?.insert(track, at: 0)
+            }
+            DispatchQueue.main.async {
+                completion(trackList)
+            }
         }
-        completion(trackList)
      }
     
     // MARK: Check if the object with previewUrl exists

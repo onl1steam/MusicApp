@@ -45,18 +45,6 @@ class MiniPlayerViewController: UIViewController {
         albumImageView.sd_setImage(with: url, completed: nil)
     }
     
-    // MARK: Change button when tapped
-    func buttonChange(_ sender: UIButton, firstImageName: String, secondImageName: String, with flag: Bool) {
-
-        if flag {
-            guard let image = UIImage(systemName: firstImageName) else { return }
-             sender.setBackgroundImage(image, for: .normal)
-        } else {
-            guard let image = UIImage(systemName: secondImageName)  else { return }
-             sender.setBackgroundImage(image, for: .normal)
-        }
-    }
-    
     // MARK: IBActions
     @IBAction func playButtonTapped(_ sender: UIButton) {
         if MusicPlayerService.shared.tracks != nil {
@@ -64,7 +52,7 @@ class MiniPlayerViewController: UIViewController {
             MusicPlayerService.shared.toggleMusic()
             let isPlaying = MusicPlayerService.shared.isPlaying
             // Animations
-            buttonChange(sender, firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
+            sender.changeSystemButton(firstImageName: "pause.fill", secondImageName: "play.fill", with: isPlaying)
         }
     }
     

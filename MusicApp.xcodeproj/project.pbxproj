@@ -20,6 +20,11 @@
 		92A03DAE234D038C005BC7FD /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92A03DAD234D038C005BC7FD /* TrackCell.xib */; };
 		92A03DB0234D060E005BC7FD /* PlaylistConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */; };
 		92A03DB3234D09C6005BC7FD /* RealmDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DB2234D09C6005BC7FD /* RealmDBManager.swift */; };
+		92A583232359E4BE00A8A645 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A583222359E4BE00A8A645 /* PlayerViewController.swift */; };
+		92A583252359E53900A8A645 /* FloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A583242359E53900A8A645 /* FloatExtension.swift */; };
+		92A583282359E6C700A8A645 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A583272359E6C700A8A645 /* PlayerViewModel.swift */; };
+		92A5832A2359E73000A8A645 /* MPVolumeViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A583292359E73000A8A645 /* MPVolumeViewExtension.swift */; };
+		92A5832E2359E83000A8A645 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A5832D2359E83000A8A645 /* UIButtonExtension.swift */; };
 		92AA85DB235285DB004F5F5D /* TrackSearchVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA85DA235285DB004F5F5D /* TrackSearchVCExtension.swift */; };
 		92AA85DD23528639004F5F5D /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA85DC23528639004F5F5D /* SearchBarExtension.swift */; };
 		92B602A923566460007E8A0E /* PlaylistVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B602A823566460007E8A0E /* PlaylistVCExtension.swift */; };
@@ -53,6 +58,11 @@
 		92A03DAD234D038C005BC7FD /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistConstants.swift; sourceTree = "<group>"; };
 		92A03DB2234D09C6005BC7FD /* RealmDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDBManager.swift; sourceTree = "<group>"; };
+		92A583222359E4BE00A8A645 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerViewController.swift; path = MusicApp/Player/View/PlayerViewController.swift; sourceTree = SOURCE_ROOT; };
+		92A583242359E53900A8A645 /* FloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtension.swift; sourceTree = "<group>"; };
+		92A583272359E6C700A8A645 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		92A583292359E73000A8A645 /* MPVolumeViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPVolumeViewExtension.swift; sourceTree = "<group>"; };
+		92A5832D2359E83000A8A645 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		92AA85DA235285DB004F5F5D /* TrackSearchVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchVCExtension.swift; sourceTree = "<group>"; };
 		92AA85DC23528639004F5F5D /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		92B602A823566460007E8A0E /* PlaylistVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistVCExtension.swift; sourceTree = "<group>"; };
@@ -200,6 +210,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		92A583262359E6AA00A8A645 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				92A583272359E6C700A8A645 /* PlayerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		92AA85D9235285B7004F5F5D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +239,9 @@
 			isa = PBXGroup;
 			children = (
 				92D6C266235607BD00CE22EB /* UIImageViewExtensions.swift */,
+				92A583242359E53900A8A645 /* FloatExtension.swift */,
+				92A583292359E73000A8A645 /* MPVolumeViewExtension.swift */,
+				92A5832D2359E83000A8A645 /* UIButtonExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -267,6 +288,7 @@
 			children = (
 				92ED26BF234B26EA007A0DD9 /* Model */,
 				92FCDC3E2347F34500F70F45 /* View */,
+				92A583262359E6AA00A8A645 /* ViewModel */,
 				9281743A234BE49500113DF4 /* Controller */,
 			);
 			path = Player;
@@ -276,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				92FCDC392347ECFB00F70F45 /* TrackPlayerViewController.xib */,
+				92A583222359E4BE00A8A645 /* PlayerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -445,14 +468,19 @@
 				92ED26C5234B33B6007A0DD9 /* MiniPlayerViewController.swift in Sources */,
 				92D6C267235607BD00CE22EB /* UIImageViewExtensions.swift in Sources */,
 				92A03DB3234D09C6005BC7FD /* RealmDBManager.swift in Sources */,
+				92A583282359E6C700A8A645 /* PlayerViewModel.swift in Sources */,
+				92A583232359E4BE00A8A645 /* PlayerViewController.swift in Sources */,
 				92FCDC3A2347ECFB00F70F45 /* TrackPlayerViewController.swift in Sources */,
 				92FCDC2723478CD700F70F45 /* TrackSearchViewController.swift in Sources */,
 				924D98E923427474008E70A2 /* AppDelegate.swift in Sources */,
+				92A5832A2359E73000A8A645 /* MPVolumeViewExtension.swift in Sources */,
 				924D98EB23427474008E70A2 /* SceneDelegate.swift in Sources */,
 				92FCDC2E23479C5C00F70F45 /* Track.swift in Sources */,
 				92AA85DD23528639004F5F5D /* SearchBarExtension.swift in Sources */,
+				92A583252359E53900A8A645 /* FloatExtension.swift in Sources */,
 				92FCDC342347CE9000F70F45 /* TrackQuery.swift in Sources */,
 				92817433234B9C7E00113DF4 /* TrackObject.swift in Sources */,
+				92A5832E2359E83000A8A645 /* UIButtonExtension.swift in Sources */,
 				92A03DAC234D027C005BC7FD /* PlaylistViewController.swift in Sources */,
 				92FCDC322347C90000F70F45 /* TrackService.swift in Sources */,
 				92ED26C1234B2705007A0DD9 /* MusicPlayerService.swift in Sources */,
