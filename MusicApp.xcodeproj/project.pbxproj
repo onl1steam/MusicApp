@@ -10,12 +10,10 @@
 		924D98E923427474008E70A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924D98E823427474008E70A2 /* AppDelegate.swift */; };
 		924D98EB23427474008E70A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924D98EA23427474008E70A2 /* SceneDelegate.swift */; };
 		924D98F023427474008E70A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924D98EE23427474008E70A2 /* Main.storyboard */; };
-		924D98F223427478008E70A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 924D98F123427478008E70A2 /* Assets.xcassets */; };
 		924D98F523427478008E70A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924D98F323427478008E70A2 /* LaunchScreen.storyboard */; };
 		926C4127234A16760001DBE7 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926C4126234A16760001DBE7 /* RoundedImageView.swift */; };
 		92817433234B9C7E00113DF4 /* TrackObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817432234B9C7E00113DF4 /* TrackObject.swift */; };
 		92817435234BDB6700113DF4 /* TrackSearchConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817434234BDB6700113DF4 /* TrackSearchConstants.swift */; };
-		92817438234BE20300113DF4 /* MiniPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817437234BE20300113DF4 /* MiniPlayerDelegate.swift */; };
 		92A03DAC234D027C005BC7FD /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DAB234D027C005BC7FD /* PlaylistViewController.swift */; };
 		92A03DAE234D038C005BC7FD /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92A03DAD234D038C005BC7FD /* TrackCell.xib */; };
 		92A03DB0234D060E005BC7FD /* PlaylistConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */; };
@@ -30,13 +28,17 @@
 		92B602A923566460007E8A0E /* PlaylistVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B602A823566460007E8A0E /* PlaylistVCExtension.swift */; };
 		92D6C267235607BD00CE22EB /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D6C266235607BD00CE22EB /* UIImageViewExtensions.swift */; };
 		92ED26C1234B2705007A0DD9 /* MusicPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED26C0234B2705007A0DD9 /* MusicPlayerService.swift */; };
-		92ED26C5234B33B6007A0DD9 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED26C4234B33B6007A0DD9 /* MiniPlayerViewController.swift */; };
 		92FCDC2723478CD700F70F45 /* TrackSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */; };
 		92FCDC2B23478CFC00F70F45 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2923478CFC00F70F45 /* TrackCell.swift */; };
 		92FCDC2E23479C5C00F70F45 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2D23479C5C00F70F45 /* Track.swift */; };
 		92FCDC322347C90000F70F45 /* TrackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC312347C90000F70F45 /* TrackService.swift */; };
 		92FCDC342347CE9000F70F45 /* TrackQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC332347CE9000F70F45 /* TrackQuery.swift */; };
 		92FCDC3B2347ECFB00F70F45 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FCDC392347ECFB00F70F45 /* PlayerViewController.xib */; };
+		92FECD5F235B9E18009E3F41 /* TimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FECD5E235B9E18009E3F41 /* TimeSlider.swift */; };
+		92FECD60235BA6E8009E3F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 924D98F123427478008E70A2 /* Assets.xcassets */; };
+		92FECD63235BAA6F009E3F41 /* MiniPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FECD62235BAA6F009E3F41 /* MiniPlayerViewModel.swift */; };
+		92FECD65235BAA9C009E3F41 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FECD64235BAA9C009E3F41 /* MiniPlayerViewController.swift */; };
+		92FECD68235BAB2B009E3F41 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FECD67235BAB2B009E3F41 /* ImageLoader.swift */; };
 		B1F3AA282D95BC1D95AC16EA /* Pods_MusicApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DB9339DEAD81370BBFCD5E /* Pods_MusicApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +54,6 @@
 		926C4126234A16760001DBE7 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		92817432234B9C7E00113DF4 /* TrackObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackObject.swift; sourceTree = "<group>"; };
 		92817434234BDB6700113DF4 /* TrackSearchConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchConstants.swift; sourceTree = "<group>"; };
-		92817437234BE20300113DF4 /* MiniPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerDelegate.swift; sourceTree = "<group>"; };
 		92A03DAB234D027C005BC7FD /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		92A03DAD234D038C005BC7FD /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistConstants.swift; sourceTree = "<group>"; };
@@ -67,13 +68,16 @@
 		92B602A823566460007E8A0E /* PlaylistVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistVCExtension.swift; sourceTree = "<group>"; };
 		92D6C266235607BD00CE22EB /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		92ED26C0234B2705007A0DD9 /* MusicPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerService.swift; sourceTree = "<group>"; };
-		92ED26C4234B33B6007A0DD9 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchViewController.swift; sourceTree = "<group>"; };
 		92FCDC2923478CFC00F70F45 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		92FCDC2D23479C5C00F70F45 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		92FCDC312347C90000F70F45 /* TrackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackService.swift; sourceTree = "<group>"; };
 		92FCDC332347CE9000F70F45 /* TrackQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackQuery.swift; sourceTree = "<group>"; };
 		92FCDC392347ECFB00F70F45 /* PlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
+		92FECD5E235B9E18009E3F41 /* TimeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlider.swift; sourceTree = "<group>"; };
+		92FECD62235BAA6F009E3F41 /* MiniPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewModel.swift; sourceTree = "<group>"; };
+		92FECD64235BAA9C009E3F41 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
+		92FECD67235BAB2B009E3F41 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		B3DB9339DEAD81370BBFCD5E /* Pods_MusicApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE18FC221DCBFB9B8FB9101E /* Pods-MusicApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicApp.release.xcconfig"; path = "Target Support Files/Pods-MusicApp/Pods-MusicApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +105,7 @@
 		921FC1FD234E5B3400E63E4B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				92FECD64235BAA9C009E3F41 /* MiniPlayerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -152,14 +157,6 @@
 			children = (
 				92AA85D9235285B7004F5F5D /* Extensions */,
 				92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		9281743B234BE49D00113DF4 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				92ED26C4234B33B6007A0DD9 /* MiniPlayerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -247,9 +244,9 @@
 		92ED26C2234B32EF007A0DD9 /* Mini Player */ = {
 			isa = PBXGroup;
 			children = (
+				92FECD66235BAB0A009E3F41 /* Model */,
+				92FECD61235BAA52009E3F41 /* ViewModel */,
 				921FC1FD234E5B3400E63E4B /* View */,
-				9281743B234BE49D00113DF4 /* Controller */,
-				92817437234BE20300113DF4 /* MiniPlayerDelegate.swift */,
 			);
 			path = "Mini Player";
 			sourceTree = "<group>";
@@ -288,6 +285,7 @@
 			children = (
 				92FCDC392347ECFB00F70F45 /* PlayerViewController.xib */,
 				92A583222359E4BE00A8A645 /* PlayerViewController.swift */,
+				92FECD5E235B9E18009E3F41 /* TimeSlider.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -320,6 +318,22 @@
 				924D98E823427474008E70A2 /* AppDelegate.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		92FECD61235BAA52009E3F41 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				92FECD62235BAA6F009E3F41 /* MiniPlayerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		92FECD66235BAB0A009E3F41 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				92FECD67235BAB2B009E3F41 /* ImageLoader.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		BEB7B9B404862C126F3E0D3B /* Pods */ = {
@@ -393,9 +407,9 @@
 			files = (
 				924D98F523427478008E70A2 /* LaunchScreen.storyboard in Resources */,
 				92A03DAE234D038C005BC7FD /* TrackCell.xib in Resources */,
-				924D98F223427478008E70A2 /* Assets.xcassets in Resources */,
 				924D98F023427474008E70A2 /* Main.storyboard in Resources */,
 				92FCDC3B2347ECFB00F70F45 /* PlayerViewController.xib in Resources */,
+				92FECD60235BA6E8009E3F41 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,15 +462,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92817438234BE20300113DF4 /* MiniPlayerDelegate.swift in Sources */,
 				92AA85DB235285DB004F5F5D /* TrackSearchVCExtension.swift in Sources */,
 				92A03DB0234D060E005BC7FD /* PlaylistConstants.swift in Sources */,
+				92FECD68235BAB2B009E3F41 /* ImageLoader.swift in Sources */,
 				92B602A923566460007E8A0E /* PlaylistVCExtension.swift in Sources */,
 				92817435234BDB6700113DF4 /* TrackSearchConstants.swift in Sources */,
+				92FECD63235BAA6F009E3F41 /* MiniPlayerViewModel.swift in Sources */,
 				92FCDC2B23478CFC00F70F45 /* TrackCell.swift in Sources */,
-				92ED26C5234B33B6007A0DD9 /* MiniPlayerViewController.swift in Sources */,
+				92FECD5F235B9E18009E3F41 /* TimeSlider.swift in Sources */,
 				92D6C267235607BD00CE22EB /* UIImageViewExtensions.swift in Sources */,
 				92A03DB3234D09C6005BC7FD /* RealmDBManager.swift in Sources */,
+				92FECD65235BAA9C009E3F41 /* MiniPlayerViewController.swift in Sources */,
 				92A583282359E6C700A8A645 /* PlayerViewModel.swift in Sources */,
 				92A583232359E4BE00A8A645 /* PlayerViewController.swift in Sources */,
 				92FCDC2723478CD700F70F45 /* TrackSearchViewController.swift in Sources */,

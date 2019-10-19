@@ -167,32 +167,32 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eX0-mk-I9d">
-                                <rect key="frame" x="90" y="24.5" width="214" height="21.5"/>
+                                <rect key="frame" x="90" y="24.5" width="210" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Myg-Ap-htJ">
-                                <rect key="frame" x="324" y="24" width="20" height="21.5"/>
+                                <rect key="frame" x="320" y="23" width="22" height="23.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="5Mc-HE-8dy"/>
-                                    <constraint firstAttribute="width" constant="20" id="Roy-no-c4z"/>
+                                    <constraint firstAttribute="height" constant="27" id="5Mc-HE-8dy"/>
+                                    <constraint firstAttribute="width" constant="22" id="Roy-no-c4z"/>
                                 </constraints>
                                 <color key="tintColor" name="buttonColor"/>
                                 <state key="normal" backgroundImage="play.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="playButtonTapped:" destination="aZW-eJ-afO" eventType="touchUpInside" id="nk9-fy-Eel"/>
+                                    <action selector="playButtonTapped:" destination="aZW-eJ-afO" eventType="touchUpInside" id="96y-zj-aTJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yab-c4-XRr">
-                                <rect key="frame" x="369" y="24.5" width="25" height="20.5"/>
+                                <rect key="frame" x="367" y="23.5" width="27" height="22.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="JQE-Pr-eZa"/>
-                                    <constraint firstAttribute="width" constant="25" id="Ufg-bU-WyO"/>
+                                    <constraint firstAttribute="height" constant="27" id="JQE-Pr-eZa"/>
+                                    <constraint firstAttribute="width" constant="27" id="Ufg-bU-WyO"/>
                                 </constraints>
                                 <color key="tintColor" name="buttonColor"/>
                                 <state key="normal" backgroundImage="forward.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="forwardButtonTapped:" destination="aZW-eJ-afO" eventType="touchUpInside" id="OMh-iD-phE"/>
+                                    <action selector="forwardButtonTapped:" destination="aZW-eJ-afO" eventType="touchUpInside" id="Gua-Zg-tto"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -211,10 +211,10 @@
                         <viewLayoutGuide key="safeArea" id="GHW-d7-v0E"/>
                     </view>
                     <connections>
-                        <outlet property="albumImageView" destination="nhl-TY-kcg" id="duE-a5-oZW"/>
-                        <outlet property="forwardButton" destination="yab-c4-XRr" id="xaT-pb-vFV"/>
-                        <outlet property="playButton" destination="Myg-Ap-htJ" id="h47-yw-dot"/>
-                        <outlet property="trackNameLabel" destination="eX0-mk-I9d" id="CZI-DY-JUI"/>
+                        <outlet property="albumImageView" destination="nhl-TY-kcg" id="HzC-Io-oPO"/>
+                        <outlet property="forwardButton" destination="yab-c4-XRr" id="RPj-bj-asb"/>
+                        <outlet property="playButton" destination="Myg-Ap-htJ" id="Nzn-ja-xFn"/>
+                        <outlet property="trackName" destination="eX0-mk-I9d" id="vcW-Y9-pIz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukS-Oa-0sZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

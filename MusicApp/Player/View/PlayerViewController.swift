@@ -15,7 +15,6 @@ import MediaPlayer
 
 class PlayerViewController: UIViewController {
     
-    weak var delegate: MiniPlayerDelegate?
     let playerViewModel = PlayerViewModel()
     let disposeBag = DisposeBag()
     
@@ -35,13 +34,17 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
         
         // Hide MPVolumeView HUD
+        hideVolumeHUD()
+
+        // Binding UI to ViewModel
+        bindUI()
+    }
+    
+    private func hideVolumeHUD() {
         let volumeView = MPVolumeView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
         volumeView.isHidden = false
         volumeView.alpha = 0.01
         view.addSubview(volumeView)
-
-        // Binding UI to ViewModel
-        bindUI()
     }
     
     private func bindUI() {
@@ -75,17 +78,14 @@ class PlayerViewController: UIViewController {
     // MARK: IBActions
     @IBAction func playButtonTapped(_ sender: UIButton) {
         playerViewModel.playMusic()
-        delegate?.updateUI()
     }
     
     @IBAction func backwardButtonTapped(_ sender: UIButton) {
         playerViewModel.playBackward()
-        delegate?.updateInformation() // Replace to viewModel
     }
     
     @IBAction func forwardButtonTapped(_ sender: UIButton) {
         playerViewModel.playForward()
-        delegate?.updateInformation() // Replace to viewModel
     }
     
     @IBAction func dismissButtonClicked(_ sender: Any) {

@@ -27,10 +27,9 @@ class PlayerViewModel {
     
     var timer = Timer()
     var sliderTapTimer: Timer? = nil
+    let disposeBag = DisposeBag()
     
     init() {
-        // Trying to load information from player
-        updateTrackInformation()
         
         // Updating system volume
         let vol = AVAudioSession.sharedInstance().outputVolume
@@ -44,13 +43,15 @@ class PlayerViewModel {
         
         // Add Observers
         NotificationCenter.default.addObserver(self, selector: #selector(volumeDidChange(notification:)), name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+        MusicPlayerService.shared.currentTrack.subscribe(onNext: { [weak self] (track) in
+            self?.updateTrackInformation(currentTrack: track)
+        }).disposed(by: disposeBag)
     }
     
-    private func updateTrackInformation() {
-        guard let track = MusicPlayerService.shared.currentTrack?.trackName,
-            let artist = MusicPlayerService.shared.currentTrack?.artistName,
-            let artworkUrl100 = MusicPlayerService.shared.currentTrack?.artworkUrl100
+    private func updateTrackInformation(currentTrack: Track?) {
+        guard let track = currentTrack?.trackName,
+            let artist = currentTrack?.artistName,
+            let artworkUrl100 = currentTrack?.artworkUrl100
             else { return }
         
         let playing = MusicPlayerService.shared.isPlaying
@@ -64,36 +65,25 @@ class PlayerViewModel {
         }
         
         // Sending Data in model
-        SDWebImageManager.shared.loadImage(with: URL(string: artworkUrl100)!,
-                                           options: .continueInBackground,
-                                           context: nil, progress: nil) { [weak self]
-            (image, data, error, cacheType, bool, url) in
-            guard let imageData = image?.sd_imageData() else { return }
+        ImageLoader.getImageData(from: artworkUrl100) { [weak self] (imageData) in
             self?.albumImage.onNext(imageData)
         }
     }
 
     func playMusic() {
-        if MusicPlayerService.shared.tracks != nil {
-            // Settings
-            MusicPlayerService.shared.toggleMusic()
-            // Update UI
-            let isPlaying = MusicPlayerService.shared.isPlaying
-            self.isPlaying.onNext(isPlaying)
-        }
+        // Settings
+        MusicPlayerService.shared.toggleMusic()
+        // Update UI
+        let isPlaying = MusicPlayerService.shared.isPlaying
+        self.isPlaying.onNext(isPlaying)
     }
     
     func playBackward() {
         MusicPlayerService.shared.setPrevious()
-        // Update UI
-        updateTrackInformation()
     }
     
     func playForward() {
         MusicPlayerService.shared.setNext()
-        // Update UI
-        updateTrackInformation()
-
     }
     
     func changeVolume(to value: Float) {
@@ -143,11 +133,6 @@ class PlayerViewModel {
     @objc func volumeDidChange(notification: NSNotification) {
         let value = notification.userInfo!["AVSystemController_AudioVolumeNotificationParameter"] as! Float
         volume.onNext(value)
-    }
-    
-    // MARK: Observing ending of track
-    @objc func playerDidFinishPlaying() {
-        updateTrackInformation()
     }
     
     deinit {

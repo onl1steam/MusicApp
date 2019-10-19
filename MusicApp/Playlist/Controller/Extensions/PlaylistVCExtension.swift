@@ -71,8 +71,6 @@ extension PlaylistViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         MusicPlayerService.shared.loadTracks(tracks: trackList, currentIndex: indexPath.row)
-        self.childViewController?.updateInformation()
-        self.childViewController?.updateUI()
         MusicPlayerService.shared.initializePlayer()
         MusicPlayerService.shared.playMusic()
         tableView.deselectRow(at: indexPath, animated: true)

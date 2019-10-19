@@ -44,7 +44,7 @@
                         </label>
                     </subviews>
                 </stackView>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="m8i-q0-WI3">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="m8i-q0-WI3" customClass="TimeSlider" customModule="MusicApp" customModuleProvider="target">
                     <rect key="frame" x="55" y="516" width="304" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="jTp-3d-KTt"/>
@@ -52,13 +52,18 @@
                     <color key="minimumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="maximumTrackTintColor" white="0.66666666666666663" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="height">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="timeSliderBeginEdititng:" destination="-1" eventType="primaryActionTriggered" id="PLZ-My-azN"/>
                         <action selector="timeSliderValueChanged:" destination="-1" eventType="valueChanged" id="5EC-tp-RIC"/>
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="speaker.fill" catalog="system" maximumValueImage="speaker.3.fill" translatesAutoresizingMaskIntoConstraints="NO" id="1z3-Aw-3ZH">
-                    <rect key="frame" x="55" y="671" width="304" height="31"/>
+                    <rect key="frame" x="55" y="691" width="304" height="31"/>
                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="Nl9-qh-g7Z"/>
@@ -70,12 +75,13 @@
                         <action selector="volumeSliderChanged:" destination="-1" eventType="valueChanged" id="x4w-UD-heB"/>
                     </connections>
                 </slider>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="PJ6-Cn-76y">
-                    <rect key="frame" x="97" y="596" width="220" height="35"/>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="PJ6-Cn-76y">
+                    <rect key="frame" x="87" y="596" width="240" height="55"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrX-o9-Ypz">
-                            <rect key="frame" x="0.0" y="2" width="35" height="30.5"/>
+                            <rect key="frame" x="0.0" y="12" width="35" height="30.5"/>
                             <constraints>
+                                <constraint firstAttribute="height" constant="35" id="P6i-bZ-Akr"/>
                                 <constraint firstAttribute="width" constant="35" id="Y1I-cP-uC0"/>
                             </constraints>
                             <color key="tintColor" name="buttonColor"/>
@@ -85,10 +91,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZE-0y-0Pt">
-                            <rect key="frame" x="95" y="1.5" width="30" height="31.5"/>
+                            <rect key="frame" x="95" y="1.5" width="50" height="51.5"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="35" id="6RZ-qY-YZ7"/>
-                                <constraint firstAttribute="width" constant="30" id="9sc-FN-Sec"/>
+                                <constraint firstAttribute="height" constant="55" id="6RZ-qY-YZ7"/>
+                                <constraint firstAttribute="width" constant="50" id="9sc-FN-Sec"/>
                             </constraints>
                             <color key="tintColor" name="buttonColor"/>
                             <state key="normal" backgroundImage="play.fill" catalog="system"/>
@@ -97,9 +103,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vlw-4y-ec8">
-                            <rect key="frame" x="185" y="2" width="35" height="30.5"/>
+                            <rect key="frame" x="205" y="12" width="35" height="30.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="35" id="cxC-Vl-S8t"/>
+                                <constraint firstAttribute="height" constant="35" id="ruP-QS-X9b"/>
                             </constraints>
                             <color key="tintColor" name="buttonColor"/>
                             <state key="normal" backgroundImage="forward.fill" catalog="system"/>

@@ -9,6 +9,7 @@
 import Foundation
 import AVKit
 import MediaPlayer
+import RxSwift
 
 class MusicPlayerService {
     
@@ -20,9 +21,7 @@ class MusicPlayerService {
     
     var isPlaying = false
     var currentIndex = 0
-    var currentTrack: Track? {
-        return tracks?[currentIndex]
-    }
+    var currentTrack = BehaviorSubject<Track?>(value: nil)
     var currentTime: Float {
         guard let time = player?.currentTime().seconds else { return 0 }
         return Float(time)
@@ -61,6 +60,7 @@ class MusicPlayerService {
     
     // MARK: Loading player with current track
     func initializePlayer() {
+        currentTrack.onNext(tracks?[currentIndex])
         guard let previewUrl = tracks?[currentIndex].previewUrl else { return }
         // Fetching track url from local/web
         guard let trackUrl = RealmDBManager.shared.getTrackUrl(previewUrl: previewUrl) else { return }
@@ -103,11 +103,13 @@ class MusicPlayerService {
     
     // MARK: Change music playing status
     func toggleMusic() {
-        isPlaying.toggle()
-        if isPlaying {
-            player?.play()
-        } else {
-            player?.pause()
+        if tracks != nil {
+            isPlaying.toggle()
+            if isPlaying {
+                player?.play()
+            } else {
+                player?.pause()
+            }
         }
     }
     
