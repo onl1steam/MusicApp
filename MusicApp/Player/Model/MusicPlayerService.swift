@@ -19,9 +19,10 @@ class MusicPlayerService {
     var tracks: [Track]?
     private var player : AVPlayer?
     
-    var isPlaying = false
-    var currentIndex = 0
+    var isPlaying = BehaviorSubject<Bool>(value: false)
     var currentTrack = BehaviorSubject<Track?>(value: nil)
+    
+    var currentIndex = 0
     var currentTime: Float {
         guard let time = player?.currentTime().seconds else { return 0 }
         return Float(time)
@@ -44,7 +45,7 @@ class MusicPlayerService {
             currentIndex = 0
             MusicPlayerService.shared.pauseMusic()
             MusicPlayerService.shared.seekMusic(to: .zero, completion: nil)
-            MusicPlayerService.shared.isPlaying = false
+            MusicPlayerService.shared.isPlaying.onNext(false)
             initializePlayer()
         } else {
             setNext()
@@ -53,7 +54,7 @@ class MusicPlayerService {
     
     // MARK: Loading tracks from controller
     func loadTracks(tracks: [Track], currentIndex: Int) {
-        isPlaying = true
+        isPlaying.onNext(true)
         self.currentIndex = currentIndex
         self.tracks = tracks
     }
@@ -67,7 +68,7 @@ class MusicPlayerService {
         // guard let trackUrl = URL(string: previewUrl) else { return }
         let playerItem = AVPlayerItem(url: trackUrl)
         player = AVPlayer(playerItem: playerItem)
-        if isPlaying {
+        if try! isPlaying.value() {
             player?.play()
         }
     }
@@ -103,9 +104,11 @@ class MusicPlayerService {
     
     // MARK: Change music playing status
     func toggleMusic() {
+        var playing = try! isPlaying.value()
         if tracks != nil {
-            isPlaying.toggle()
-            if isPlaying {
+            playing.toggle()
+            isPlaying.onNext(playing)
+            if playing {
                 player?.play()
             } else {
                 player?.pause()
@@ -121,12 +124,12 @@ class MusicPlayerService {
     // MARK: Play/pause
     func playMusic() {
         player?.play()
-        isPlaying = true
+        isPlaying.onNext(true)
     }
     
     func pauseMusic() {
         player?.pause()
-        isPlaying = false
+        isPlaying.onNext(false)
     }
     
     // MARK: Seek music to some time

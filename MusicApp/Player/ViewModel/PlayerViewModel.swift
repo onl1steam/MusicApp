@@ -46,6 +46,9 @@ class PlayerViewModel {
         MusicPlayerService.shared.currentTrack.subscribe(onNext: { [weak self] (track) in
             self?.updateTrackInformation(currentTrack: track)
         }).disposed(by: disposeBag)
+        MusicPlayerService.shared.isPlaying.subscribe(onNext: { [weak self] (playing) in
+            self?.isPlaying.onNext(playing)
+        }).disposed(by: disposeBag)
     }
     
     private func updateTrackInformation(currentTrack: Track?) {
@@ -54,10 +57,8 @@ class PlayerViewModel {
             let artworkUrl100 = currentTrack?.artworkUrl100
             else { return }
         
-        let playing = MusicPlayerService.shared.isPlaying
         let trackDuration = MusicPlayerService.shared.trackDuration
         
-        isPlaying.onNext(playing)
         trackName.onNext(track)
         artistName.onNext(artist)
         if !trackDuration.isNaN {
@@ -73,9 +74,6 @@ class PlayerViewModel {
     func playMusic() {
         // Settings
         MusicPlayerService.shared.toggleMusic()
-        // Update UI
-        let isPlaying = MusicPlayerService.shared.isPlaying
-        self.isPlaying.onNext(isPlaying)
     }
     
     func playBackward() {

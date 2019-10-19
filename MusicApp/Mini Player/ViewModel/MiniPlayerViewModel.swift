@@ -21,6 +21,9 @@ class MiniPlayerViewModel {
         MusicPlayerService.shared.currentTrack.subscribe(onNext: { [weak self] (track) in
             self?.updateTrackInformation(currentTrack: track)
         }).disposed(by: disposeBag)
+        MusicPlayerService.shared.isPlaying.subscribe(onNext: { [weak self] (playing) in
+            self?.isPlaying.onNext(playing)
+        }).disposed(by: disposeBag)
     }
     
     private func updateTrackInformation(currentTrack: Track?) {
@@ -28,9 +31,6 @@ class MiniPlayerViewModel {
             let artworkUrl60 = currentTrack?.artworkUrl60
             else { return }
         
-        let playing = MusicPlayerService.shared.isPlaying
-        
-        isPlaying.onNext(playing)
         trackName.onNext(track)
         
         // Sending Data in model
@@ -42,9 +42,6 @@ class MiniPlayerViewModel {
     func playMusic() {
         // Settings
         MusicPlayerService.shared.toggleMusic()
-        // Update UI
-        let isPlaying = MusicPlayerService.shared.isPlaying
-        self.isPlaying.onNext(isPlaying)
     }
     
     func playForward() {
