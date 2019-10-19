@@ -52,6 +52,21 @@ class RealmDBManager {
         }
      }
     
+    // MARK: Get track local/web url from Database
+    func getTrackUrl(previewUrl: String) -> URL? {
+        let localInfo = isObjectExistsAndDownloaded(previewUrl: previewUrl)
+        if localInfo.isDownloaded {
+            let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            guard let urlFM = URL(string: previewUrl) else { return nil }
+            let destinationUrl = documentsDirectoryURL.appendingPathComponent(urlFM.lastPathComponent)
+            
+            return destinationUrl
+        } else {
+            guard let url = URL(string: previewUrl) else { return nil }
+            return url
+        }
+    }
+    
     // MARK: Check if the object with previewUrl exists
     func isObjectExistsAndDownloaded (previewUrl: String) -> (isExists: Bool, isDownloaded: Bool) {
         guard let track = realm.object(ofType: TrackObject.self, forPrimaryKey: previewUrl)

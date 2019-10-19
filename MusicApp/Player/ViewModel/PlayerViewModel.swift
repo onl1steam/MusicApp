@@ -25,6 +25,9 @@ class PlayerViewModel {
     var currentTimeString = BehaviorSubject<String>(value: "--:--")
     var remainingTimeString = BehaviorSubject<String>(value: "--:--")
     
+    var timer = Timer()
+    var sliderTapTimer: Timer? = nil
+    
     init() {
         // Trying to load information from player
         updateTrackInformation()
@@ -37,7 +40,7 @@ class PlayerViewModel {
         updateSlider()
         
         // Set timer for current time
-        let _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
         
         // Add Observers
         NotificationCenter.default.addObserver(self, selector: #selector(volumeDidChange(notification:)), name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"), object: nil)
@@ -81,19 +84,16 @@ class PlayerViewModel {
     }
     
     func playBackward() {
-        if MusicPlayerService.shared.tracks != nil {
-            MusicPlayerService.shared.setPrevious()
-            // Update UI
-            updateTrackInformation()
-        }
+        MusicPlayerService.shared.setPrevious()
+        // Update UI
+        updateTrackInformation()
     }
     
     func playForward() {
-        if MusicPlayerService.shared.tracks != nil {
-            MusicPlayerService.shared.setNext()
-            // Update UI
-            updateTrackInformation()
-        }
+        MusicPlayerService.shared.setNext()
+        // Update UI
+        updateTrackInformation()
+
     }
     
     func changeVolume(to value: Float) {
@@ -101,19 +101,42 @@ class PlayerViewModel {
     }
     
     func seekMusic(to value: Float) {
-        let time = value.convertToCMTime()
-        MusicPlayerService.shared.seekMusic(to: time)
-        updateSlider()
+        updateTimeLabels(time: value)
+        debounce(seconds: 0.3) { [unowned self] in
+            let time = value.convertToCMTime()
+            MusicPlayerService.shared.seekMusic(to: time, completion: {
+                self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
+                self.updateSlider()
+            })
+        }
     }
     
     @objc private func updateSlider() {
         let time = MusicPlayerService.shared.currentTime
-        let duration = MusicPlayerService.shared.trackDuration
+        currentTime.onNext(time)
+        updateTimeLabels(time: time)
+    }
+    
+    private func updateTimeLabels(time: Float) {
+        var duration = MusicPlayerService.shared.trackDuration
+        if duration.isNaN {
+            duration = 30.0
+        }
         let remainingTime = duration - time
         
         currentTimeString.onNext(time.convertToTimeString())
         remainingTimeString.onNext("-\(remainingTime.convertToTimeString())")
-        currentTime.onNext(time)
+    }
+    
+    func timeSliderBeginEditing() {
+        timer.invalidate()
+    }
+    
+    private func debounce(seconds: TimeInterval, function: @escaping () -> Void ) {
+        sliderTapTimer?.invalidate()
+        sliderTapTimer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { _ in
+            function()
+        })
     }
     
     // MARK: Observing system volume changing
@@ -124,7 +147,7 @@ class PlayerViewModel {
     
     // MARK: Observing ending of track
     @objc func playerDidFinishPlaying() {
-        isPlaying.onNext(false)
+        updateTrackInformation()
     }
     
     deinit {

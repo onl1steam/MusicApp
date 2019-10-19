@@ -39,9 +39,17 @@ class MusicPlayerService {
     
     // MARK: Observing for ending of track
     @objc func playerDidFinishPlaying() {
-        MusicPlayerService.shared.pauseMusic()
-        MusicPlayerService.shared.seekMusic(to: .zero)
-        MusicPlayerService.shared.isPlaying = false
+        if let count = tracks?.count,
+            currentIndex == count - 1 {
+            
+            currentIndex = 0
+            MusicPlayerService.shared.pauseMusic()
+            MusicPlayerService.shared.seekMusic(to: .zero, completion: nil)
+            MusicPlayerService.shared.isPlaying = false
+            initializePlayer()
+        } else {
+            setNext()
+        }
     }
     
     // MARK: Loading tracks from controller
@@ -55,27 +63,12 @@ class MusicPlayerService {
     func initializePlayer() {
         guard let previewUrl = tracks?[currentIndex].previewUrl else { return }
         // Fetching track url from local/web
-        guard let trackUrl = getTrackUrl(previewUrl: previewUrl) else { return }
+        guard let trackUrl = RealmDBManager.shared.getTrackUrl(previewUrl: previewUrl) else { return }
         // guard let trackUrl = URL(string: previewUrl) else { return }
         let playerItem = AVPlayerItem(url: trackUrl)
         player = AVPlayer(playerItem: playerItem)
         if isPlaying {
             player?.play()
-        }
-    }
-    
-    // MARK: Get track local/web url from Database
-    private func getTrackUrl(previewUrl: String) -> URL? {
-        let localInfo = RealmDBManager.shared.isObjectExistsAndDownloaded(previewUrl: previewUrl)
-        if localInfo.isDownloaded {
-            let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            guard let urlFM = URL(string: previewUrl) else { return nil }
-            let destinationUrl = documentsDirectoryURL.appendingPathComponent(urlFM.lastPathComponent)
-            
-            return destinationUrl
-        } else {
-            guard let url = URL(string: previewUrl) else { return nil }
-            return url
         }
     }
     
@@ -97,7 +90,7 @@ class MusicPlayerService {
     func setPrevious() {
         if let time = player?.currentTime().seconds,
             time > 5 {
-            seekMusic(to: .zero)
+            seekMusic(to: .zero, completion: nil)
             return
         }
         if let count = tracks?.count,
@@ -135,8 +128,10 @@ class MusicPlayerService {
     }
     
     // MARK: Seek music to some time
-    func seekMusic(to time: CMTime) {
-        player?.seek(to: time)
+    func seekMusic(to time: CMTime, completion: (() -> Void)? ) {
+        player?.seek(to: time, completionHandler: { (_) in
+            completion?()
+        })
     }
     
     deinit {

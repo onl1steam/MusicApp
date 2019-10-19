@@ -92,6 +92,10 @@ class PlayerViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func timeSliderBeginEdititng(_ sender: UISlider) {
+        playerViewModel.timeSliderBeginEditing()
+    }
+
     @IBAction func timeSliderValueChanged(_ sender: UISlider) {
         playerViewModel.seekMusic(to: sender.value)
     }
