@@ -18,7 +18,7 @@ class TrackService {
     var dataTask: URLSessionDataTask?
     
     // MARK: Download track list from url
-    func findTracksRequest(searchTerm: String, comletion: @escaping QueryResult) {
+    func fetchTracks(searchTerm: String, completion: @escaping QueryResult) {
         dataTask?.cancel()
         
         if var urlComponents = URLComponents(string: "https://itunes.apple.com/search") {
@@ -43,7 +43,7 @@ class TrackService {
                         let queryResult = try JSONDecoder().decode(TrackQuery.self, from: data)
                         let tracks = queryResult.results
                         DispatchQueue.main.async {
-                             comletion(tracks)
+                             completion(tracks)
                         }
                     } catch let error {
                         print(error.localizedDescription)

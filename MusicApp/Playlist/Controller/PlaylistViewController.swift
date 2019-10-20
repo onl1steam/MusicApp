@@ -45,7 +45,7 @@ class PlaylistViewController: UIViewController {
     // MARK: Fetch tracks from Database
     @objc func fetchTracks() {
         refreshControl.beginRefreshing()
-        RealmDBManager.shared.fetchTracksFromDB { [weak self] (tracks) in
+        RealmDBManager.shared.fetchTracks { [weak self] (tracks) in
             guard let fetchedTracks = tracks else { return }
             self?.trackList = fetchedTracks
             if let isRefreshing = self?.refreshControl.isRefreshing,

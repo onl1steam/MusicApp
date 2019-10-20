@@ -18,6 +18,10 @@ class MiniPlayerViewModel {
     let disposeBag = DisposeBag()
     
     init() {
+        addObservers()
+    }
+    
+    private func addObservers() {
         MusicPlayerService.shared.currentTrack.subscribe(onNext: { [weak self] (track) in
             self?.updateTrackInformation(currentTrack: track)
         }).disposed(by: disposeBag)

@@ -42,6 +42,10 @@ class PlayerViewModel {
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
         
         // Add Observers
+        addObservers()
+    }
+    
+    private func addObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(volumeDidChange(notification:)), name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"), object: nil)
         MusicPlayerService.shared.currentTrack.subscribe(onNext: { [weak self] (track) in
             self?.updateTrackInformation(currentTrack: track)

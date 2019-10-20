@@ -62,7 +62,7 @@ class TrackSearchViewController: UIViewController {
         self.tableViewActivityIndicator.isHidden = false
         self.tableViewActivityIndicator.startAnimating()
         
-        TrackService.shared.findTracksRequest(searchTerm: searchTerm) { [weak self] (tracks) in
+        TrackService.shared.fetchTracks(searchTerm: searchTerm) { [weak self] (tracks) in
             guard let tracks = tracks else { return }
             // Updating track list
             self?.trackList = tracks

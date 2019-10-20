@@ -10,6 +10,7 @@ import Foundation
 import AVKit
 import MediaPlayer
 import RxSwift
+import RxCocoa
 
 class MusicPlayerService {
     
@@ -19,7 +20,7 @@ class MusicPlayerService {
     var tracks: [Track]?
     private var player : AVPlayer?
     
-    var isPlaying = BehaviorSubject<Bool>(value: false)
+    var isPlaying = BehaviorRelay<Bool>(value: false)
     var currentTrack = BehaviorSubject<Track?>(value: nil)
     
     var currentIndex = 0
@@ -45,7 +46,7 @@ class MusicPlayerService {
             currentIndex = 0
             MusicPlayerService.shared.pauseMusic()
             MusicPlayerService.shared.seekMusic(to: .zero, completion: nil)
-            MusicPlayerService.shared.isPlaying.onNext(false)
+            MusicPlayerService.shared.isPlaying.accept(false)
             initializePlayer()
         } else {
             setNext()
@@ -54,7 +55,7 @@ class MusicPlayerService {
     
     // MARK: Loading tracks from controller
     func loadTracks(tracks: [Track], currentIndex: Int) {
-        isPlaying.onNext(true)
+        isPlaying.accept(true)
         self.currentIndex = currentIndex
         self.tracks = tracks
     }
@@ -65,10 +66,9 @@ class MusicPlayerService {
         guard let previewUrl = tracks?[currentIndex].previewUrl else { return }
         // Fetching track url from local/web
         guard let trackUrl = RealmDBManager.shared.getTrackUrl(previewUrl: previewUrl) else { return }
-        // guard let trackUrl = URL(string: previewUrl) else { return }
         let playerItem = AVPlayerItem(url: trackUrl)
         player = AVPlayer(playerItem: playerItem)
-        if try! isPlaying.value() {
+        if isPlaying.value {
             player?.play()
         }
     }
@@ -104,10 +104,10 @@ class MusicPlayerService {
     
     // MARK: Change music playing status
     func toggleMusic() {
-        var playing = try! isPlaying.value()
+        var playing = isPlaying.value
         if tracks != nil {
             playing.toggle()
-            isPlaying.onNext(playing)
+            isPlaying.accept(playing)
             if playing {
                 player?.play()
             } else {
@@ -124,12 +124,12 @@ class MusicPlayerService {
     // MARK: Play/pause
     func playMusic() {
         player?.play()
-        isPlaying.onNext(true)
+        isPlaying.accept(true)
     }
     
     func pauseMusic() {
         player?.pause()
-        isPlaying.onNext(false)
+        isPlaying.accept(false)
     }
     
     // MARK: Seek music to some time

@@ -37,7 +37,7 @@ class RealmDBManager {
     }
     
     // MARK: Fetch track list from Database
-    func fetchTracksFromDB(completion: @escaping ([Track]?) -> Void) {
+    func fetchTracks(completion: @escaping ([Track]?) -> Void) {
         backgroundThread.async {
             let realm = try! Realm()
             var trackList: [Track]? = []
