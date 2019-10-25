@@ -76,7 +76,6 @@ class PlayerViewModel {
     }
 
     func playMusic() {
-        // Settings
         MusicPlayerService.shared.toggleMusic()
     }
     

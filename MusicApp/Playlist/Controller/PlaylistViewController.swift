@@ -11,31 +11,28 @@ import UIKit
 class PlaylistViewController: UIViewController {
 
     // MARK: Outlets, variables
-    @IBOutlet weak var tracksTableView: UITableView!
+    @IBOutlet weak var tracksTableView: UIView!
     let trackCellReuseIdentifier: String = "trackCell"
-    var childViewController: MiniPlayerViewController?
+    
     var refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(fetchTracks), for: UIControl.Event.valueChanged)
         refresh.tintColor = .systemPink
         return refresh
     }()
-        
-    var trackList: [Track] = []
+    var tracksTableViewController: TracksTableViewController?
+    var tracks: [Track] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TableView settings
-        tracksTableView.delegate = self
-        tracksTableView.dataSource = self
-        tracksTableView.tableFooterView = UIView()
-        
-        // Register tableview cell
-        tracksTableView.register(UINib(nibName: "TrackCell", bundle: nil), forCellReuseIdentifier: "trackCell")
+        let controller = TracksTableViewController()
+        tracksTableViewController = controller
+        controller.configuteTable(with: tracks)
+        self.add(asChildViewController: controller, to: tracksTableView)
 
         // Adding refresh control
-        tracksTableView.refreshControl = refreshControl
+        tracksTableViewController?.tableView.refreshControl = refreshControl
         
         // Fetch Tracks from DB
         fetchTracks()
@@ -47,28 +44,11 @@ class PlaylistViewController: UIViewController {
         refreshControl.beginRefreshing()
         RealmDBManager.shared.fetchTracks { [weak self] (tracks) in
             guard let fetchedTracks = tracks else { return }
-            self?.trackList = fetchedTracks
             if let isRefreshing = self?.refreshControl.isRefreshing,
                 isRefreshing {
                 self?.refreshControl.endRefreshing()
             }
-            self?.performSegue(withIdentifier: "toTestPage", sender: self)
-            self?.tracksTableView.reloadData()
-            
+            self?.tracksTableViewController?.changeTracks(to: fetchedTracks)
         }
     }
-    
-    // MARK: Give information in segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == PlaylistControllerTransitions.toMiniPlayer) {
-            let childViewController = segue.destination as! MiniPlayerViewController
-            self.childViewController = childViewController
-        }
-        if (segue.identifier == "toTestPage") {
-            let testPageVC = segue.destination as! TestPageViewController
-            testPageVC.tracks = trackList
-        }
-    }
-
-
 }

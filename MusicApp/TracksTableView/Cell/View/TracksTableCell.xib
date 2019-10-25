@@ -34,7 +34,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Автор" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNQ-I3-t9F">
                                 <rect key="frame" x="0.0" y="29.5" width="251" height="16"/>
-                                <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -49,13 +49,13 @@
                         </constraints>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceu-rh-tyC">
-                        <rect key="frame" x="376" y="31" width="23" height="24"/>
+                        <rect key="frame" x="376" y="33.5" width="23" height="19"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="23" id="9H7-3z-2KG"/>
                             <constraint firstAttribute="width" constant="23" id="pdN-Qt-b9I"/>
                         </constraints>
-                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <state key="normal" backgroundImage="icloud.and.arrow.down" catalog="system"/>
+                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" backgroundImage="pencil" catalog="system"/>
                     </button>
                 </subviews>
                 <color key="backgroundColor" name="tableViewCell"/>
@@ -76,12 +76,12 @@
                 <outlet property="trackArtistLabel" destination="aNQ-I3-t9F" id="p7F-BY-8Fc"/>
                 <outlet property="trackNameLabel" destination="z8a-Ea-gqc" id="aSa-MU-4r5"/>
             </connections>
-            <point key="canvasLocation" x="72" y="97"/>
+            <point key="canvasLocation" x="71.014492753623188" y="96.763392857142847"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icloud.and.arrow.down" catalog="system" width="64" height="56"/>
         <image name="music.note" catalog="system" width="48" height="64"/>
+        <image name="pencil" catalog="system" width="64" height="58"/>
         <namedColor name="tableViewCell">
             <color red="0.17299999296665192" green="0.17299999296665192" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

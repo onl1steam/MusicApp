@@ -23,4 +23,8 @@ class TracksTableViewModel {
         MusicPlayerService.shared.initializePlayer()
         MusicPlayerService.shared.playMusic()
     }
+    
+    func changeTracks(to tracks: [Track]) {
+        self.tracks.accept(tracks)
+    }
 }

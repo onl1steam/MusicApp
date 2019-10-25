@@ -13,18 +13,20 @@ class TrackSearchViewController: UIViewController {
     
     // MARK: IBOutlets, properties
     @IBOutlet weak var tableViewActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var tracksTableView: UITableView!
-    let trackCellReuseIdentifier: String = "trackCell"
-    let searchController = UISearchController(searchResultsController: nil)
-    var childViewController: MiniPlayerViewController?
+    @IBOutlet weak var tracksTableView: UIView!
     
-    var trackList: [Track] = []
+    let searchController = UISearchController(searchResultsController: nil)
+    var tracksTableViewController: TracksTableViewController?
+    
+    var tracks: [Track] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Register tableview cell
-        tracksTableView.register(UINib(nibName: "TrackCell", bundle: nil), forCellReuseIdentifier: "trackCell")
+        let controller = TracksTableViewController()
+        tracksTableViewController = controller
+        controller.configuteTable(with: tracks)
+        self.add(asChildViewController: controller, to: tracksTableView)
         
         setupSearchBar()
         
@@ -32,10 +34,6 @@ class TrackSearchViewController: UIViewController {
         self.tableViewActivityIndicator.isHidden = true
         tableViewActivityIndicator.color = .systemRed
 
-        // TableView settings
-        tracksTableView.delegate = self
-        tracksTableView.dataSource = self
-        tracksTableView.tableFooterView = UIView()
     }
     
     // MARK: Setting up search bar
@@ -57,28 +55,16 @@ class TrackSearchViewController: UIViewController {
     // MARK: Requesting for tracks
     func requestForTracks(with searchTerm: String) {
         // Updating views
-        self.trackList = []
-        self.tracksTableView.reloadData()
         self.tableViewActivityIndicator.isHidden = false
         self.tableViewActivityIndicator.startAnimating()
         
         TrackService.shared.fetchTracks(searchTerm: searchTerm) { [weak self] (tracks) in
             guard let tracks = tracks else { return }
             // Updating track list
-            self?.trackList = tracks
-            // TableView reloading
-            self?.tracksTableView.reloadData()
+            self?.tracksTableViewController?.changeTracks(to: tracks)
             // Activity Indicator state change
             self?.tableViewActivityIndicator.stopAnimating()
             self?.tableViewActivityIndicator.isHidden = true
-        }
-    }
-    
-    // MARK: Set up child view
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == SearchControllerTransitions.toMiniPlayer) {
-            let childViewController = segue.destination as! MiniPlayerViewController
-            self.childViewController = childViewController
         }
     }
 
