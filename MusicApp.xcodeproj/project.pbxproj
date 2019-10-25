@@ -31,6 +31,8 @@
 		92D6C267235607BD00CE22EB /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D6C266235607BD00CE22EB /* UIImageViewExtensions.swift */; };
 		92E2011B2361B0D500211EC1 /* TracksTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2011A2361B0D500211EC1 /* TracksTableCell.swift */; };
 		92E2011F2361B0FA00211EC1 /* TracksTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2011E2361B0FA00211EC1 /* TracksTableCellViewModel.swift */; };
+		92E2012223626B9700211EC1 /* TestPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2012123626B9700211EC1 /* TestPageViewController.swift */; };
+		92E2012423626ED100211EC1 /* TracksTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E2012323626ED100211EC1 /* TracksTableCell.xib */; };
 		92ED26C1234B2705007A0DD9 /* MusicPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED26C0234B2705007A0DD9 /* MusicPlayerService.swift */; };
 		92FCDC2723478CD700F70F45 /* TrackSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */; };
 		92FCDC2B23478CFC00F70F45 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2923478CFC00F70F45 /* TrackCell.swift */; };
@@ -75,6 +77,8 @@
 		92D6C266235607BD00CE22EB /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		92E2011A2361B0D500211EC1 /* TracksTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksTableCell.swift; sourceTree = "<group>"; };
 		92E2011E2361B0FA00211EC1 /* TracksTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksTableCellViewModel.swift; sourceTree = "<group>"; };
+		92E2012123626B9700211EC1 /* TestPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPageViewController.swift; sourceTree = "<group>"; };
+		92E2012323626ED100211EC1 /* TracksTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TracksTableCell.xib; sourceTree = "<group>"; };
 		92ED26C0234B2705007A0DD9 /* MusicPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerService.swift; sourceTree = "<group>"; };
 		92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchViewController.swift; sourceTree = "<group>"; };
 		92FCDC2923478CFC00F70F45 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 		924D98E723427474008E70A2 /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
+				92E2012023626B6800211EC1 /* TestPage */,
 				92D6C2652355FEF300CE22EB /* Extensions */,
 				927D600C235CF0FE00C02C44 /* TracksTableView */,
 				926C4125234A16500001DBE7 /* Main Views */,
@@ -272,17 +277,18 @@
 			isa = PBXGroup;
 			children = (
 				92E2011D2361B0E200211EC1 /* ViewModel */,
-				92E2011C2361B0DE00211EC1 /* Model */,
+				92E2011C2361B0DE00211EC1 /* View */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		92E2011C2361B0DE00211EC1 /* Model */ = {
+		92E2011C2361B0DE00211EC1 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				92E2011A2361B0D500211EC1 /* TracksTableCell.swift */,
+				92E2012323626ED100211EC1 /* TracksTableCell.xib */,
 			);
-			path = Model;
+			path = View;
 			sourceTree = "<group>";
 		};
 		92E2011D2361B0E200211EC1 /* ViewModel */ = {
@@ -291,6 +297,14 @@
 				92E2011E2361B0FA00211EC1 /* TracksTableCellViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		92E2012023626B6800211EC1 /* TestPage */ = {
+			isa = PBXGroup;
+			children = (
+				92E2012123626B9700211EC1 /* TestPageViewController.swift */,
+			);
+			path = TestPage;
 			sourceTree = "<group>";
 		};
 		92ED26BF234B26EA007A0DD9 /* Model */ = {
@@ -469,6 +483,7 @@
 				92A03DAE234D038C005BC7FD /* TrackCell.xib in Resources */,
 				924D98F023427474008E70A2 /* Main.storyboard in Resources */,
 				92FCDC3B2347ECFB00F70F45 /* PlayerViewController.xib in Resources */,
+				92E2012423626ED100211EC1 /* TracksTableCell.xib in Resources */,
 				92FECD60235BA6E8009E3F41 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,6 +556,7 @@
 				924D98E923427474008E70A2 /* AppDelegate.swift in Sources */,
 				92A5832A2359E73000A8A645 /* MPVolumeViewExtension.swift in Sources */,
 				924D98EB23427474008E70A2 /* SceneDelegate.swift in Sources */,
+				92E2012223626B9700211EC1 /* TestPageViewController.swift in Sources */,
 				92E2011B2361B0D500211EC1 /* TracksTableCell.swift in Sources */,
 				92FCDC2E23479C5C00F70F45 /* Track.swift in Sources */,
 				92AA85DD23528639004F5F5D /* SearchBarExtension.swift in Sources */,

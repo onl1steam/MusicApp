@@ -52,7 +52,9 @@ class PlaylistViewController: UIViewController {
                 isRefreshing {
                 self?.refreshControl.endRefreshing()
             }
+            self?.performSegue(withIdentifier: "toTestPage", sender: self)
             self?.tracksTableView.reloadData()
+            
         }
     }
     
@@ -61,6 +63,10 @@ class PlaylistViewController: UIViewController {
         if (segue.identifier == PlaylistControllerTransitions.toMiniPlayer) {
             let childViewController = segue.destination as! MiniPlayerViewController
             self.childViewController = childViewController
+        }
+        if (segue.identifier == "toTestPage") {
+            let testPageVC = segue.destination as! TestPageViewController
+            testPageVC.tracks = trackList
         }
     }
 

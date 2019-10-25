@@ -45,6 +45,7 @@
                     <navigationItem key="navigationItem" title="Плейлист" id="0Ox-ja-JFX"/>
                     <connections>
                         <outlet property="tracksTableView" destination="rKQ-a6-Xyh" id="9b2-Wy-Sqp"/>
+                        <segue destination="1ze-0s-Afe" kind="show" identifier="toTestPage" id="1yM-MV-D2U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uv-eX-O2y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -149,6 +150,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nWm-BQ-WQp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="885.50724637681162" y="435.9375"/>
+        </scene>
+        <!--Test Page View Controller-->
+        <scene sceneID="E61-GJ-rGg">
+            <objects>
+                <viewController id="1ze-0s-Afe" customClass="TestPageViewController" customModule="MusicApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ccl-y2-vya">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsk-1O-Ps6">
+                                <rect key="frame" x="0.0" y="100" width="414" height="713"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="gsk-1O-Ps6" firstAttribute="leading" secondItem="pzE-oY-n61" secondAttribute="leading" id="9Xg-5X-1he"/>
+                            <constraint firstItem="gsk-1O-Ps6" firstAttribute="top" secondItem="Ccl-y2-vya" secondAttribute="top" constant="100" id="D6f-J8-zoG"/>
+                            <constraint firstItem="gsk-1O-Ps6" firstAttribute="bottom" secondItem="pzE-oY-n61" secondAttribute="bottom" id="Pfc-45-PK5"/>
+                            <constraint firstItem="gsk-1O-Ps6" firstAttribute="trailing" secondItem="pzE-oY-n61" secondAttribute="trailing" id="k6w-CT-3LQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pzE-oY-n61"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BpQ-cL-RYR"/>
+                    <connections>
+                        <outlet property="testView" destination="gsk-1O-Ps6" id="Kri-CA-I2M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xNT-fE-Kam" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2873.913043478261" y="-319.41964285714283"/>
         </scene>
         <!--Mini Player View Controller-->
         <scene sceneID="ggL-Qq-GDe">
@@ -262,6 +293,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="f7N-04-ncL"/>
+        <segue reference="kd2-cv-SzL"/>
     </inferredMetricsTieBreakers>
 </document>

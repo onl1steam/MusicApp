@@ -14,8 +14,8 @@ class TracksTableViewModel {
     
     var tracks = BehaviorRelay<[Track]>(value: [])
     
-    init() {
-        
+    init(with tracks: [Track]) {
+        self.tracks.accept(tracks)
     }
     
     func loadTracks(currentIndex: Int) {

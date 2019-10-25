@@ -12,17 +12,16 @@ import RxSwift
 class TracksTableCellViewModel {
     
     var track: Track
-    var trackName = PublishSubject<String>()
-    var trackArtist = PublishSubject<String>()
-    var trackAlbum = PublishSubject<Data>()
-//    var addButton = PublishSubject<Data>()
+    var trackName = BehaviorSubject<String>(value: "")
+    var trackArtist = BehaviorSubject<String>(value: "")
+    var albumImage = BehaviorSubject<Data>(value: Data())
     
     init(track: Track) {
         self.track = track
         trackName.onNext(track.trackName)
         trackArtist.onNext(track.artistName)
         ImageLoader.getImageData(from: track.artworkUrl60) { [weak self] (data) in
-            self?.trackAlbum.onNext(data)
+            self?.albumImage.onNext(data)
         }
     }
     
