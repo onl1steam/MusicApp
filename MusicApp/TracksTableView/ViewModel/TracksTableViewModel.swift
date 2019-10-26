@@ -12,7 +12,7 @@ import RxCocoa
 
 class TracksTableViewModel {
     
-    var tracks = BehaviorRelay<[Track]>(value: [])
+    let tracks = BehaviorRelay<[Track]>(value: [])
     
     init(with tracks: [Track]) {
         self.tracks.accept(tracks)

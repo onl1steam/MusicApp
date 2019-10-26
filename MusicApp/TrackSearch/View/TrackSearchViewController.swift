@@ -8,32 +8,57 @@
 
 import UIKit
 import SDWebImage
+import RxSwift
+import RxCocoa
 
 class TrackSearchViewController: UIViewController {
     
     // MARK: IBOutlets, properties
     @IBOutlet weak var tableViewActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tracksTableView: UIView!
-    
     let searchController = UISearchController(searchResultsController: nil)
     var tracksTableViewController: TracksTableViewController?
     
-    var tracks: [Track] = []
+    let viewModel = TrackSearchViewModel()
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let controller = TracksTableViewController()
-        tracksTableViewController = controller
-        controller.configuteTable(with: tracks)
-        self.add(asChildViewController: controller, to: tracksTableView)
-        
         setupSearchBar()
         
+        let controller = TracksTableViewController()
+        tracksTableViewController = controller
+        setupBindings()
+        self.add(asChildViewController: controller, to: tracksTableView)
+        
         // Activity Indicator settings
-        self.tableViewActivityIndicator.isHidden = true
         tableViewActivityIndicator.color = .systemRed
-
+    }
+    
+    private func setupBindings() {
+        tracksTableViewController?.configuteTable(with: [])
+        
+        viewModel.trackList.subscribe(onNext: { [weak self] (tracks) in
+            self?.tracksTableViewController?.changeTracks(to: tracks)
+        }).disposed(by: disposeBag)
+        
+        searchController.searchBar
+            .rx.text.orEmpty
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] query in
+                self?.viewModel.requestForTracks(with: query)
+        }).disposed(by: disposeBag)
+        
+        viewModel.isAnimating.subscribe(onNext: { [weak self] (state) in
+            self?.tableViewActivityIndicator.isHidden = !state
+            if state {
+                self?.tableViewActivityIndicator.startAnimating()
+            } else {
+                self?.tableViewActivityIndicator.stopAnimating()
+            }
+        }).disposed(by: disposeBag)
     }
     
     // MARK: Setting up search bar
@@ -50,22 +75,6 @@ class TrackSearchViewController: UIViewController {
         
         let cancelButtonAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.systemPink]
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(cancelButtonAttributes, for: .normal)
-    }
-    
-    // MARK: Requesting for tracks
-    func requestForTracks(with searchTerm: String) {
-        // Updating views
-        self.tableViewActivityIndicator.isHidden = false
-        self.tableViewActivityIndicator.startAnimating()
-        
-        TrackService.shared.fetchTracks(searchTerm: searchTerm) { [weak self] (tracks) in
-            guard let tracks = tracks else { return }
-            // Updating track list
-            self?.tracksTableViewController?.changeTracks(to: tracks)
-            // Activity Indicator state change
-            self?.tableViewActivityIndicator.stopAnimating()
-            self?.tableViewActivityIndicator.isHidden = true
-        }
     }
 
 }

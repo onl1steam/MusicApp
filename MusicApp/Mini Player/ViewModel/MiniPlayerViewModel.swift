@@ -11,9 +11,9 @@ import RxSwift
 
 class MiniPlayerViewModel {
     
-    var trackName = BehaviorSubject<String>(value: "Не исполняется")
-    var isPlaying = BehaviorSubject<Bool>(value: false)
-    var albumImage = BehaviorSubject<Data>(value: Data())
+    let trackName = BehaviorSubject<String>(value: "Не исполняется")
+    let isPlaying = BehaviorSubject<Bool>(value: false)
+    let albumImage = BehaviorSubject<Data>(value: Data())
     
     let disposeBag = DisposeBag()
     

@@ -20,8 +20,8 @@ class MusicPlayerService {
     var tracks: [Track]?
     private var player : AVPlayer?
     
-    var isPlaying = BehaviorRelay<Bool>(value: false)
-    var currentTrack = BehaviorSubject<Track?>(value: nil)
+    let isPlaying = BehaviorRelay<Bool>(value: false)
+    let currentTrack = BehaviorSubject<Track?>(value: nil)
     
     var currentIndex = 0
     var currentTime: Float {

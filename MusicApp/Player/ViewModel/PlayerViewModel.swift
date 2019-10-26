@@ -15,15 +15,15 @@ import AVFoundation
 
 class PlayerViewModel {
     
-    var trackName = BehaviorSubject<String>(value: "Не исполняется")
-    var artistName = BehaviorSubject<String>(value: "")
-    var isPlaying = BehaviorSubject<Bool>(value: false)
-    var albumImage = BehaviorSubject<Data>(value: Data())
-    var volume = BehaviorSubject<Float>(value: 0)
-    var currentTime = BehaviorSubject<Float>(value: 0)
-    var duration = BehaviorSubject<Float>(value: 0)
-    var currentTimeString = BehaviorSubject<String>(value: "--:--")
-    var remainingTimeString = BehaviorSubject<String>(value: "--:--")
+    let trackName = BehaviorSubject<String>(value: "Не исполняется")
+    let artistName = BehaviorSubject<String>(value: "")
+    let isPlaying = BehaviorSubject<Bool>(value: false)
+    let albumImage = BehaviorSubject<Data>(value: Data())
+    let volume = BehaviorSubject<Float>(value: 0)
+    let currentTime = BehaviorSubject<Float>(value: 0)
+    let duration = BehaviorSubject<Float>(value: 0)
+    let currentTimeString = BehaviorSubject<String>(value: "--:--")
+    let remainingTimeString = BehaviorSubject<String>(value: "--:--")
     
     var timer = Timer()
     var sliderTapTimer: Timer? = nil

@@ -13,11 +13,11 @@ extension TrackSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
         guard let searchTerm = searchBar.text else { return }
-        requestForTracks(with: searchTerm)
+        viewModel.requestForTracks(with: searchTerm)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        // 
+        tracksTableViewController?.changeTracks(to: [])
     }
 }
