@@ -26,6 +26,8 @@
 		92A5832E2359E83000A8A645 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A5832D2359E83000A8A645 /* UIButtonExtension.swift */; };
 		92AA85DD23528639004F5F5D /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA85DC23528639004F5F5D /* SearchBarExtension.swift */; };
 		92C807AC23639BCF00F77ABA /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C807AB23639BCF00F77ABA /* UIViewControllerExtension.swift */; };
+		92CD01572366346F004714C2 /* TrackAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CD01562366346F004714C2 /* TrackAlert.swift */; };
+		92CD015923663618004714C2 /* TrackAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CD015823663618004714C2 /* TrackAlertViewModel.swift */; };
 		92D6C267235607BD00CE22EB /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D6C266235607BD00CE22EB /* UIImageViewExtensions.swift */; };
 		92E2011B2361B0D500211EC1 /* TracksTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2011A2361B0D500211EC1 /* TracksTableCell.swift */; };
 		92E2011F2361B0FA00211EC1 /* TracksTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2011E2361B0FA00211EC1 /* TracksTableCellViewModel.swift */; };
@@ -70,6 +72,8 @@
 		92A5832D2359E83000A8A645 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		92AA85DC23528639004F5F5D /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		92C807AB23639BCF00F77ABA /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		92CD01562366346F004714C2 /* TrackAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackAlert.swift; sourceTree = "<group>"; };
+		92CD015823663618004714C2 /* TrackAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackAlertViewModel.swift; sourceTree = "<group>"; };
 		92D6C266235607BD00CE22EB /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		92E2011A2361B0D500211EC1 /* TracksTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksTableCell.swift; sourceTree = "<group>"; };
 		92E2011E2361B0FA00211EC1 /* TracksTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksTableCellViewModel.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 		924D98E723427474008E70A2 /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
+				92CD015523663447004714C2 /* TrackAlert */,
 				92D6C2652355FEF300CE22EB /* Extensions */,
 				927D600C235CF0FE00C02C44 /* TracksTableView */,
 				926C4125234A16500001DBE7 /* Main Views */,
@@ -238,6 +243,15 @@
 				92AA85DC23528639004F5F5D /* SearchBarExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		92CD015523663447004714C2 /* TrackAlert */ = {
+			isa = PBXGroup;
+			children = (
+				92CD01562366346F004714C2 /* TrackAlert.swift */,
+				92CD015823663618004714C2 /* TrackAlertViewModel.swift */,
+			);
+			path = TrackAlert;
 			sourceTree = "<group>";
 		};
 		92D6C2652355FEF300CE22EB /* Extensions */ = {
@@ -535,6 +549,8 @@
 				927D6012235CF1B500C02C44 /* TracksTableViewModel.swift in Sources */,
 				92A03DAC234D027C005BC7FD /* PlaylistViewController.swift in Sources */,
 				92FCDC322347C90000F70F45 /* TrackService.swift in Sources */,
+				92CD015923663618004714C2 /* TrackAlertViewModel.swift in Sources */,
+				92CD01572366346F004714C2 /* TrackAlert.swift in Sources */,
 				92ED26C1234B2705007A0DD9 /* MusicPlayerService.swift in Sources */,
 				926C4127234A16760001DBE7 /* RoundedImageView.swift in Sources */,
 			);

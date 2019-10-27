@@ -17,7 +17,7 @@ class TrackService {
     let defaultSession = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
     
-    // MARK: Download track list from url
+    // MARK: Load track list from url
     func fetchTracks(searchTerm: String, completion: @escaping QueryResult) {
         dataTask?.cancel()
         
@@ -57,13 +57,9 @@ class TrackService {
     // MARK: Download track to memory
     func downloadTrackToMemomy(track: Track) {
         if let audioUrl = URL(string: track.previewUrl) {
-
             let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             
-            
             let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-            print(destinationUrl.absoluteString)
-            print(destinationUrl)
             
             if FileManager.default.fileExists(atPath: destinationUrl.path) {
                 print("The file already exists at path")
@@ -74,8 +70,7 @@ class TrackService {
                     do {
                         try FileManager.default.moveItem(at: location, to: destinationUrl)
                         DispatchQueue.main.async {
-                            RealmDBManager.shared.saveTrackLocalUrl(track: track, url: destinationUrl.path)
-                            print("File moved to documents folder")
+                            RealmDBManager.shared.saveTrackLocalUrl(track: track)
                         }
                     } catch {
                         print(error)

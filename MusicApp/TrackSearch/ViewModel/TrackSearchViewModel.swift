@@ -33,4 +33,8 @@ class TrackSearchViewModel {
         }
     }
     
+    func clearScreen() {
+        trackList.onNext([])
+    }
+    
 }

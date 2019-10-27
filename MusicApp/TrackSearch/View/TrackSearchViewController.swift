@@ -48,7 +48,11 @@ class TrackSearchViewController: UIViewController {
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] query in
-                self?.viewModel.requestForTracks(with: query)
+                if query == "" {
+                    self?.viewModel.clearScreen()
+                } else {
+                    self?.viewModel.requestForTracks(with: query)
+                }
         }).disposed(by: disposeBag)
         
         viewModel.isAnimating.subscribe(onNext: { [weak self] (state) in

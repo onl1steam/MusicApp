@@ -57,7 +57,7 @@ class TracksTableCellViewModel {
                 changeCellButtonImage(localInfo: (true, true))
             }
         } else {
-            RealmDBManager.shared.saveTrackToBD(track: track)
+            RealmDBManager.shared.saveTrackToDB(track: track)
             changeCellButtonImage(localInfo: (true, false))
         }
     }
