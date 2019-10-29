@@ -70,7 +70,7 @@ class TrackService {
                     do {
                         try FileManager.default.moveItem(at: location, to: destinationUrl)
                         DispatchQueue.main.async {
-                            RealmDBManager.shared.saveTrackLocalUrl(track: track)
+                            RealmDBService.shared.saveTrackLocalUrl(track: track)
                         }
                     } catch {
                         print(error)

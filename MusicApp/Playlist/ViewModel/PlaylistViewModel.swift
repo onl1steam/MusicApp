@@ -16,7 +16,7 @@ class PlaylistViewModel {
     
     func fetchTracks() {
         isAnimating.onNext(true)
-        RealmDBManager.shared.fetchTracks { [weak self] (tracks) in
+        RealmDBService.shared.fetchTracks { [weak self] (tracks) in
             guard let fetchedTracks = tracks else { return }
             self?.isAnimating.onNext(false)
             self?.trackList.onNext(fetchedTracks)

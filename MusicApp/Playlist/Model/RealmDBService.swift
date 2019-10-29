@@ -9,12 +9,12 @@
 import Foundation
 import RealmSwift
 
-class RealmDBManager {
+class RealmDBService {
     
     private var realm: Realm
     private let backgroundThread = DispatchQueue(label: "backgroundRealm", qos: .background)
     
-    static let shared = RealmDBManager()
+    static let shared = RealmDBService()
     private init() {
        realm = try! Realm()
     }
@@ -55,7 +55,7 @@ class RealmDBManager {
     
     // MARK: Fetch track list from Database
     func fetchTracks(completion: @escaping ([Track]?) -> Void) {
-        backgroundThread.async {
+        backgroundThread.async { [unowned self] in
             let realm = try! Realm()
             var trackList: [Track]? = []
             let results: Results<TrackObject> = realm.objects(TrackObject.self)
@@ -93,6 +93,50 @@ class RealmDBManager {
         return (isExists, isDownloaded)
     }
     
+    // MARK: Save Local track url
+    func saveTrackLocalUrl(track: Track) {
+        let tracks = realm.objects(TrackObject.self).filter("previewUrl = %@", track.previewUrl)
+        
+        let realm = try! Realm()
+        if let track = tracks.first {
+            try! realm.write {
+                track.isDownloaded = true
+            }
+        }
+    }
+    
+    func removeTrackLocalUrl(previewUrl: String) {
+        let tracks = realm.objects(TrackObject.self).filter("previewUrl = %@", previewUrl)
+        
+        let realm = try! Realm()
+        if let track = tracks.first {
+            try! realm.write {
+                track.isDownloaded = false
+            }
+        }
+    }
+    
+    // MARK: Fetch search history
+    func fetchSearchHistory(completion: @escaping ([String]?) -> Void) {
+        backgroundThread.async {
+            let realm = try! Realm()
+            var trackList: [String]? = []
+            let results: Results<SearchHistoryObject> = realm.objects(SearchHistoryObject.self)
+            for result in results {
+                let trackName = result.trackName
+                trackList?.insert(trackName, at: 0)
+            }
+            DispatchQueue.main.async {
+                completion(trackList)
+            }
+        }
+    }
+    
+    // MARK: Save track to history
+    func saveTrackNameToHistory() {
+        
+    }
+    
     // MARK: Convertion from Track to TrackObject
     private func convertToTrack(trackObject: TrackObject) -> Track {
         
@@ -117,28 +161,4 @@ class RealmDBManager {
         trackObject.artworkUrl100 = track.artworkUrl100
         return trackObject
     }
-    
-    // MARK: Save Local track url
-    func saveTrackLocalUrl(track: Track) {
-        let tracks = realm.objects(TrackObject.self).filter("previewUrl = %@", track.previewUrl)
-        
-        let realm = try! Realm()
-        if let track = tracks.first {
-            try! realm.write {
-                track.isDownloaded = true
-            }
-        }
-    }
-    
-    func removeTrackLocalUrl(previewUrl: String) {
-        let tracks = realm.objects(TrackObject.self).filter("previewUrl = %@", previewUrl)
-        
-        let realm = try! Realm()
-        if let track = tracks.first {
-            try! realm.write {
-                track.isDownloaded = false
-            }
-        }
-    }
-
 }

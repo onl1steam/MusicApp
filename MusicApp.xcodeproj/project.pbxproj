@@ -18,7 +18,7 @@
 		92817435234BDB6700113DF4 /* TrackSearchConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817434234BDB6700113DF4 /* TrackSearchConstants.swift */; };
 		92A03DAC234D027C005BC7FD /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DAB234D027C005BC7FD /* PlaylistViewController.swift */; };
 		92A03DB0234D060E005BC7FD /* PlaylistConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */; };
-		92A03DB3234D09C6005BC7FD /* RealmDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DB2234D09C6005BC7FD /* RealmDBManager.swift */; };
+		92A03DB3234D09C6005BC7FD /* RealmDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DB2234D09C6005BC7FD /* RealmDBService.swift */; };
 		92A583232359E4BE00A8A645 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A583222359E4BE00A8A645 /* PlayerViewController.swift */; };
 		92A583252359E53900A8A645 /* FloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A583242359E53900A8A645 /* FloatExtension.swift */; };
 		92A583282359E6C700A8A645 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A583272359E6C700A8A645 /* PlayerViewModel.swift */; };
@@ -35,6 +35,8 @@
 		92E341F323646B650072BA93 /* TrackSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E341F223646B650072BA93 /* TrackSearchViewModel.swift */; };
 		92E341F8236480B20072BA93 /* PlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E341F7236480B20072BA93 /* PlaylistViewModel.swift */; };
 		92ED26C1234B2705007A0DD9 /* MusicPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ED26C0234B2705007A0DD9 /* MusicPlayerService.swift */; };
+		92EECC78236848B800C29F71 /* SearchHistoryTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EECC77236848B800C29F71 /* SearchHistoryTableViewModel.swift */; };
+		92EECC7B236848D100C29F71 /* SearchHistoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EECC7A236848D100C29F71 /* SearchHistoryObject.swift */; };
 		92FCDC2723478CD700F70F45 /* TrackSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */; };
 		92FCDC2E23479C5C00F70F45 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC2D23479C5C00F70F45 /* Track.swift */; };
 		92FCDC322347C90000F70F45 /* TrackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCDC312347C90000F70F45 /* TrackService.swift */; };
@@ -64,7 +66,7 @@
 		92817434234BDB6700113DF4 /* TrackSearchConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchConstants.swift; sourceTree = "<group>"; };
 		92A03DAB234D027C005BC7FD /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistConstants.swift; sourceTree = "<group>"; };
-		92A03DB2234D09C6005BC7FD /* RealmDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDBManager.swift; sourceTree = "<group>"; };
+		92A03DB2234D09C6005BC7FD /* RealmDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDBService.swift; sourceTree = "<group>"; };
 		92A583222359E4BE00A8A645 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerViewController.swift; path = MusicApp/Player/View/PlayerViewController.swift; sourceTree = SOURCE_ROOT; };
 		92A583242359E53900A8A645 /* FloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtension.swift; sourceTree = "<group>"; };
 		92A583272359E6C700A8A645 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
@@ -81,6 +83,8 @@
 		92E341F223646B650072BA93 /* TrackSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchViewModel.swift; sourceTree = "<group>"; };
 		92E341F7236480B20072BA93 /* PlaylistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewModel.swift; sourceTree = "<group>"; };
 		92ED26C0234B2705007A0DD9 /* MusicPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerService.swift; sourceTree = "<group>"; };
+		92EECC77236848B800C29F71 /* SearchHistoryTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableViewModel.swift; sourceTree = "<group>"; };
+		92EECC7A236848D100C29F71 /* SearchHistoryObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryObject.swift; sourceTree = "<group>"; };
 		92FCDC2623478CD700F70F45 /* TrackSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchViewController.swift; sourceTree = "<group>"; };
 		92FCDC2D23479C5C00F70F45 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		92FCDC312347C90000F70F45 /* TrackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackService.swift; sourceTree = "<group>"; };
@@ -114,6 +118,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		920FA37F23664CEF007BE844 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				92CD015823663618004714C2 /* TrackAlertViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		920FA38023664CFC007BE844 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92CD01562366346F004714C2 /* TrackAlert.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		921089A523684B3E00BF020A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		921FC1FD234E5B3400E63E4B /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +170,7 @@
 		924D98E723427474008E70A2 /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
+				92EECC742368487400C29F71 /* SearchHistoryTableView */,
 				92CD015523663447004714C2 /* TrackAlert */,
 				92D6C2652355FEF300CE22EB /* Extensions */,
 				927D600C235CF0FE00C02C44 /* TracksTableView */,
@@ -224,7 +252,7 @@
 			children = (
 				92817432234B9C7E00113DF4 /* TrackObject.swift */,
 				92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */,
-				92A03DB2234D09C6005BC7FD /* RealmDBManager.swift */,
+				92A03DB2234D09C6005BC7FD /* RealmDBService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -248,8 +276,8 @@
 		92CD015523663447004714C2 /* TrackAlert */ = {
 			isa = PBXGroup;
 			children = (
-				92CD01562366346F004714C2 /* TrackAlert.swift */,
-				92CD015823663618004714C2 /* TrackAlertViewModel.swift */,
+				920FA37F23664CEF007BE844 /* ViewModel */,
+				920FA38023664CFC007BE844 /* View */,
 			);
 			path = TrackAlert;
 			sourceTree = "<group>";
@@ -324,6 +352,40 @@
 				921FC1FD234E5B3400E63E4B /* View */,
 			);
 			path = "Mini Player";
+			sourceTree = "<group>";
+		};
+		92EECC742368487400C29F71 /* SearchHistoryTableView */ = {
+			isa = PBXGroup;
+			children = (
+				921089A523684B3E00BF020A /* Cell */,
+				92EECC79236848C300C29F71 /* Model */,
+				92EECC7C236849BF00C29F71 /* View */,
+				92EECC7D236849C900C29F71 /* ViewModel */,
+			);
+			path = SearchHistoryTableView;
+			sourceTree = "<group>";
+		};
+		92EECC79236848C300C29F71 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				92EECC7A236848D100C29F71 /* SearchHistoryObject.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		92EECC7C236849BF00C29F71 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92EECC7D236849C900C29F71 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				92EECC77236848B800C29F71 /* SearchHistoryTableViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		92FCDC2523478C8100F70F45 /* TrackSearch */ = {
@@ -525,10 +587,12 @@
 				92817435234BDB6700113DF4 /* TrackSearchConstants.swift in Sources */,
 				92FECD63235BAA6F009E3F41 /* MiniPlayerViewModel.swift in Sources */,
 				92FECD5F235B9E18009E3F41 /* TimeSlider.swift in Sources */,
+				92EECC78236848B800C29F71 /* SearchHistoryTableViewModel.swift in Sources */,
 				92D6C267235607BD00CE22EB /* UIImageViewExtensions.swift in Sources */,
 				92E2011F2361B0FA00211EC1 /* TracksTableCellViewModel.swift in Sources */,
 				927D6010235CF16200C02C44 /* TracksTableViewController.swift in Sources */,
-				92A03DB3234D09C6005BC7FD /* RealmDBManager.swift in Sources */,
+				92A03DB3234D09C6005BC7FD /* RealmDBService.swift in Sources */,
+				92EECC7B236848D100C29F71 /* SearchHistoryObject.swift in Sources */,
 				92FECD65235BAA9C009E3F41 /* MiniPlayerViewController.swift in Sources */,
 				92A583282359E6C700A8A645 /* PlayerViewModel.swift in Sources */,
 				92A583232359E4BE00A8A645 /* PlayerViewController.swift in Sources */,

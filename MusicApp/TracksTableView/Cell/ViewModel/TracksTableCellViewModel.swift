@@ -24,7 +24,7 @@ class TracksTableCellViewModel {
         ImageLoader.getImageData(from: track.artworkUrl60) { [weak self] (data) in
             self?.albumImage.onNext(data)
         }
-        let localInfo = RealmDBManager.shared.isObjectExistsAndDownloaded(previewUrl: track.previewUrl)
+        let localInfo = RealmDBService.shared.isObjectExistsAndDownloaded(previewUrl: track.previewUrl)
         changeCellButtonImage(localInfo: localInfo)
     }
     
@@ -48,7 +48,7 @@ class TracksTableCellViewModel {
     }
     
     func addTrackToDB() {
-        let localInfo = RealmDBManager.shared.isObjectExistsAndDownloaded(
+        let localInfo = RealmDBService.shared.isObjectExistsAndDownloaded(
         previewUrl: track.previewUrl)
         
         if localInfo.isExists {
@@ -57,7 +57,7 @@ class TracksTableCellViewModel {
                 changeCellButtonImage(localInfo: (true, true))
             }
         } else {
-            RealmDBManager.shared.saveTrackToDB(track: track)
+            RealmDBService.shared.saveTrackToDB(track: track)
             changeCellButtonImage(localInfo: (true, false))
         }
     }

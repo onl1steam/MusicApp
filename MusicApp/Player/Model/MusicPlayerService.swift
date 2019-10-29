@@ -65,7 +65,7 @@ class MusicPlayerService {
         currentTrack.onNext(tracks?[currentIndex])
         guard let previewUrl = tracks?[currentIndex].previewUrl else { return }
         // Fetching track url from local/web
-        guard let trackUrl = RealmDBManager.shared.getTrackUrl(previewUrl: previewUrl) else { return }
+        guard let trackUrl = RealmDBService.shared.getTrackUrl(previewUrl: previewUrl) else { return }
         let playerItem = AVPlayerItem(url: trackUrl)
         player = AVPlayer(playerItem: playerItem)
         if isPlaying.value {
@@ -107,11 +107,10 @@ class MusicPlayerService {
         var playing = isPlaying.value
         if tracks != nil {
             playing.toggle()
-            isPlaying.accept(playing)
             if playing {
-                player?.play()
+                playMusic()
             } else {
-                player?.pause()
+                pauseMusic()
             }
         }
     }

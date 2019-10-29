@@ -19,7 +19,7 @@ class TrackAlertViewModel {
     
     init(with track: Track) {
         self.track = track
-        let localInfo = RealmDBManager.shared.isObjectExistsAndDownloaded(previewUrl: track.previewUrl)
+        let localInfo = RealmDBService.shared.isObjectExistsAndDownloaded(previewUrl: track.previewUrl)
         
         if localInfo.isDownloaded {
             deleteFromDB = true
@@ -40,7 +40,7 @@ class TrackAlertViewModel {
     }
     
     func saveTrackToPlaylist() {
-        RealmDBManager.shared.saveTrackToDB(track: track)
+        RealmDBService.shared.saveTrackToDB(track: track)
     }
     
     func saveTrackToFileManager() {
@@ -48,12 +48,12 @@ class TrackAlertViewModel {
     }
     
     func deleteTrackFromPlaylist() {
-        RealmDBManager.shared.removeFromDB(previewUrl: track.previewUrl)
+        RealmDBService.shared.removeFromDB(previewUrl: track.previewUrl)
     }
     
     func deleteTrackFromFileManager() {
         print("Start deleting from File Manager")
-        RealmDBManager.shared.removeFromFileManager(previewUrl: track.previewUrl)
+        RealmDBService.shared.removeFromFileManager(previewUrl: track.previewUrl)
     }
     
     

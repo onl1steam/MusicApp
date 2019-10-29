@@ -45,7 +45,7 @@ class TrackSearchViewController: UIViewController {
         
         searchController.searchBar
             .rx.text.orEmpty
-            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] query in
                 if query == "" {
