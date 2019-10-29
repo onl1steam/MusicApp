@@ -52,7 +52,6 @@ class TrackAlertViewModel {
     }
     
     func deleteTrackFromFileManager() {
-        print("Start deleting from File Manager")
         RealmDBService.shared.removeFromFileManager(previewUrl: track.previewUrl)
     }
     

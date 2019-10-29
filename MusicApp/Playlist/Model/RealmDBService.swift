@@ -102,6 +102,9 @@ class RealmDBService {
             try! realm.write {
                 track.isDownloaded = true
             }
+        } else {
+            saveTrackToDB(track: track)
+            saveTrackLocalUrl(track: track)
         }
     }
     
@@ -130,11 +133,6 @@ class RealmDBService {
                 completion(trackList)
             }
         }
-    }
-    
-    // MARK: Save track to history
-    func saveTrackNameToHistory() {
-        
     }
     
     // MARK: Convertion from Track to TrackObject

@@ -29,10 +29,12 @@ class TracksTableCell: UITableViewCell {
     private func bindUI() {
         viewModel?.trackName.bind(to: trackNameLabel.rx.text).disposed(by: disposeBag)
         viewModel?.trackArtist.bind(to: trackArtistLabel.rx.text).disposed(by: disposeBag)
+        
         viewModel?.albumImage.subscribe(onNext: { [weak self] (imageData) in
             guard let image = UIImage(data: imageData) else { return }
             self?.trackAlbumImage.image = image
         }).disposed(by: disposeBag)
+        
         viewModel?.addButtonImage.subscribe(onNext: { [weak self] (imageData) in
             guard let image = UIImage(data: imageData) else {
                 self?.addButton.setBackgroundImage(UIImage(), for: .normal)

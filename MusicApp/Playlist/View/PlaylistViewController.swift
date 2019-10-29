@@ -31,6 +31,7 @@ class PlaylistViewController: UIViewController {
         let controller = TracksTableViewController()
         tracksTableViewController = controller
         setupBindings()
+        controller.setupHeader()
         self.add(asChildViewController: controller, to: tracksTableView)
         
         // Fetch Tracks from DB

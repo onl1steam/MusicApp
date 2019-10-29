@@ -18,13 +18,26 @@ class TracksTableViewModel {
         self.tracks.accept(tracks)
     }
     
-    func loadTracks(currentIndex: Int) {
-        MusicPlayerService.shared.loadTracks(tracks: tracks.value, currentIndex: currentIndex)
+    private func loadTracks(currentIndex: Int, isShuffled: Bool) {
+        let trackList = isShuffled ? tracks.value.shuffled() : tracks.value
+        MusicPlayerService.shared.loadTracks(tracks: trackList, currentIndex: currentIndex)
         MusicPlayerService.shared.initializePlayer()
         MusicPlayerService.shared.playMusic()
     }
     
     func changeTracks(to tracks: [Track]) {
         self.tracks.accept(tracks)
+    }
+    
+    func playTrack(currentIndex: Int) {
+        loadTracks(currentIndex: currentIndex, isShuffled: false)
+    }
+    
+    func startPlaying() {
+        loadTracks(currentIndex: 0, isShuffled: false)
+    }
+    
+    func shufflePlaylist() {
+        loadTracks(currentIndex: 0, isShuffled: true)
     }
 }
