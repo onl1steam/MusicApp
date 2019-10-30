@@ -17,6 +17,7 @@
 		92817433234B9C7E00113DF4 /* TrackObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817432234B9C7E00113DF4 /* TrackObject.swift */; };
 		92817435234BDB6700113DF4 /* TrackSearchConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92817434234BDB6700113DF4 /* TrackSearchConstants.swift */; };
 		92833BE8236A064900A7E09F /* PlayerMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92833BE7236A064900A7E09F /* PlayerMainViewController.swift */; };
+		92833BEE236A51FC00A7E09F /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92833BED236A51FC00A7E09F /* View.xib */; };
 		92A03DAC234D027C005BC7FD /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DAB234D027C005BC7FD /* PlaylistViewController.swift */; };
 		92A03DB0234D060E005BC7FD /* PlaylistConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */; };
 		92A03DB3234D09C6005BC7FD /* RealmDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A03DB2234D09C6005BC7FD /* RealmDBService.swift */; };
@@ -64,6 +65,7 @@
 		92817432234B9C7E00113DF4 /* TrackObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackObject.swift; sourceTree = "<group>"; };
 		92817434234BDB6700113DF4 /* TrackSearchConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchConstants.swift; sourceTree = "<group>"; };
 		92833BE7236A064900A7E09F /* PlayerMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMainViewController.swift; sourceTree = "<group>"; };
+		92833BED236A51FC00A7E09F /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		92A03DAB234D027C005BC7FD /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		92A03DAF234D060E005BC7FD /* PlaylistConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistConstants.swift; sourceTree = "<group>"; };
 		92A03DB2234D09C6005BC7FD /* RealmDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDBService.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				92833BE7236A064900A7E09F /* PlayerMainViewController.swift */,
+				92833BED236A51FC00A7E09F /* View.xib */,
 			);
 			path = PlayerMain;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				924D98F023427474008E70A2 /* Main.storyboard in Resources */,
 				92FCDC3B2347ECFB00F70F45 /* PlayerViewController.xib in Resources */,
 				92E2012423626ED100211EC1 /* TracksTableCell.xib in Resources */,
+				92833BEE236A51FC00A7E09F /* View.xib in Resources */,
 				92FECD60235BA6E8009E3F41 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,6 +19,15 @@ class TracksTableViewController: UITableViewController {
     
     // Header section outlets
     
+    let headerTitle: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
+        label.text = "Плейлист"
+        label.textColor = .label
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     let playButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)
@@ -106,7 +115,7 @@ class TracksTableViewController: UITableViewController {
     }
     
     func setupHeader() {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 120))
         
         let stackView = UIStackView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
         stackView.axis = .horizontal
@@ -119,15 +128,23 @@ class TracksTableViewController: UITableViewController {
         
         stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(headerTitle)
         view.addSubview(stackView)
         
         
-        // Set constraints
-        stackView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10).isActive = true
+        // Set label constraints
+        headerTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
+        headerTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30)
+            .isActive = true
+        
+        // Set stack view constraints
+        stackView.topAnchor.constraint(equalTo: headerTitle.bottomAnchor, constant: 10)
+            .isActive = true
         stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         self.tableView.tableHeaderView = view
     }

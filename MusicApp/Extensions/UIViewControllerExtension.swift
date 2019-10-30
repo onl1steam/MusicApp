@@ -44,7 +44,7 @@ extension UIViewController {
             endOriginx -= fromVC.view.frame.width
         }
 
-        self.transition(from: fromVC, to: toVC, duration: 0.3, options: UIView.AnimationOptions.beginFromCurrentState, animations: {
+        self.transition(from: fromVC, to: toVC, duration: 0.2, options: UIView.AnimationOptions.beginFromCurrentState, animations: {
             toVC.view.frame = fromVC.view.frame
             fromVC.view.frame.origin.x = endOriginx
             }, completion: { (finish) in

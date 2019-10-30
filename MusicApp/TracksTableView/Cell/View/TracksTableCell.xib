@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -58,7 +57,7 @@
                         <state key="normal" backgroundImage="pencil" catalog="system"/>
                     </button>
                 </subviews>
-                <color key="backgroundColor" name="tableViewCell"/>
+                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 <constraints>
                     <constraint firstItem="jHF-nI-R5O" firstAttribute="leading" secondItem="Ig2-43-Vjo" secondAttribute="leadingMargin" constant="5" id="2Hq-NU-F9P"/>
                     <constraint firstItem="exv-y5-M3q" firstAttribute="centerY" secondItem="Ig2-43-Vjo" secondAttribute="centerY" id="CYr-ZD-lVy"/>
@@ -82,8 +81,5 @@
     <resources>
         <image name="music.note" catalog="system" width="48" height="64"/>
         <image name="pencil" catalog="system" width="64" height="58"/>
-        <namedColor name="tableViewCell">
-            <color red="0.17299999296665192" green="0.17299999296665192" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>
