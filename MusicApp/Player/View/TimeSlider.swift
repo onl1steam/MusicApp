@@ -11,17 +11,10 @@ import UIKit
 @IBDesignable
 class TimeSlider: UISlider {
     
-    @IBInspectable var height: CGFloat = 10 {
-        didSet {
-            
-        }
-    }
+    @IBInspectable var height: CGFloat = 10
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        // Images don't work on Catalina Beta version
-        /* guard let image = UIImage(named: "thumbnail") else { return }
-        self.setThumbImage(image, for: .normal) */
     }
 
     override func trackRect(forBounds bounds: CGRect) -> CGRect {

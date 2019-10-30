@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum Animation {
+    case LeftToRight
+    case RightToLeft
+}
+
 extension UIViewController {
     
     public func add(asChildViewController viewController: UIViewController, to parentView: UIView) {
@@ -23,5 +28,31 @@ extension UIViewController {
         
         // Notify Child View Controller
         viewController.didMove(toParent: self)
+    }
+    
+    func animationForLoad(parentView: UIView, fromVC: UIViewController, toVC: UIViewController, with animation: Animation) {
+
+        addChild(toVC)
+
+        var endOriginx: CGFloat = 0
+
+        if animation == Animation.LeftToRight {
+            toVC.view.frame.origin.x = -parentView.bounds.width
+            endOriginx += fromVC.view.frame.width
+        } else {
+            toVC.view.frame.origin.x = parentView.bounds.width
+            endOriginx -= fromVC.view.frame.width
+        }
+
+        self.transition(from: fromVC, to: toVC, duration: 0.3, options: UIView.AnimationOptions.beginFromCurrentState, animations: {
+            toVC.view.frame = fromVC.view.frame
+            fromVC.view.frame.origin.x = endOriginx
+            }, completion: { (finish) in
+                toVC.didMove(toParent: self)
+                fromVC.view.removeFromSuperview()
+                fromVC.removeFromParent()
+        })
+        
+        self.add(asChildViewController: toVC, to: parentView)
     }
 }

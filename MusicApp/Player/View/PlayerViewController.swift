@@ -88,10 +88,6 @@ class PlayerViewController: UIViewController {
         playerViewModel.playForward()
     }
     
-    @IBAction func dismissButtonClicked(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func timeSliderBeginEdititng(_ sender: UISlider) {
         playerViewModel.timeSliderBeginEditing()
     }

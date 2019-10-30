@@ -119,22 +119,6 @@ class RealmDBService {
         }
     }
     
-    // MARK: Fetch search history
-    func fetchSearchHistory(completion: @escaping ([String]?) -> Void) {
-        backgroundThread.async {
-            let realm = try! Realm()
-            var trackList: [String]? = []
-            let results: Results<SearchHistoryObject> = realm.objects(SearchHistoryObject.self)
-            for result in results {
-                let trackName = result.trackName
-                trackList?.insert(trackName, at: 0)
-            }
-            DispatchQueue.main.async {
-                completion(trackList)
-            }
-        }
-    }
-    
     // MARK: Convertion from Track to TrackObject
     private func convertToTrack(trackObject: TrackObject) -> Track {
         

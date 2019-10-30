@@ -24,6 +24,7 @@ class MiniPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.modalPresentationStyle = .fullScreen
         
         addGestureRecognizer()
         bindUI()
@@ -54,8 +55,8 @@ class MiniPlayerViewController: UIViewController {
     
     // MARK: Handle tap gesture on mini player
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        let playerViewController: PlayerViewController = PlayerViewController()
-        self.present(playerViewController, animated: true, completion: nil)
+        let playerMainViewController = PlayerMainViewController()
+        self.present(playerMainViewController, animated: true, completion: nil)
     }
     
     // MARK: IBActions
@@ -69,4 +70,12 @@ class MiniPlayerViewController: UIViewController {
     
 }
 
+extension MiniPlayerViewController {
+    override func present(_ viewControllerToPresent: UIViewController,
+                          animated flag: Bool,
+                          completion: (() -> Void)? = nil) {
+//      viewControllerToPresent.modalPresentationStyle = .fullScreen
+      super.present(viewControllerToPresent, animated: flag, completion: completion)
+    }
+}
 

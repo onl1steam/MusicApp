@@ -43,6 +43,7 @@ class TracksTableViewController: UITableViewController {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
         self.tableView.keyboardDismissMode = .onDrag
+        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 0)
         setupProtocols()
         setupBindings()
         setUpGestures()
@@ -105,9 +106,9 @@ class TracksTableViewController: UITableViewController {
     }
     
     func setupHeader() {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
         
-        let stackView = UIStackView(frame: view.frame)
+        let stackView = UIStackView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
@@ -124,7 +125,7 @@ class TracksTableViewController: UITableViewController {
         
         // Set constraints
         stackView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10).isActive = true
         stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
