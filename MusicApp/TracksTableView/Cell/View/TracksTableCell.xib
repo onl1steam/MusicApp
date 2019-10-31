@@ -24,15 +24,15 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="exv-y5-M3q">
-                        <rect key="frame" x="105" y="20" width="251" height="45.5"/>
+                        <rect key="frame" x="105" y="20" width="249" height="45.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8a-Ea-gqc">
-                                <rect key="frame" x="0.0" y="0.0" width="251" height="19.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="249" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Автор" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNQ-I3-t9F">
-                                <rect key="frame" x="0.0" y="29.5" width="251" height="16"/>
+                                <rect key="frame" x="0.0" y="29.5" width="249" height="16"/>
                                 <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,13 +48,13 @@
                         </constraints>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceu-rh-tyC">
-                        <rect key="frame" x="376" y="33.5" width="23" height="19"/>
+                        <rect key="frame" x="374" y="30" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="23" id="9H7-3z-2KG"/>
-                            <constraint firstAttribute="width" constant="23" id="pdN-Qt-b9I"/>
+                            <constraint firstAttribute="height" constant="25" id="9H7-3z-2KG"/>
+                            <constraint firstAttribute="width" constant="25" id="pdN-Qt-b9I"/>
                         </constraints>
                         <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <state key="normal" backgroundImage="pencil" catalog="system"/>
+                        <state key="normal" image="plus" catalog="system"/>
                     </button>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -80,6 +80,6 @@
     </objects>
     <resources>
         <image name="music.note" catalog="system" width="48" height="64"/>
-        <image name="pencil" catalog="system" width="64" height="58"/>
+        <image name="plus" catalog="system" width="64" height="58"/>
     </resources>
 </document>

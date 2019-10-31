@@ -10,19 +10,19 @@ import Foundation
 import RealmSwift
 
 class RealmDBService {
-    
-    private var realm: Realm
+
     private let backgroundThread = DispatchQueue(label: "backgroundRealm", qos: .background)
     
+    var realm: Realm
     static let shared = RealmDBService()
     private init() {
-       realm = try! Realm()
+        realm = try! Realm()
     }
     
     // MARK: Save track to Database
     func saveTrackToDB(track: Track) {
         if !isObjectExistsAndDownloaded(previewUrl: track.previewUrl).isExists {
-            try? realm.write {
+            try? realm.safeWrite {
                 let trackObject = convertToObject(track: track)
                 realm.add(trackObject)
             }
@@ -31,7 +31,7 @@ class RealmDBService {
     
     // MARK: Remove track from Database
     func removeFromDB(previewUrl: String) {
-        try? realm.write {
+        try? realm.safeWrite {
             removeFromFileManager(previewUrl: previewUrl)
             try? realm.delete(Realm().objects(TrackObject.self).filter("previewUrl=%@", previewUrl))
         }
@@ -97,9 +97,8 @@ class RealmDBService {
     func saveTrackLocalUrl(track: Track) {
         let tracks = realm.objects(TrackObject.self).filter("previewUrl = %@", track.previewUrl)
         
-        let realm = try! Realm()
         if let track = tracks.first {
-            try! realm.write {
+            try! realm.safeWrite {
                 track.isDownloaded = true
             }
         } else {
@@ -111,9 +110,8 @@ class RealmDBService {
     func removeTrackLocalUrl(previewUrl: String) {
         let tracks = realm.objects(TrackObject.self).filter("previewUrl = %@", previewUrl)
         
-        let realm = try! Realm()
         if let track = tracks.first {
-            try! realm.write {
+            try! realm.safeWrite {
                 track.isDownloaded = false
             }
         }
@@ -142,5 +140,16 @@ class RealmDBService {
         trackObject.artworkUrl60 = track.artworkUrl60
         trackObject.artworkUrl100 = track.artworkUrl100
         return trackObject
+    }
+}
+
+extension Realm {
+    // Safe writing to avoid realm write exception 
+    public func safeWrite(_ block: (() throws -> Void)) throws {
+        if isInWriteTransaction {
+            try block()
+        } else {
+            try write(block)
+        }
     }
 }

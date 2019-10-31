@@ -37,10 +37,10 @@ class TracksTableCell: UITableViewCell {
         
         viewModel?.addButtonImage.subscribe(onNext: { [weak self] (imageData) in
             guard let image = UIImage(data: imageData) else {
-                self?.addButton.setBackgroundImage(UIImage(), for: .normal)
+                self?.addButton.setImage(UIImage(), for: .normal)
                 return
             }
-            self?.addButton.setBackgroundImage(image, for: .normal)
+            self?.addButton.setImage(image, for: .normal)
         }).disposed(by: disposeBag)
     }
 
