@@ -8,14 +8,14 @@
 
 import Foundation
 
-class TrackLoadingService {
+class TrackLoadingService: TrackLoader {
     
     static let shared = TrackLoadingService()
     private init() { }
     typealias QueryResult = ([Track]?) -> Void
 
-    let defaultSession = URLSession(configuration: .default)
-    var dataTask: URLSessionDataTask?
+    private let defaultSession = URLSession(configuration: .default)
+    private var dataTask: URLSessionDataTask?
     
     // MARK: Load track list from url
     func fetchTracks(searchTerm: String, completion: @escaping QueryResult) {
@@ -53,31 +53,4 @@ class TrackLoadingService {
             dataTask?.resume()
         }
     }
-    
-    // MARK: Download track to memory
-    func downloadTrackToMemomy(track: Track) {
-        if let audioUrl = URL(string: track.previewUrl) {
-            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            
-            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-            
-            if FileManager.default.fileExists(atPath: destinationUrl.path) {
-                print("The file already exists at path")
-            } else {
-                
-                URLSession.shared.downloadTask(with: audioUrl) { location, response, error in
-                    guard let location = location, error == nil else { return }
-                    do {
-                        try FileManager.default.moveItem(at: location, to: destinationUrl)
-                        DispatchQueue.main.async {
-                            RealmDBService.shared.saveTrackLocalUrl(track: track)
-                        }
-                    } catch {
-                        print(error)
-                    }
-                }.resume()
-            }
-        }
-    }
-
 }

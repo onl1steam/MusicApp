@@ -9,18 +9,17 @@
 import Foundation
 import RealmSwift
 
-class RealmDBService {
-
+class RealmDBService: DBService {
     private let backgroundThread = DispatchQueue(label: "backgroundRealm", qos: .background)
     
-    var realm: Realm
+    private var realm: Realm
     static let shared = RealmDBService()
     private init() {
         realm = try! Realm()
     }
     
     // MARK: Save track to Database
-    func saveTrackToDB(track: Track) {
+    func saveTrack(track: Track) {
         if !isObjectExistsAndDownloaded(previewUrl: track.previewUrl).isExists {
             try? realm.safeWrite {
                 let trackObject = TrackConverter.convertToObject(track: track)
@@ -30,26 +29,10 @@ class RealmDBService {
     }
     
     // MARK: Remove track from Database
-    func removeFromDB(previewUrl: String) {
+    func removeTrack(previewUrl: String) {
         try? realm.safeWrite {
-            removeFromFileManager(previewUrl: previewUrl)
+            FileManagerControlService.removeFromFileManager(previewUrl: previewUrl)
             try? realm.delete(Realm().objects(TrackObject.self).filter("previewUrl=%@", previewUrl))
-        }
-    }
-    
-    // MARK: Remove track from local File Manager
-    func removeFromFileManager(previewUrl: String) {
-        if let audioUrl = URL(string: previewUrl) {
-            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            
-            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-
-            do {
-                try FileManager.default.removeItem(atPath: destinationUrl.path)
-                removeTrackLocalUrl(previewUrl: previewUrl)
-            } catch let error {
-                print(error.localizedDescription)
-            }
         }
     }
     
@@ -94,18 +77,15 @@ class RealmDBService {
     }
     
     // MARK: Save Local track url
-    func saveTrackLocalUrl(track: Track) {
-        let tracks = realm.objects(TrackObject.self).filter("previewUrl = %@", track.previewUrl)
-        
-        if let track = tracks.first {
-            try! realm.safeWrite {
-                track.isDownloaded = true
-            }
-        } else {
-            saveTrackToDB(track: track)
-            saveTrackLocalUrl(track: track)
-        }
-    }
+   func saveTrackLocalUrl(track: Track) {
+          let tracks = realm.objects(TrackObject.self).filter("previewUrl = %@", track.previewUrl)
+          
+          if let track = tracks.first {
+              try! realm.safeWrite {
+                  track.isDownloaded = true
+              }
+          }
+      }
     
     func removeTrackLocalUrl(previewUrl: String) {
         let tracks = realm.objects(TrackObject.self).filter("previewUrl = %@", previewUrl)

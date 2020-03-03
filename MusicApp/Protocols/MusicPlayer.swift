@@ -11,21 +11,27 @@ import AVKit
 import RxSwift
 import RxCocoa
 
-protocol MusicPlayer {
-    
+protocol TracksConfigurable {
     var tracks: [Track]? { get }
     var isPlaying: BehaviorRelay<Bool> { get }
     var currentTrack: BehaviorSubject<Track?> { get }
     
     var trackDuration: Float { get }
     var currentTime: Float { get }
-    
-    func loadTracks(tracks: [Track], currentIndex: Int)
-    func initializePlayer()
-    
+}
+
+protocol TrackVariable {
     func setNext()
     func setPrevious()
     func toggleMusic()
+    func seekMusic(to time: CMTime, completion: (()->Void)? )
+}
+
+protocol VolumeVariable {
     func changeVolume(to value: Float)
-    func seekMusic(to time: CMTime, completion: (()->Void)? ) 
+}
+
+protocol MusicPlayer: TracksConfigurable, TrackVariable, VolumeVariable {
+    func loadTracks(tracks: [Track], currentIndex: Int)
+    func initializePlayer()
 }

@@ -18,6 +18,7 @@ class TracksTableCellViewModel {
     let addButtonImage = BehaviorSubject<Data>(value: Data())
     
     let imageLoader: ImageLoader = ImageLoadService()
+    let dbService: DBService = RealmDBService.shared
     
     init(track: Track) {
         self.track = track
@@ -26,7 +27,7 @@ class TracksTableCellViewModel {
         imageLoader.getImageData(from: track.artworkUrl60) { [weak self] (data) in
             self?.albumImage.onNext(data)
         }
-        let localInfo = RealmDBService.shared.isObjectExistsAndDownloaded(previewUrl: track.previewUrl)
+        let localInfo = dbService.isObjectExistsAndDownloaded(previewUrl: track.previewUrl)
         changeCellButtonImage(localInfo: localInfo)
     }
     
@@ -50,16 +51,16 @@ class TracksTableCellViewModel {
     }
     
     func addTrackToDB() {
-        let localInfo = RealmDBService.shared.isObjectExistsAndDownloaded(
+        let localInfo = dbService.isObjectExistsAndDownloaded(
         previewUrl: track.previewUrl)
         
         if localInfo.isExists {
             if !localInfo.isDownloaded {
-                TrackLoadingService.shared.downloadTrackToMemomy(track: track)
+                FileManagerControlService.downloadTrackToMemomy(track: track)
                 changeCellButtonImage(localInfo: (true, true))
             }
         } else {
-            RealmDBService.shared.saveTrackToDB(track: track)
+            dbService.saveTrack(track: track)
             changeCellButtonImage(localInfo: (true, false))
         }
     }

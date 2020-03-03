@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol TrackLoader {
+    func fetchTracks(searchTerm: String, completion: @escaping ([Track]?) -> Void)
+}

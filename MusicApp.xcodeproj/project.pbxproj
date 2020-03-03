@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		9241CA87240E76E800265E47 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241CA86240E76E800265E47 /* MusicPlayer.swift */; };
 		9241CA89240E7F7A00265E47 /* TrackLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241CA88240E7F7A00265E47 /* TrackLoader.swift */; };
-		9241CA8B240E7F9300265E47 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241CA8A240E7F9300265E47 /* DataBase.swift */; };
+		9241CA8B240E7F9300265E47 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241CA8A240E7F9300265E47 /* DBService.swift */; };
 		9241CA8D240E7FA400265E47 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241CA8C240E7FA400265E47 /* ImageLoader.swift */; };
 		9241CA8F240E7FCB00265E47 /* FileManagerControlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241CA8E240E7FCB00265E47 /* FileManagerControlService.swift */; };
 		9241CA91240E80D700265E47 /* TrackConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241CA90240E80D700265E47 /* TrackConverter.swift */; };
+		92486D73240EA1B900465ED3 /* Pods_MusicApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DB9339DEAD81370BBFCD5E /* Pods_MusicApp.framework */; };
+		92486D74240EA1B900465ED3 /* Pods_MusicApp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3DB9339DEAD81370BBFCD5E /* Pods_MusicApp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		924D98E923427474008E70A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924D98E823427474008E70A2 /* AppDelegate.swift */; };
 		924D98EB23427474008E70A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924D98EA23427474008E70A2 /* SceneDelegate.swift */; };
 		924D98F023427474008E70A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924D98EE23427474008E70A2 /* Main.storyboard */; };
@@ -53,14 +55,27 @@
 		92FECD63235BAA6F009E3F41 /* MiniPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FECD62235BAA6F009E3F41 /* MiniPlayerViewModel.swift */; };
 		92FECD65235BAA9C009E3F41 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FECD64235BAA9C009E3F41 /* MiniPlayerViewController.swift */; };
 		92FECD68235BAB2B009E3F41 /* ImageLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FECD67235BAB2B009E3F41 /* ImageLoadService.swift */; };
-		B1F3AA282D95BC1D95AC16EA /* Pods_MusicApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DB9339DEAD81370BBFCD5E /* Pods_MusicApp.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		92486D75240EA1B900465ED3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				92486D74240EA1B900465ED3 /* Pods_MusicApp.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		68CD22C499946E4C4887774D /* Pods-MusicApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicApp.debug.xcconfig"; path = "Target Support Files/Pods-MusicApp/Pods-MusicApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9241CA86240E76E800265E47 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		9241CA88240E7F7A00265E47 /* TrackLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackLoader.swift; sourceTree = "<group>"; };
-		9241CA8A240E7F9300265E47 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		9241CA8A240E7F9300265E47 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		9241CA8C240E7FA400265E47 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		9241CA8E240E7FCB00265E47 /* FileManagerControlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerControlService.swift; sourceTree = "<group>"; };
 		9241CA90240E80D700265E47 /* TrackConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackConverter.swift; sourceTree = "<group>"; };
@@ -115,7 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1F3AA282D95BC1D95AC16EA /* Pods_MusicApp.framework in Frameworks */,
+				92486D73240EA1B900465ED3 /* Pods_MusicApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +187,7 @@
 			children = (
 				9241CA86240E76E800265E47 /* MusicPlayer.swift */,
 				9241CA88240E7F7A00265E47 /* TrackLoader.swift */,
-				9241CA8A240E7F9300265E47 /* DataBase.swift */,
+				9241CA8A240E7F9300265E47 /* DBService.swift */,
 				9241CA8C240E7FA400265E47 /* ImageLoader.swift */,
 			);
 			path = Protocols;
@@ -463,6 +478,7 @@
 				924D98E223427474008E70A2 /* Frameworks */,
 				924D98E323427474008E70A2 /* Resources */,
 				E9470AB852031571536A0DA3 /* [CP] Embed Pods Frameworks */,
+				92486D75240EA1B900465ED3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -585,7 +601,7 @@
 				92FCDC2723478CD700F70F45 /* TrackSearchViewController.swift in Sources */,
 				924D98E923427474008E70A2 /* AppDelegate.swift in Sources */,
 				92E341F8236480B20072BA93 /* PlaylistViewModel.swift in Sources */,
-				9241CA8B240E7F9300265E47 /* DataBase.swift in Sources */,
+				9241CA8B240E7F9300265E47 /* DBService.swift in Sources */,
 				9241CA89240E7F7A00265E47 /* TrackLoader.swift in Sources */,
 				92A5832A2359E73000A8A645 /* MPVolumeViewExtension.swift in Sources */,
 				924D98EB23427474008E70A2 /* SceneDelegate.swift in Sources */,

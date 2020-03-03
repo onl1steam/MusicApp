@@ -14,6 +14,8 @@ class TrackSearchViewModel {
     let trackList = BehaviorSubject<[Track]>(value: [])
     let isAnimating = BehaviorSubject<Bool>(value: false)
     
+    let trackLoader: TrackLoader = TrackLoadingService.shared
+    
     
     // MARK: Requesting for tracks
     func requestForTracks(with searchTerm: String) {
@@ -21,7 +23,7 @@ class TrackSearchViewModel {
         isAnimating.onNext(true)
         trackList.onNext([])
         
-        TrackLoadingService.shared.fetchTracks(searchTerm: searchTerm) { [weak self] (tracks) in
+        trackLoader.fetchTracks(searchTerm: searchTerm) { [weak self] (tracks) in
             guard let tracks = tracks else {
                 self?.isAnimating.onNext(false)
                 return

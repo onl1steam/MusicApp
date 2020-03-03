@@ -14,9 +14,11 @@ class PlaylistViewModel {
     let trackList = BehaviorSubject<[Track]>(value: [])
     let isAnimating = BehaviorSubject<Bool>(value: false)
     
+    let dbService: DBService = RealmDBService.shared
+    
     func fetchTracks() {
         isAnimating.onNext(true)
-        RealmDBService.shared.fetchTracks { [weak self] (tracks) in
+        dbService.fetchTracks { [weak self] (tracks) in
             guard let fetchedTracks = tracks else { return }
             self?.isAnimating.onNext(false)
             self?.trackList.onNext(fetchedTracks)

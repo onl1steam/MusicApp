@@ -13,22 +13,18 @@ class PlayerMainViewController: UIViewController {
     let musicPlayer: MusicPlayer = MusicPlayerService.shared
     
     // Controllers
-    var tracksTableVC: TracksTableViewController {
-        get {
-            let controller = TracksTableViewController()
-            let tracks = musicPlayer.tracks ?? []
-            controller.configuteTable(with: tracks)
-            controller.view.backgroundColor = .clear
-            return controller
-        }
-    }
+    var tracksTableVC: TracksTableViewController = {
+        let controller = TracksTableViewController()
+        let tracks = MusicPlayerService.shared.tracks ?? []
+        controller.configuteTable(with: tracks)
+        controller.view.backgroundColor = .clear
+        return controller
+    }()
     
-    var playerVC: PlayerViewController {
-        get {
-            let controller = PlayerViewController()
-            return controller
-        }
-    }
+    var playerVC: PlayerViewController = {
+        let controller = PlayerViewController()
+        return controller
+    }()
     
     // Outlets
     

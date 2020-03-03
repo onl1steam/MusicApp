@@ -12,6 +12,8 @@ class TrackAlertViewModel {
     
     var track: Track
     
+    let dbService: DBService = RealmDBService.shared
+    
     var deleteFromDB = false
     var deleteFromFileManager = false
     var saveToPlaylist = false
@@ -40,19 +42,19 @@ class TrackAlertViewModel {
     }
     
     func saveTrackToPlaylist() {
-        RealmDBService.shared.saveTrackToDB(track: track)
+        dbService.saveTrack(track: track)
     }
     
     func saveTrackToFileManager() {
-        TrackLoadingService.shared.downloadTrackToMemomy(track: track)
+        FileManagerControlService.downloadTrackToMemomy(track: track)
     }
     
     func deleteTrackFromPlaylist() {
-        RealmDBService.shared.removeFromDB(previewUrl: track.previewUrl)
+        dbService.removeTrack(previewUrl: track.previewUrl)
     }
     
     func deleteTrackFromFileManager() {
-        RealmDBService.shared.removeFromFileManager(previewUrl: track.previewUrl)
+        FileManagerControlService.removeFromFileManager(previewUrl: track.previewUrl)
     }
     
     
