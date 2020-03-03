@@ -8,9 +8,9 @@
 
 import Foundation
 
-class TrackService {
+class TrackLoadingService {
     
-    static let shared = TrackService()
+    static let shared = TrackLoadingService()
     private init() { }
     typealias QueryResult = ([Track]?) -> Void
 

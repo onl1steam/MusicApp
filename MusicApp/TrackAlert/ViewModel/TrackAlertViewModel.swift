@@ -44,7 +44,7 @@ class TrackAlertViewModel {
     }
     
     func saveTrackToFileManager() {
-        TrackService.shared.downloadTrackToMemomy(track: track)
+        TrackLoadingService.shared.downloadTrackToMemomy(track: track)
     }
     
     func deleteTrackFromPlaylist() {

@@ -23,7 +23,7 @@ class RealmDBService {
     func saveTrackToDB(track: Track) {
         if !isObjectExistsAndDownloaded(previewUrl: track.previewUrl).isExists {
             try? realm.safeWrite {
-                let trackObject = convertToObject(track: track)
+                let trackObject = TrackConverter.convertToObject(track: track)
                 realm.add(trackObject)
             }
         }
@@ -55,12 +55,12 @@ class RealmDBService {
     
     // MARK: Fetch track list from Database
     func fetchTracks(completion: @escaping ([Track]?) -> Void) {
-        backgroundThread.async { [unowned self] in
+        backgroundThread.async {
             let realm = try! Realm()
             var trackList: [Track]? = []
             let results: Results<TrackObject> = realm.objects(TrackObject.self)
             for result in results {
-                let track = self.convertToTrack(trackObject: result)
+                let track = TrackConverter.convertToTrack(trackObject: result)
                 trackList?.insert(track, at: 0)
             }
             DispatchQueue.main.async {
@@ -115,31 +115,6 @@ class RealmDBService {
                 track.isDownloaded = false
             }
         }
-    }
-    
-    // MARK: Convertion from Track to TrackObject
-    private func convertToTrack(trackObject: TrackObject) -> Track {
-        
-        let track = Track( artistName: trackObject.artistName,
-                           collectionName: trackObject.collectionName,
-                           trackName: trackObject.trackName,
-                           previewUrl: trackObject.previewUrl,
-                           artworkUrl60: trackObject.artworkUrl60,
-                           artworkUrl100: trackObject.artworkUrl100)
-        
-        return track
-    }
-    
-    private func convertToObject(track: Track) -> TrackObject {
-        let trackObject = TrackObject()
-        // Convertion to DB model
-        trackObject.trackName = track.trackName
-        trackObject.artistName = track.artistName
-        trackObject.collectionName = track.collectionName
-        trackObject.previewUrl = track.previewUrl
-        trackObject.artworkUrl60 = track.artworkUrl60
-        trackObject.artworkUrl100 = track.artworkUrl100
-        return trackObject
     }
 }
 

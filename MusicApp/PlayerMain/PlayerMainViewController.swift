@@ -10,19 +10,25 @@ import UIKit
 
 class PlayerMainViewController: UIViewController {
     
-    // Controllers
-    let tracksTableVC: TracksTableViewController = {
-        let controller = TracksTableViewController()
-        let tracks = MusicPlayerService.shared.tracks ?? []
-        controller.configuteTable(with: tracks)
-        controller.view.backgroundColor = .clear
-        return controller
-    }()
+    let musicPlayer: MusicPlayer = MusicPlayerService.shared
     
-    let playerVC: PlayerViewController = {
-        let controller = PlayerViewController()
-        return controller
-    }()
+    // Controllers
+    var tracksTableVC: TracksTableViewController {
+        get {
+            let controller = TracksTableViewController()
+            let tracks = musicPlayer.tracks ?? []
+            controller.configuteTable(with: tracks)
+            controller.view.backgroundColor = .clear
+            return controller
+        }
+    }
+    
+    var playerVC: PlayerViewController {
+        get {
+            let controller = PlayerViewController()
+            return controller
+        }
+    }
     
     // Outlets
     
@@ -61,32 +67,7 @@ class PlayerMainViewController: UIViewController {
         view.addSubview(childView)
         setupConstraints()
         
-        addGestures()
-        
         self.animationForLoad(parentView: childView, fromVC: tracksTableVC, toVC: playerVC, with: .LeftToRight)
-    }
-    
-    private func addGestures() {
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(screenSwiped(gesture:)))
-        swipeRight.direction = .right
-        self.view.addGestureRecognizer(swipeRight)
-
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action:
-            #selector(screenSwiped(gesture:)))
-        swipeLeft.direction = .left
-        self.view.addGestureRecognizer(swipeLeft)
-    }
-    
-    @objc func screenSwiped(gesture: UISwipeGestureRecognizer)
-    {
-        switch gesture.direction {
-        case .right:
-            print("right swipe")
-        case .left:
-            print("left swipe")
-        default:
-            print("other swipe")
-        }
     }
     
     @objc func segmentIndexChanged(_ sender: UISegmentedControl) {
@@ -94,7 +75,7 @@ class PlayerMainViewController: UIViewController {
         case 0:
             self.animationForLoad(parentView: childView, fromVC: tracksTableVC, toVC: playerVC, with: .LeftToRight)
         case 1:
-            let tracks = MusicPlayerService.shared.tracks ?? []
+            let tracks = musicPlayer.tracks ?? []
             tracksTableVC.configuteTable(with: tracks)
             self.animationForLoad(parentView: childView, fromVC: playerVC, toVC: tracksTableVC, with: .RightToLeft)
         default:

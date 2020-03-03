@@ -12,6 +12,7 @@ import RxCocoa
 
 class TracksTableViewModel {
     
+    let musicPlayer: MusicPlayer = MusicPlayerService.shared
     let tracks = BehaviorRelay<[Track]>(value: [])
     
     init(with tracks: [Track]) {
@@ -20,9 +21,9 @@ class TracksTableViewModel {
     
     private func loadTracks(currentIndex: Int, isShuffled: Bool) {
         let trackList = isShuffled ? tracks.value.shuffled() : tracks.value
-        MusicPlayerService.shared.loadTracks(tracks: trackList, currentIndex: currentIndex)
-        MusicPlayerService.shared.initializePlayer()
-        MusicPlayerService.shared.playMusic()
+        musicPlayer.loadTracks(tracks: trackList, currentIndex: currentIndex)
+        musicPlayer.initializePlayer()
+        musicPlayer.toggleMusic()
     }
     
     func changeTracks(to tracks: [Track]) {

@@ -12,12 +12,12 @@ import MediaPlayer
 import RxSwift
 import RxCocoa
 
-class MusicPlayerService {
+class MusicPlayerService: MusicPlayer {
     
     // MARK: Properties
     static let shared = MusicPlayerService()
     
-    var tracks: [Track]?
+    private(set) var tracks: [Track]?
     private var player : AVPlayer?
     
     let isPlaying = BehaviorRelay<Bool>(value: false)
@@ -72,12 +72,7 @@ class MusicPlayerService {
             player?.play()
         }
     }
-    
-    // MARK: Get track duration
-    func getTrackDuration() -> Float {
-        guard let duration = player?.currentItem?.asset.duration.seconds else { return 0 }
-        return Float(duration)
-    }
+
     
     // MARK: Set next/previous track
     func setNext() {
@@ -121,12 +116,12 @@ class MusicPlayerService {
     }
     
     // MARK: Play/pause
-    func playMusic() {
+    private func playMusic() {
         player?.play()
         isPlaying.accept(true)
     }
     
-    func pauseMusic() {
+    private func pauseMusic() {
         player?.pause()
         isPlaying.accept(false)
     }

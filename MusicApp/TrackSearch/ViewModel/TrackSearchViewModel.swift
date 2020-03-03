@@ -21,7 +21,7 @@ class TrackSearchViewModel {
         isAnimating.onNext(true)
         trackList.onNext([])
         
-        TrackService.shared.fetchTracks(searchTerm: searchTerm) { [weak self] (tracks) in
+        TrackLoadingService.shared.fetchTracks(searchTerm: searchTerm) { [weak self] (tracks) in
             guard let tracks = tracks else {
                 self?.isAnimating.onNext(false)
                 return

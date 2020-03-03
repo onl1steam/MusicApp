@@ -21,6 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        enableMusicBackgroundMode()
+        
+        return true
+    }
+    
+    private func enableMusicBackgroundMode() {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
             print("Playback OK")
@@ -29,8 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print(error)
         }
-        
-        return true
     }
 
     // MARK: UISceneSession Lifecycle

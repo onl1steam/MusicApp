@@ -146,7 +146,7 @@ class TracksTableViewController: UITableViewController {
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        self.tableView.tableHeaderView = view
+        tableView.tableHeaderView = view
     }
     
     

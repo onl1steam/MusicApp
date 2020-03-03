@@ -15,6 +15,9 @@ import AVFoundation
 
 class PlayerViewModel {
     
+    let musicPlayer: MusicPlayer = MusicPlayerService.shared
+    let imageLoader: ImageLoader = ImageLoadService()
+    
     let trackName = BehaviorSubject<String>(value: "Не исполняется")
     let artistName = BehaviorSubject<String>(value: "")
     let isPlaying = BehaviorSubject<Bool>(value: false)
@@ -30,27 +33,25 @@ class PlayerViewModel {
     let disposeBag = DisposeBag()
     
     init() {
-        
         // Updating system volume
         let vol = AVAudioSession.sharedInstance().outputVolume
         volume.onNext(vol)
         
-        // Update slider and labels
         updateSlider()
         
-        // Set timer for current time
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
         
-        // Add Observers
         addObservers()
     }
     
     private func addObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(volumeDidChange(notification:)), name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"), object: nil)
-        MusicPlayerService.shared.currentTrack.subscribe(onNext: { [weak self] (track) in
+        
+        musicPlayer.currentTrack.subscribe(onNext: { [weak self] (track) in
             self?.updateTrackInformation(currentTrack: track)
         }).disposed(by: disposeBag)
-        MusicPlayerService.shared.isPlaying.subscribe(onNext: { [weak self] (playing) in
+        
+        musicPlayer.isPlaying.subscribe(onNext: { [weak self] (playing) in
             self?.isPlaying.onNext(playing)
         }).disposed(by: disposeBag)
     }
@@ -61,7 +62,7 @@ class PlayerViewModel {
             let artworkUrl100 = currentTrack?.artworkUrl100
             else { return }
         
-        let trackDuration = MusicPlayerService.shared.trackDuration
+        let trackDuration = musicPlayer.trackDuration
         
         trackName.onNext(track)
         artistName.onNext(artist)
@@ -70,46 +71,48 @@ class PlayerViewModel {
         }
         
         // Sending Data in model
-        ImageLoader.getImageData(from: artworkUrl100) { [weak self] (imageData) in
+        imageLoader.getImageData(from: artworkUrl100) { [weak self] (imageData) in
             self?.albumImage.onNext(imageData)
         }
     }
 
     func playMusic() {
-        MusicPlayerService.shared.toggleMusic()
+        musicPlayer.toggleMusic()
     }
     
     func playBackward() {
-        MusicPlayerService.shared.setPrevious()
+        musicPlayer.setPrevious()
     }
     
     func playForward() {
-        MusicPlayerService.shared.setNext()
+        musicPlayer.setNext()
     }
     
     func changeVolume(to value: Float) {
-        MusicPlayerService.shared.changeVolume(to: value)
+        musicPlayer.changeVolume(to: value)
     }
     
     func seekMusic(to value: Float) {
         updateTimeLabels(time: value)
         debounce(seconds: 0.3) { [unowned self] in
             let time = value.convertToCMTime()
-            MusicPlayerService.shared.seekMusic(to: time, completion: {
+            
+            self.musicPlayer.seekMusic(to: time, completion: {
                 self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
                 self.updateSlider()
             })
+            
         }
     }
     
     @objc private func updateSlider() {
-        let time = MusicPlayerService.shared.currentTime
+        let time = musicPlayer.currentTime
         currentTime.onNext(time)
         updateTimeLabels(time: time)
     }
     
     private func updateTimeLabels(time: Float) {
-        var duration = MusicPlayerService.shared.trackDuration
+        var duration = musicPlayer.trackDuration
         if duration.isNaN {
             duration = 30.0
         }

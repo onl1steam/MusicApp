@@ -9,9 +9,9 @@
 import Foundation
 import SDWebImage
 
-class ImageLoader {
-
-    static func getImageData(from url: String, completion: @escaping (Data) -> Void ) {
+class ImageLoadService: ImageLoader {
+    
+    func getImageData(from url: String, completion: @escaping (Data) -> Void ) {
         let _ = SDWebImageManager.shared.loadImage(with: URL(string: url),
                                            options: .continueInBackground,
                                            context: nil, progress: nil) {
